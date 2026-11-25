@@ -129,9 +129,9 @@ Silnik obsługuje warstwowe nadpisywanie zasobów (VFS) ponad `MASTER.DAT` / `CR
 > **Uwaga:** mody oparte wyłącznie na natywnych skryptach binarnych DLL sfall (np. `fo2tweaks`, `InventoryFilter`) nie są w pełni wspierane przez silnik przeglądarkowy — działa podzbiór zgodny ze skryptami `.int` i zasobami `.dat`.
 
 ### Grafika HD i efekty 2.5D
-- Domyślnie aktywny jest tryb **HD**, **kafelki HD**, **oświetlenie 2.5D** i **post-processing (postFx)**.
-- Jeśli w folderze gry (lub obok) znajduje się katalog **`assets-hd/`** z zatwierdzonym manifestem atlasów, silnik automatycznie użyje tekstur HD.
-- Bez paczki `assets-hd/` gra płynnie działa na oryginalnej grafice z plików gry; tryb obrazu możesz zmienić w każdej chwili w **Opcjach** (`Oryginał` / `Baza` / `HD`).
+- Gotowa, opcjonalna paczka tekstur HD znajduje się obok silnika w katalogu **[`hd-pack/assets-hd/`](hd-pack/assets-hd/)** (instrukcja w [`hd-pack/README.md`](hd-pack/README.md)) — nie jest wbudowana w bundle produkcyjny (`apps/web/dist/`).
+- **Jak wgrać:** skopiuj `hd-pack/assets-hd/` do swojego folderu gry (obok `MASTER.DAT` lub do `DATA/assets-hd/`) przed wskazaniem folderu, **albo** wskaż ten folder ręcznie w **Ustawienia → Grafika → Grafika HD → Wybierz paczkę HD...**.
+- Domyślnie aktywny jest tryb **HD**, **kafelki HD**, **oświetlenie 2.5D** i **post-processing (postFx)**; bez paczki `assets-hd/` gra płynnie działa na oryginalnej grafice z plików gry. Tryb obrazu możesz zmienić w każdej chwili w **Opcjach** (`Oryginał` / `Baza (xBRZ)` / `HD`).
 
 ---
 

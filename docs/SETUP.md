@@ -167,9 +167,11 @@ twoja-domena.example {
 ### Czy tekstury HD działają w wersji BYO?
 **Tak.** Cały mechanizm ładowania tekstur HD, kafelków HD, oświetlenia 2.5D oraz post-processingu (`postFx`) jest w pełni zachowany w kodzie silnika i domyślnie włączony w ustawieniach.
 
-- Repozytorium nie zawiera gotowej paczki `assets-hd/` (aby uniknąć dystrybucji grafik pochodnych oryginalnych sprite'ów).
-- Jeśli posiadasz własną paczkę `assets-hd/` (zawierającą `manifest.json` oraz katalogi `base/` i `hd/`), umieść ją **wewnątrz folderu gry** (np. `Fallout 2/assets-hd/` lub `Fallout 2/DATA/assets-hd/`). Silnik wykryje ją automatycznie podczas indeksowania folderu.
-- W **Opcjach** możesz w każdej chwili przełączać tryb grafiki: **`Oryginał`** / **`Baza`** / **`HD`**, a także włączać/wyłączać kafelki HD, oświetlenie 2.5D i `postFx`.
+- Gotowa, opcjonalna paczka tekstur HD (`manifest.json` + `base/` + `hd/`, ok. 295 MB) znajduje się w repozytorium **obok aplikacji** w katalogu [`hd-pack/assets-hd/`](../hd-pack/assets-hd/) (szczegóły w [`hd-pack/README.md`](../hd-pack/README.md)). Nie trafia ona do paczki wynikowej `apps/web/dist/`.
+- **Jak ją wgrać:**
+  1. **Automatycznie:** skopiuj folder `hd-pack/assets-hd/` do swojego folderu gry (np. `Fallout 2/assets-hd/` lub `Fallout 2/DATA/assets-hd/`) — silnik wykryje go podczas indeksowania.
+  2. **Ręcznie w grze:** wejdź w **Ustawienia → Grafika → Grafika HD → Wybierz paczkę HD...** i wskaż `hd-pack/assets-hd/`.
+- W **Opcjach** możesz w każdej chwili przełączać tryb grafiki: **`Oryginał`** / **`Baza (xBRZ)`** / **`HD`**, a także włączać/wyłączać kafelki HD, oświetlenie 2.5D i `postFx`.
 
 ### Mody Fallouta 2
 - Skopiuj pliki modów `.dat` do podkatalogu `mods/` w folderze gry oraz dodaj `mods/mods_order.txt` (np. `rpu.dat`, `npc_armor.dat`, `rpu_polish.dat`).
