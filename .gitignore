@@ -45,6 +45,7 @@ analysis/*.snapshot
 
 # Wyniki frm2png (obrazy z zasobow gry)
 *.png
+!hd-pack/assets-hd/**/*.png
 
 # Robocze dane tlumaczen (teksty EN z gry)
 i18n/work/
