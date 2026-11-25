@@ -1,10 +1,10 @@
 # Fallout 2 & Fallout 1 Web — Bring Your Own Game (v1.1.0)
 
-> **English summary:** Open-source, **Bring-Your-Own-Game (BYO)** browser edition featuring a custom TypeScript/WebGL2 reimplementation of **Fallout 2** alongside **Fallout 1 Community Edition** (WebAssembly). **No copyrighted game files are included** — you supply your own legal game folder (GOG, Steam, CD) locally in your browser. Nothing is ever uploaded. See the [English User Guide](docs/user/README.en.md) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+**[Polski](README.md)** | **[English](README.en.md)**
 
-Przeglądarkowa wersja **Fallouta 2** (własny silnik TypeScript + WebGL2) oraz **Fallouta 1** (osadzony silnik Community Edition skompilowany do WebAssembly) działająca w 100% w modelu **Bring Your Own Game (BYO)**.
+Przeglądarkowa edycja **Fallouta 2** (własny silnik **TypeScript + WebGL2**) oraz **Fallouta 1** (osadzony silnik **Community Edition** skompilowany do **WebAssembly**), działająca w 100% lokalnie w modelu **Bring Your Own Game (BYO)**.
 
-Aplikacja **nie zawiera żadnych oryginalnych zasobów gier** (grafik, dźwięków, filmów, skryptów ani tekstów). Aby zagrać, wskazujesz na własnym urządzeniu folder lub archiwum ZIP ze swoją legalną kopią gry (np. z GOG, Steam lub płyty CD). Wszystkie pliki przetwarzane są wyłącznie lokalnie w pamięci przeglądarki.
+Aplikacja **nie zawiera żadnych oryginalnych plików gier** (grafik, dźwięków, filmów, skryptów ani tekstów). Aby zagrać, wskazujesz na własnym urządzeniu folder, pliki lub archiwum `.zip` ze swoją legalną kopią gry (np. z GOG, Steam lub płyty CD). Wszystkie dane przetwarzane są wyłącznie lokalnie w pamięci przeglądarki (OPFS / IndexedDB) i nigdy nie są nigdzie wysyłane.
 
 ---
 
@@ -13,17 +13,15 @@ Aplikacja **nie zawiera żadnych oryginalnych zasobów gier** (grafik, dźwięk�
 1. [Zrzuty ekranu (Screenshots)](#zrzuty-ekranu-screenshots)
 2. [Kwestie prawne i licencje](#kwestie-prawne-i-licencje)
 3. [Wymagania](#wymagania)
-4. [Szybki start (uruchomienie aplikacji)](#szybki-start-uruchomienie-aplikacji)
-5. [Jak wczytać własną grę (Fallout 2 i Fallout 1)](#jak-wczytać-własną-grę-fallout-2-i-fallout-1)
-6. [Mody i tekstury HD](#mody-i-tekstury-hd)
-7. [Sterowanie (PC oraz telefon/tablet)](#sterowanie-pc-oraz-telefontablet)
-8. [Profile, zapisy gry i kopie zapasowe](#profile-zapisy-gry-i-kopie-zapasowe)
-9. [Samodzielny hosting statyczny i bezpieczeństwo](#samodzielny-hosting-statyczny-i-bezpieczeństwo)
-10. [Rozwiązywanie problemów i prywatność](#rozwiązywanie-problemów-i-prywatność)
-
-Więcej szczegółów znajdziesz w pełnej instrukcji:
-- [Szczegółowa instrukcja uruchomienia, hostingu, bezpieczeństwa i legalności (`docs/SETUP.md`)](docs/SETUP.md)
-- [Instrukcja użytkownika (PL)](docs/user/README.pl.md) | [User Guide (EN)](docs/user/README.en.md)
+4. [Szczegółowa instrukcja uruchomienia (lokalnie)](#szczegółowa-instrukcja-uruchomienia-lokalnie)
+5. [Hosting statyczny (Nginx, Caddy, Cloudflare / Netlify / GitHub Pages)](#hosting-statyczny-produkcja)
+6. [Jak wczytać własną grę (Fallout 2 i Fallout 1)](#jak-wczytać-własną-grę-fallout-2-i-fallout-1)
+7. [Tekstury HD (`hd-pack/assets-hd/`) i efekty 2.5D](#tekstury-hd-hd-packassets-hd-i-efekty-25d)
+8. [Mody (Fallout 2 VFS)](#mody-fallout-2-vfs)
+9. [Sterowanie (PC oraz telefon/tablet)](#sterowanie-pc-oraz-telefontablet)
+10. [Profile, zapisy gry i kopie zapasowe](#profile-zapisy-gry-i-kopie-zapasowe)
+11. [Bezpieczeństwo, CSP i prywatność](#bezpieczeństwo-csp-i-prywatność)
+12. [Rozwiązywanie problemów i dokumentacja](#rozwiązywanie-problemów-i-dokumentacja)
 
 ---
 
@@ -57,88 +55,166 @@ Więcej szczegółów znajdziesz w pełnej instrukcji:
 
 ## Kwestie prawne i licencje
 
-- **Kod aplikacji i silnika Fallout 2 (TypeScript/WebGL2):** udostępniony na licencji [MIT](LICENSE).
-- **Brak plików gier w repozytorium:** pliki `.dat`, `.frm`, `.acm`, `.mve`, `.pro`, `.map`, `.int`, `.msg`, `.exe` są blokowane przez `.gitignore` oraz strażnika `scripts/guard-no-game-files.mjs`.
-- **Fallout 1 Community Edition (WASM):** katalogi `apps/web/public/engines/fo1-ce/` oraz `tools/fo1-ce-patches/` zawierają port Emscripten oparty na `alexbatalov/fallout1-ce` i `K1ngst0m/fallout1-ce-web` na licencji **Sustainable Use License 1.0** — **wyłącznie do użytku osobistego / niekomercyjnego** (szczegóły w [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) oraz [licenses/SUSTAINABLE-USE-LICENSE-1.0.txt](licenses/SUSTAINABLE-USE-LICENSE-1.0.txt)).
+- **Kod aplikacji i silnika Fallout 2 (TypeScript/WebGL2):** licencja **[MIT](LICENSE)**.
+- **Brak plików gier w aplikacji i buildzie:** pliki `.dat`, `.frm`, `.acm`, `.mve`, `.pro`, `.map`, `.int`, `.msg`, `.exe` są blokowane przez `.gitignore` oraz strażnika [`scripts/guard-no-game-files.mjs`](scripts/guard-no-game-files.mjs). Paczka wynikowa `apps/web/dist/` nie zawiera żadnych zasobów gier ani paczki HD.
+- **Opcjonalna paczka HD (`hd-pack/assets-hd/`):** umieszczona osobno obok aplikacji jako dodatek wizualny do użycia wyłącznie z własną, legalną kopią Fallouta 2 (nie jest częścią kodu na licencji MIT ani builda `apps/web/dist/`).
+- **Fallout 1 Community Edition (WASM):** katalogi `apps/web/public/engines/fo1-ce/` oraz `tools/fo1-ce-patches/` zawierają port Emscripten oparty na `alexbatalov/fallout1-ce` i `K1ngst0m/fallout1-ce-web` na licencji **[Sustainable Use License 1.0](licenses/SUSTAINABLE-USE-LICENSE-1.0.txt)** — **wyłącznie do użytku osobistego i niekomercyjnego** (szczegóły w [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)).
+- **Font VT323:** licencja **SIL Open Font License 1.1**.
 - **Znaki towarowe:** *Fallout* i *Fallout 2* są znakami towarowymi Bethesda Softworks LLC / ZeniMax Media Inc. Projekt jest niezależną implementacją hobbystyczną.
 
 ---
 
 ## Wymagania
 
-- **Do uruchomienia w przeglądarce:** nowoczesna przeglądarka z obsługą **WebGL2** i **WebAssembly**:
-  - **Chrome / Edge (Desktop & Android):** pełna obsługa bezpośredniego dostępu do folderu (File System Access API) oraz pamięci OPFS.
-  - **Safari / iOS (15.4+, zalecane 16.4+):** wybór folderu przez `webkitdirectory` lub archiwum `.zip`, kopia zapisywana w OPFS (wymaga ok. 0,6–2 GB wolnego miejsca zależnie od modów).
-  - **Firefox:** wybór folderu / plików / `.zip` oraz zapis w OPFS.
-- **Do zbudowania ze źródeł:** `Node.js >= 24` oraz `pnpm` (`12.x`).
+### Przeglądarka (uruchomienie gry)
+Nowoczesna przeglądarka z obsługą **WebGL2** i **WebAssembly**:
+- **Chrome / Edge (Desktop i Android):** pełna obsługa bezpośredniego dostępu do folderu (File System Access API) oraz trwałego zapisu w OPFS.
+- **Safari / iOS (15.4+, zalecane 16.4+):** wybór folderu przez `webkitdirectory` lub archiwum `.zip`; kopia zapisywana jest w OPFS (wymaga ok. 0,6–2 GB wolnego miejsca zależnie od modów).
+- **Firefox:** wybór folderu / plików / `.zip` oraz zapis w OPFS.
+
+### Środowisko developerskie (zbudowanie ze źródeł)
+- **Node.js `>= 24`**
+- **pnpm `12.x`** (`corepack enable` lub `npm i -g pnpm@12`)
 
 ---
 
-## Szybki start (uruchomienie aplikacji)
+## Szczegółowa instrukcja uruchomienia (lokalnie)
 
-1. Sklonuj repozytorium i zainstaluj zależności:
+1. **Sklonuj repozytorium i zainstaluj zależności:**
    ```sh
+   git clone https://github.com/cenkierpiotr/fallout2-web-byo.git
+   cd fallout2-web-byo
    pnpm install
+   ```
+
+2. **Uruchom serwer deweloperski:**
+   ```sh
    pnpm dev
    ```
-2. Otwórz wyświetlony adres (domyślnie `http://localhost:5173`) w przeglądarce.
-   - Aby przetestować na telefonie w tej samej sieci Wi-Fi, uruchom z `--host` (`pnpm dev -- --host`), pamiętając, że funkcje OPFS / PWA / File System Access wymagają poza `localhost` połączenia **HTTPS** (np. lokalny proxy HTTPS lub własna domena z certyfikatem).
+   Otwórz w przeglądarce adres `http://localhost:5173`.
 
-Pozostałe przydatne komendy developerskie:
-- `pnpm check` — lint, sprawdzanie typów TypeScript oraz testy jednostkowe (`vitest`)
-- `pnpm --filter @f2/web build` — budowanie statycznej paczki produkcyjnej do `apps/web/dist`
+3. **Testowanie na telefonie w sieci lokalnej (opcjonalnie):**
+   ```sh
+   pnpm dev -- --host
+   ```
+   > **Uwaga:** poza `http://localhost` przeglądarki blokują OPFS, File System Access API i Service Workery na zwykłym HTTP — do testów na telefonie użyj lokalnego proxy HTTPS (np. Caddy / mkcert) albo hostingu z TLS.
+
+4. **Weryfikacja i budowanie wersji produkcyjnej:**
+   ```sh
+   pnpm check                                              # eslint + tsc + vitest
+   pnpm tools docs-check                                   # spójność dokumentacji
+   pnpm --filter @f2/web build                             # paczka SPA/PWA -> apps/web/dist/
+   node scripts/guard-no-game-files.mjs --dist apps/web/dist # weryfikacja braku plików gier w dist/
+   pnpm --filter @f2/web preview                           # lokalny podgląd wersji produkcyjnej
+   ```
+
+---
+
+## Hosting statyczny (Produkcja)
+
+Aplikacja jest w 100% statycznym SPA + PWA (`apps/web/dist/`). Nie wymaga backendu ani bazy danych po stronie serwera.
+
+### Wymagania obowiązkowe hostingu
+1. **HTTPS** (wymagane przez OPFS, File System Access API i PWA).
+2. **Nagłówki COOP / COEP** dla wielowątkowego WASM (`SharedArrayBuffer`) w Falloucie 1:
+   - `Cross-Origin-Opener-Policy: same-origin`
+   - `Cross-Origin-Embedder-Policy: require-corp`
+3. **Reguły cache:** `no-cache` / `no-store` dla `index.html`, `sw.js`, `version.json` i `manifest.webmanifest`; `public, max-age=31536000, immutable` dla `/assets/*`.
+4. **Typ MIME dla `.wasm`:** `application/wasm`.
+
+### Przykład: Nginx (zob. też [`deploy/nginx.conf`](deploy/nginx.conf))
+```nginx
+server {
+    listen 443 ssl http2;
+    server_name twoja-domena.example;
+
+    ssl_certificate     /etc/letsencrypt/live/twoja-domena.example/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/twoja-domena.example/privkey.pem;
+
+    server_tokens off;
+    root /var/www/fallout2-web-byo/dist;
+    index index.html;
+
+    add_header Cross-Origin-Opener-Policy "same-origin" always;
+    add_header Cross-Origin-Embedder-Policy "require-corp" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options "DENY" always;
+    add_header Referrer-Policy "no-referrer" always;
+
+    location = /index.html           { add_header Cache-Control "no-cache" always; }
+    location = /sw.js                { add_header Cache-Control "no-cache" always; }
+    location = /version.json         { add_header Cache-Control "no-store" always; }
+    location = /manifest.webmanifest { add_header Cache-Control "no-cache" always; }
+
+    location /assets/ {
+        add_header Cache-Control "public, max-age=31536000, immutable" always;
+        try_files $uri =404;
+    }
+
+    location / {
+        try_files $uri $uri/ /index.html;
+        add_header Cache-Control "no-cache" always;
+    }
+}
+```
+
+### Inne platformy (Caddy / Cloudflare Pages / Netlify / GitHub Pages)
+Pełny przykład dla **Caddy** (automatyczny HTTPS) oraz uwagi dla **Cloudflare Pages**, **Netlify** i **GitHub Pages** znajdziesz w **[`docs/SETUP.md`](docs/SETUP.md)**.
 
 ---
 
 ## Jak wczytać własną grę (Fallout 2 i Fallout 1)
 
-Po otwarciu aplikacji zobaczysz ekran wyboru gry (**Fallout 2** albo **Fallout 1**). Wybór zostaje zapamiętany (możesz go zmienić później w górnym pasku).
+Po otwarciu aplikacji wybierasz grę (**Fallout 2** albo **Fallout 1**). Wybór możesz przełączyć w każdej chwili w górnym pasku.
 
 ### Fallout 2
-
-Przygotuj folder ze swoją kopią gry (GOG, Steam, CD). Minimalnie potrzebne są:
+Przygotuj folder ze swoją legalną kopią gry (GOG, Steam, CD):
 - **`MASTER.DAT`** i **`CRITTER.DAT`** (wymagane)
 - **`PATCH000.DAT`** (zalecane — oficjalny patch 1.02)
-- opcjonalnie folder **`DATA/`**, **`mods/`** oraz **`assets-hd/`** (jeśli używasz modów lub tekstur HD)
+- opcjonalnie **`DATA/`**, **`mods/`** oraz **`assets-hd/`**
 
-Na ekranie pierwszego uruchomienia wybierz jedną z metod:
-1. **Wskaż folder gry** — wybierz główny katalog instalacji Fallouta 2.
-2. **Wybierz pliki gry** — wskaż pliki ręcznie.
+Na ekranie **Pierwsze uruchomienie** wybierz jedną z metod:
+1. **Wskaż folder gry** — główny katalog instalacji Fallouta 2.
+2. **Wybierz pliki gry** — wskazanie plików ręcznie.
 3. **Wybierz archiwum ZIP** — spakowany folder gry (import można wznowić po przerwaniu).
-4. **Przeciągnij i upuść** folder, pliki lub plik `.zip` bezpośrednio w okno przeglądarki.
+4. **Przeciągnij i upuść** folder, pliki lub `.zip` bezpośrednio w okno przeglądarki.
 
-Zaznaczenie opcji **„Zapamiętaj w przeglądarce”** zapisuje kopię plików w lokalnej pamięci przeglądarki (OPFS), dzięki czemu kolejne uruchomienia działają natychmiast i w trybie offline. Dane gry **nie są nigdzie wysyłane**.
+Zaznaczenie opcji **„Zapamiętaj w przeglądarce”** zapisuje kopię plików w lokalnym **OPFS**, dzięki czemu kolejne uruchomienia działają natychmiast i offline.
 
 ### Fallout 1 (Community Edition WASM)
-
 1. Wybierz kartę **Fallout 1**.
 2. Poczekaj na załadowanie silnika WebAssembly (`fallout-ce.wasm`).
-3. Kliknij **Wskaż folder gry** i wybierz folder ze swoją instalacją Fallouta 1 zawierającą pliki **`MASTER.DAT`** i **`CRITTER.DAT`** (oraz opcjonalnie nadpisania w `DATA/`).
-4. Po zakończeniu importu kliknij **Uruchom grę**. Postępy zapisywane są lokalnie w pamięci przeglądarki (IndexedDB / IDBFS).
+3. Kliknij **Wskaż folder gry** i wybierz folder ze swoją instalacją Fallouta 1 zawierającą **`MASTER.DAT`** i **`CRITTER.DAT`** (oraz opcjonalnie nadpisania w `DATA/`).
+4. Po zakończeniu importu kliknij **Uruchom grę**. Zapisy gry przechowywane są lokalnie w przeglądarce (IndexedDB / IDBFS).
 
 ---
 
-## Mody i tekstury HD
+## Tekstury HD (`hd-pack/assets-hd/`) i efekty 2.5D
 
-### Mody w Fallout 2
+Gotowa, opcjonalna paczka tekstur HD znajduje się obok silnika w katalogu **[`hd-pack/assets-hd/`](hd-pack/assets-hd/)** (ok. 295 MB: `manifest.json`, atlasy `base/` w xBRZ oraz atlasy `hd/`). Szczegóły w [`hd-pack/README.md`](hd-pack/README.md).
+
+### Jak wgrać tekstury HD (2 sposoby)
+1. **Automatycznie z folderem gry (zalecane):** skopiuj katalog `hd-pack/assets-hd/` do swojego folderu gry Fallout 2 (np. `Fallout 2/assets-hd/` albo `Fallout 2/DATA/assets-hd/`) przed wskazaniem folderu w aplikacji.
+2. **Ręcznie po wczytaniu gry:** otwórz **Ustawienia (Opcje) → Grafika → Grafika HD → Wybierz paczkę HD...** i wskaż katalog `hd-pack/assets-hd/`, a następnie otwórz ponownie mapę lub zacznij nową grę.
+
+Domyślnie aktywne są: tryb **HD**, **kafelki HD**, **oświetlenie 2.5D** i **post-processing (`postFx`)**. W **Opcjach** możesz w każdej chwili przełączać tryb obrazu (`Oryginał` / `Baza (xBRZ)` / `HD`) oraz poszczególne efekty. Bez paczki `assets-hd/` gra działa płynnie na oryginalnej grafice z plików gry.
+
+---
+
+## Mody (Fallout 2 VFS)
+
 Silnik obsługuje warstwowe nadpisywanie zasobów (VFS) ponad `MASTER.DAT` / `CRITTER.DAT` / `PATCH000.DAT`:
-- Rozpakuj lub wgraj paczki `.dat` do podkatalogu **`mods/`** w folderze gry oraz opcjonalny plik kolejności **`mods/mods_order.txt`** (zgodny ze strukturą sfall / Restoration Project Updated, np. `rpu.dat`, `npc_armor.dat`, `rpu_polish.dat`, `cassidy_head.dat`, `party_orders.dat`).
-- Wpisy na końcu pliku `mods_order.txt` mają najwyższy priorytet; brakujące pliki są bezpiecznie pomijane.
-- Dodatkowo silnik wbudowuje zestaw opcjonalnych poprawek mechaniki/proto — możesz je przełączać w **Opcjach** (w tym włączyć **Tryb klasyczny**, aby grać bez żadnych poprawek silnika).
-
-> **Uwaga:** mody oparte wyłącznie na natywnych skryptach binarnych DLL sfall (np. `fo2tweaks`, `InventoryFilter`) nie są w pełni wspierane przez silnik przeglądarkowy — działa podzbiór zgodny ze skryptami `.int` i zasobami `.dat`.
-
-### Grafika HD i efekty 2.5D
-- Gotowa, opcjonalna paczka tekstur HD znajduje się obok silnika w katalogu **[`hd-pack/assets-hd/`](hd-pack/assets-hd/)** (instrukcja w [`hd-pack/README.md`](hd-pack/README.md)) — nie jest wbudowana w bundle produkcyjny (`apps/web/dist/`).
-- **Jak wgrać:** skopiuj `hd-pack/assets-hd/` do swojego folderu gry (obok `MASTER.DAT` lub do `DATA/assets-hd/`) przed wskazaniem folderu, **albo** wskaż ten folder ręcznie w **Ustawienia → Grafika → Grafika HD → Wybierz paczkę HD...**.
-- Domyślnie aktywny jest tryb **HD**, **kafelki HD**, **oświetlenie 2.5D** i **post-processing (postFx)**; bez paczki `assets-hd/` gra płynnie działa na oryginalnej grafice z plików gry. Tryb obrazu możesz zmienić w każdej chwili w **Opcjach** (`Oryginał` / `Baza (xBRZ)` / `HD`).
+- Umieść paczki `.dat` modów w podkatalogu **`mods/`** w folderze gry oraz opcjonalny plik kolejności **`mods/mods_order.txt`** (zgodny ze strukturą sfall / Restoration Project Updated, np. `rpu.dat`, `npc_armor.dat`, `rpu_polish.dat`, `cassidy_head.dat`, `party_orders.dat`).
+- Wpisy na końcu `mods_order.txt` mają najwyższy priorytet; brakujące pliki są bezpiecznie pomijane.
+- W **Opcjach → Poprawki** możesz przełączać wbudowane poprawki mechaniki oraz włączyć **Tryb klasyczny**.
+- **Ograniczenie:** mody oparte na natywnych bibliotekach DLL sfall (np. `fo2tweaks`, `InventoryFilter`) nie są w pełni wspierane przez silnik przeglądarkowy — działa podzbiór zgodny ze skryptami `.int` i zasobami `.dat`.
 
 ---
 
 ## Sterowanie (PC oraz telefon/tablet)
 
-- **Mysz:** LPM — ruch / interakcja / atak; PPM — menu radialne akcji (Rozmawiaj, Patrz, Idź, Biegnij, Anuluj); kółko — przybliżenie/oddalenie; środkowy przycisk — przesuwanie kamery.
-- **Klawiatura:** `W`/`A`/`S`/`D` lub strzałki — kamera; `+` / `-` — zoom; `0` — reset zoomu; `PageUp`/`PageDown` — piętro; `R` / `Shift` — bieg; `I` — ekwipunek; `F5` — szybki zapis; `Esc` — menu/pauza.
+- **Mysz:** LPM — ruch / interakcja / atak; PPM — menu radialne akcji (Rozmawiaj, Patrz, Idź, Biegnij, Anuluj); kółko — zoom; środkowy przycisk — przesuwanie kamery.
+- **Klawiatura:** `W`/`A`/`S`/`D` lub strzałki — kamera; `+`/`=` i `-` — zoom; `0` — reset zoomu; `PageUp`/`PageDown` — piętro; `R` / `Shift` — bieg; `I` — ekwipunek; `F5` — szybki zapis; `Esc` — menu/pauza.
 - **Dotyk (mobile/tablet):** tap — ruch lub akcja; długie przytrzymanie (350 ms) — menu radialne; podwójny tap — Patrz; przeciągnięcie jednym palcem — kamera; szczypanie (pinch) — zoom; podwójny tap dwoma palcami — reset zoomu; tap trzema palcami — pauza.
 - Tryb sterowania (`Auto` / `Pulpit` / `Dotyk`) oraz **Pełny ekran** możesz przełączać na górnym pasku aplikacji.
 
@@ -147,30 +223,31 @@ Silnik obsługuje warstwowe nadpisywanie zasobów (VFS) ponad `MASTER.DAT` / `CR
 ## Profile, zapisy gry i kopie zapasowe
 
 - **Lokalne profile graczy:** osobne sloty zapisów i ustawień w IndexedDB (opcjonalny PIN to wyłącznie lokalna blokada UI).
-- **Autozapis:** automatyczny zapis co 5 minut (3 rotacyjne sloty) oraz przy przejściu między mapami.
-- **Przenoszenie między urządzeniami (PC ↔ telefon):** użyj przycisku **Kopia** w górnym pasku, aby wyeksportować zapisy do pliku **`.f2save`** (JSON + gzip) lub cały profil do **`.f2profile`**. Podczas importu możesz wybrać scalenie (`merge` — wygrywa nowszy zapis) albo zastąpienie (`replace`).
-- **Ważne dla iOS / Safari:** Safari potrafi usunąć dane witryny po ok. 7 dniach braku aktywności lub w trybie prywatnym. Eksportuj regularnie plik `.f2save`.
+- **Autozapis:** co 5 minut (3 rotacyjne sloty) oraz przy przejściu między mapami.
+- **Przenoszenie między urządzeniami (PC ↔ telefon):** przycisk **Kopia zapisów** na górnym pasku pozwala wyeksportować zapisy do **`.f2save`** (JSON + gzip) lub cały profil do **`.f2profile`**. Import wspiera tryby **Scal (`merge`)** (wygrywa nowszy zapis) oraz **Zastąp (`replace`)**.
+- **Ważne dla iOS / Safari:** Safari potrafi usunąć dane witryny po ok. 7 dniach braku aktywności lub w trybie prywatnym — eksportuj regularnie plik `.f2save`.
 
 ---
 
-## Samodzielny hosting statyczny i bezpieczeństwo
+## Bezpieczeństwo, CSP i prywatność
 
-Aplikacja jest w 100% statycznym SPA + PWA (brak backendu i bazy na serwerze):
-
-```sh
-pnpm --filter @f2/web build
-node scripts/guard-no-game-files.mjs --dist apps/web/dist
-```
-
-Zawartość katalogu `apps/web/dist/` możesz wystawić na dowolnym serwerze WWW (np. korzystając z przykładowej konfiguracji w [`deploy/nginx.conf`](deploy/nginx.conf)). **Wymagany jest HTTPS** (lub `http://localhost`), ponieważ przeglądarki blokują OPFS, File System Access API oraz Service Workery na zwykłym HTTP.
-
-Pełna konfiguracja **Nginx**, **Caddy**, nagłówków **COOP/COEP** (dla `SharedArrayBuffer` w Fallout 1 WASM), **CSP**, zasad bezpieczeństwa oraz wytycznych prawnych znajduje się w **[`docs/SETUP.md`](docs/SETUP.md)**.
+- **Zero wysyłania danych do sieci:** pliki gry, zapisy, profile i diagnostyka nie opuszczają przeglądarki.
+- **Zalecane CSP (Content Security Policy):**
+  ```text
+  default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; media-src 'self' blob:; connect-src 'self' blob:; worker-src 'self' blob:; font-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none';
+  ```
+  `'wasm-unsafe-eval'` jest wymagane wyłącznie dla WebAssembly (`fallout-ce.wasm`), a `blob:` dla lokalnych dekoderów grafiki i audio.
+- **Diagnostyka lokalna:** bufor maks. 10 000 zdarzeń / 5 MB w IndexedDB dostępny w zakładce **Diagnostyka** (tylko ręczny eksport `.jsonl` lub wyczyszczenie).
 
 ---
 
-## Rozwiązywanie problemów i prywatność
+## Rozwiązywanie problemów i dokumentacja
 
-- **Czarny ekran:** upewnij się, że przeglądarka ma włączone WebGL2 i akcelerację sprzętową.
-- **Brak dźwięku na iOS:** stuknij ekran po uruchomieniu — Safari wymaga gestu użytkownika przed odtworzeniem audio.
-- **Spadek wydajności na starszym urządzeniu:** wyłącz efekty `postFx` / oświetlenie 2.5D lub zmniejsz skalę interfejsu w Opcjach.
-- **Diagnostyka i prywatność:** aplikacja **nie wysyła żadnej telemetrii ani plików gry do sieci**. Lokalny bufor diagnostyczny (FPS, błędy VM) dostępny jest w zakładce **Diagnostyka**, gdzie możesz go ręcznie wyeksportować (`.jsonl`) lub wyczyścić.
+- **Czarny ekran:** włącz WebGL2 i akcelerację sprzętową w przeglądarce.
+- **Brak dźwięku na iOS:** dotknij ekranu po uruchomieniu (wymagany gest użytkownika).
+- **Spadek wydajności:** wyłącz `postFx` / oświetlenie 2.5D lub zmniejsz skalę interfejsu w Opcjach.
+- **Dodatkowe dokumenty:**
+  - [Pełna instrukcja uruchomienia, hostingu, bezpieczeństwa i legalności (`docs/SETUP.md`)](docs/SETUP.md)
+  - [Instrukcja użycia paczki HD (`hd-pack/README.md`)](hd-pack/README.md)
+  - [Instrukcja użytkownika PL (`docs/user/README.pl.md`)](docs/user/README.pl.md) | [User Guide EN (`docs/user/README.en.md`)](docs/user/README.en.md)
+  - [Licencje podmiotów trzecich (`THIRD_PARTY_NOTICES.md`)](THIRD_PARTY_NOTICES.md) | [Historia zmian (`CHANGELOG.md`)](CHANGELOG.md)
