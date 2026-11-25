@@ -1,0 +1,8 @@
+{
+  "name": "@f2/app",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/settings-store.ts",
+  "types": "src/settings-store.ts"
+}

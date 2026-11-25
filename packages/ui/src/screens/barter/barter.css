@@ -1,0 +1,290 @@
+/* Ekran handlu. Cele dotykowe >= 44px (max(44px, --target-min)). */
+.f2-barter-screen {
+  --barter-target: max(44px, var(--target-min));
+  width: 100%;
+}
+.f2-barter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-3);
+  align-items: stretch;
+}
+.f2-barter-screen--compact .f2-barter-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+.f2-barter-col {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+  min-height: 160px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+.f2-barter-col--table {
+  border-style: dashed;
+}
+.f2-barter-col__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-size-md);
+}
+.f2-barter-col__empty {
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+.f2-barter-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.f2-barter-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  gap: var(--space-2);
+  align-items: center;
+  width: 100%;
+  min-height: var(--barter-target);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-panel);
+  color: var(--color-text-primary);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  touch-action: pan-y;
+}
+.f2-barter-row--locked {
+  opacity: 0.8;
+}
+.f2-barter-row__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.f2-barter-row__count,
+.f2-barter-row__value,
+.f2-barter-row__lock {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+.f2-barter-summary {
+  margin-top: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.f2-barter-summary--ok {
+  border-color: var(--color-state-ok);
+}
+.f2-barter-summary dl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin: 0;
+}
+.f2-barter-summary dt {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+.f2-barter-summary dd {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+}
+.f2-barter-summary__state {
+  margin: var(--space-1) 0 0;
+  font-weight: 600;
+}
+.f2-barter-status {
+  min-height: 1.5em;
+  margin: var(--space-2) 0;
+}
+.f2-barter-status--error {
+  color: var(--color-state-danger);
+  font-weight: 600;
+}
+.f2-barter-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.f2-barter-qty {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: min(320px, 80vw);
+}
+.f2-barter-qty__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.f2-barter-qty__field input {
+  min-height: var(--barter-target, 44px);
+  box-sizing: border-box;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-panel);
+  color: var(--color-text-primary);
+  font: inherit;
+}
+.f2-barter-qty__actions {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: flex-end;
+}
+
+/* --- skorka FRM: scena barter.frm (zadanie ekranowe) --- */
+.f2-barter__sr-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+/* Rodzic sceny musi miec okreslona wysokosc (inaczej .f2-art-frame kolapsuje do 0). */
+.f2-barter__scene {
+  width: 100%;
+  aspect-ratio: 640 / 191;
+}
+.f2-barter-screen--art {
+  color: var(--f2-art-green, #2f8f3f);
+  font-family: var(--f2-art-font, monospace);
+  font-size: 0.8em;
+}
+.f2-barter__scene .f2-barter-col {
+  font-size: clamp(9px, 1.25cqw, 14px);
+}
+.f2-barter-screen--art .f2-barter-col {
+  box-sizing: border-box;
+  height: 100%;
+  max-height: none;
+  min-height: 0;
+  padding: 2px 3px;
+  border: 1px solid var(--f2-art-green, #2f8f3f);
+  border-radius: 0;
+  background: rgba(15, 58, 26, 0.6);
+  scrollbar-width: thin;
+}
+.f2-barter-screen--art .f2-barter-col--table {
+  border-style: dashed;
+}
+.f2-barter-screen--art .f2-barter-col__title {
+  margin: 0 0 2px;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: var(--f2-art-yellow, #e0c040);
+}
+.f2-barter-screen--art .f2-barter-col__empty,
+.f2-barter-screen--art .f2-barter-row__count,
+.f2-barter-screen--art .f2-barter-row__value,
+.f2-barter-screen--art .f2-barter-row__lock {
+  color: inherit;
+  opacity: 0.8;
+}
+.f2-barter-screen--art .f2-barter-row {
+  min-height: 0;
+  padding: 1px 2px;
+  border-radius: 0;
+  border-color: transparent;
+  background: transparent;
+  color: var(--f2-art-green, #2f8f3f);
+  font-family: inherit;
+}
+.f2-barter-screen--art .f2-barter-row:hover,
+.f2-barter-screen--art .f2-barter-row:focus-visible {
+  border-color: var(--f2-art-yellow, #e0c040);
+  outline: none;
+}
+.f2-barter-screen--art .f2-barter-summary {
+  margin: 0;
+  padding: 2px 6px;
+  border: 1px solid var(--f2-art-green, #2f8f3f);
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+.f2-barter-screen--art .f2-barter-summary--short {
+  border-color: var(--f2-art-yellow, #e0c040);
+}
+.f2-barter-screen--art .f2-barter-summary dl {
+  gap: 12px;
+}
+.f2-barter-screen--art .f2-barter-summary dt {
+  color: inherit;
+  opacity: 0.8;
+}
+.f2-barter-screen--art .f2-barter-summary dd {
+  font-size: 1em;
+  color: var(--f2-art-yellow, #e0c040);
+}
+.f2-barter-screen--art .f2-barter-summary__state {
+  margin: 0;
+  font-weight: 400;
+}
+.f2-barter-screen--art .f2-barter-status {
+  margin: 0;
+  min-height: 0;
+  color: var(--f2-art-yellow, #e0c040);
+}
+.f2-barter-screen--art .f2-barter-status:empty {
+  display: none;
+}
+.f2-barter-screen--art .f2-barter-status--error {
+  font-weight: 400;
+}
+.f2-barter-screen--art .f2-barter-actions {
+  align-items: center;
+  justify-content: center;
+}
+.f2-barter-screen--art .f2-button {
+  background: rgba(15, 58, 26, 0.85);
+  border: 1px solid var(--f2-art-green, #2f8f3f);
+  color: var(--f2-art-green, #2f8f3f);
+  font-family: inherit;
+  min-height: 26px;
+}
+/* Dotyk: wszystko w nakladce na scenie, cele >= 44px. */
+.f2-barter__touch {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+  padding: 4px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--f2-art-green, #2f8f3f);
+}
+.f2-barter__below {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+}
+.f2-barter__touch .f2-barter-grid--art {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+}
+.f2-barter__touch .f2-barter-col {
+  height: auto;
+  max-height: none;
+}
+.f2-barter__touch .f2-barter-row,
+.f2-barter__touch .f2-button,
+.f2-barter__touch .f2-tab {
+  min-height: 44px;
+}
+.f2-barter-qty--art {
+  color: var(--f2-art-green, #2f8f3f);
+  font-family: var(--f2-art-font, monospace);
+  background: var(--f2-art-green-dark, #0f3a1a);
+  padding: 6px;
+}

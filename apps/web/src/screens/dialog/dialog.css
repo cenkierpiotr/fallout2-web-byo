@@ -1,0 +1,364 @@
+.dialog-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.dialog-overlay[data-profile='desktop'] .dialog-panel {
+  max-width: 960px;
+}
+.dialog-overlay[data-profile='touch'] .dialog-panel {
+  width: 100%;
+}
+.dialog-panel {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: var(--color-panel);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  max-height: 80vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.dialog-head {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+}
+.dialog-portrait {
+  flex: none;
+  width: 96px;
+  height: 96px;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius);
+  background-color: var(--color-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-text-3);
+}
+.dialog-overlay[data-profile='touch'] .dialog-portrait {
+  width: 64px;
+  height: 64px;
+}
+.dialog-npc-text {
+  margin: 0;
+  font-size: calc(20px * var(--font-scale));
+  line-height: 1.5;
+  color: var(--color-text-1);
+}
+.dialog-history {
+  overflow-y: auto;
+  max-height: 20vh;
+  font-size: calc(14px * var(--font-scale));
+  color: var(--color-text-2);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.dialog-history li[data-who='player'] {
+  text-align: right;
+  color: var(--color-accent);
+}
+.dialog-history li[data-who='npc'] {
+  text-align: left;
+}
+.dialog-options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.option-card,
+.dialog-close {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: left;
+  min-height: var(--target-min);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-left-width: 4px;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--color-text-1);
+  font: inherit;
+  font-size: calc(17px * var(--font-scale));
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.option-card:hover,
+.option-card:focus-visible,
+.dialog-close:hover,
+.dialog-close:focus-visible {
+  border-color: var(--color-accent);
+  outline: 2px solid var(--color-accent);
+}
+.option-card[aria-current='true'] {
+  background-color: rgba(224, 160, 48, 0.2);
+  border-color: var(--color-accent);
+}
+.option-key {
+  flex: none;
+  min-width: 20px;
+  font-size: calc(13px * var(--font-scale));
+  color: var(--color-text-3);
+}
+.dialog-overlay[data-profile='touch'] .option-key {
+  display: none;
+}
+.option-text {
+  flex: 1;
+}
+.option-req {
+  flex: none;
+  background-color: var(--color-accent);
+  color: #14120f;
+  font-size: calc(12px * var(--font-scale));
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+.option-card[data-reaction='good'] {
+  border-left-color: #6aa84f;
+}
+.option-card[data-reaction='bad'] {
+  border-left-color: #cc4125;
+}
+.dialog-close {
+  justify-content: center;
+}
+
+/*
+ * Skorka FRM (zadanie 9), jak w oryginale: kwestia NPC siedzi w podoknie rozmowy di_talk
+ * (640x190 w danych klasycznych), opcje odpowiedzi to numerowane linie tekstu rysowane
+ * BEZ tla nad scena (przyciemnienie robi istniejaca nakladka .dialog-overlay). Caly dialog
+ * nie dostaje wspolnego tla FRM. Reguly wlaczone wylacznie przez [data-art], wiec fallback
+ * bez grafik jest 1:1 jak przed skorka.
+ */
+.dialog-panel[data-art] {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  color: var(--f2-art-green, #2f8f3f);
+  font-family: var(--f2-art-font, monospace);
+  letter-spacing: 0.04em;
+  image-rendering: pixelated;
+  /* Welon z palety dla dodatkow bez FRM w oryginale (portret, historia). */
+  --dialog-panel-bg: rgba(3, 7, 3, 0.78);
+}
+/* Podokno di_talk za glowy rozmowy (kwestia NPC).
+ * TODO verify: oryginal rysuje podokno 640x190 na dole ekranu, u nas wysokosc wynika z tresci. */
+.dialog-panel[data-art] .dialog-head {
+  background-image: var(--f2-dlg-bg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border-radius: 0;
+  padding: var(--space-3);
+  box-sizing: border-box;
+}
+.dialog-panel[data-art] .dialog-npc-text {
+  color: var(--f2-art-yellow, #e0c040);
+  text-shadow: 1px 1px 0 #000;
+}
+.dialog-panel[data-art] .dialog-portrait {
+  border: 2px solid var(--f2-art-green, #2f8f3f);
+  border-radius: 0;
+  background: var(--dialog-panel-bg, rgba(3, 7, 3, 0.78));
+  font-family: var(--f2-art-font, monospace);
+  color: var(--f2-art-green, #2f8f3f);
+}
+.dialog-panel[data-art] .dialog-history {
+  border: 1px solid var(--f2-art-green, #2f8f3f);
+  background: var(--dialog-panel-bg, rgba(3, 7, 3, 0.78));
+  color: var(--f2-art-green, #2f8f3f);
+  font-family: var(--f2-art-font, monospace);
+  padding: 0 var(--space-2);
+}
+.dialog-panel[data-art] .dialog-history li[data-who='player'] {
+  color: var(--f2-art-yellow, #e0c040);
+}
+/* Opcje odpowiedzi: numer + tekst jak w oryginale, rysowane nad scena bez kart.
+ * Pasek hilight1 jako tlo podswietlonego (aria-current) wiersza, gdy jest grafika.
+ * TODO verify: hilight1 (89x81) w oryginale podswietla aktualny wiersz odpowiedzi. */
+.dialog-panel[data-art] .option-card,
+.dialog-panel[data-art] .dialog-close {
+  border: 0;
+  border-left-width: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--f2-art-green, #2f8f3f);
+  font-family: var(--f2-art-font, monospace);
+  letter-spacing: 0.04em;
+  outline-offset: 0;
+}
+.dialog-panel[data-art] .option-card:hover,
+.dialog-panel[data-art] .option-card:focus-visible,
+.dialog-panel[data-art] .option-card[aria-current='true'],
+.dialog-panel[data-art] .dialog-close:hover,
+.dialog-panel[data-art] .dialog-close:focus-visible {
+  border-color: transparent;
+  background-color: transparent;
+  color: var(--f2-art-yellow, #e0c040);
+  outline: none;
+}
+.dialog-panel[data-art] .option-card[aria-current='true'] {
+  background-image: var(--f2-dlg-hi);
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: 0 center;
+}
+.dialog-panel[data-art] .option-key {
+  color: var(--f2-art-yellow, #e0c040);
+}
+.dialog-panel[data-art] .option-req {
+  border: 1px solid var(--f2-art-yellow, #e0c040);
+  border-radius: 0;
+  background: transparent;
+  color: var(--f2-art-yellow, #e0c040);
+}
+/* Reakcje (perk Empathy) zostaja czytelne: pasek koloru po lewej wiersza (border-left z stylem
+ * solid, bo wczesniejszy border: 0 zeruje border-style i sam wymiar nic nie narysowalby). */
+.dialog-panel[data-art] .option-card[data-reaction='good'] {
+  border-left: 3px solid #6aa84f;
+  padding-left: calc(var(--space-2, 8px) + 3px);
+}
+.dialog-panel[data-art] .option-card[data-reaction='bad'] {
+  border-left: 3px solid #cc4125;
+  padding-left: calc(var(--space-2, 8px) + 3px);
+}
+/*
+ * Duzy Done (di_done1/di_done2, 82x46 w danych klasycznych) zamiast tekstu Zamknij w trybie
+ * message - jak w oryginale. Szerokosc liczona z realnych proporcji wczytanej grafiki
+ * (RPU+HD vs Classic nie psuja ukladu); w touch wysokosc zostaje z min-height inline >= 48.
+ * TODO verify: oryginal sadzi duzy Done w prawym dolnym rogu podokna rozmowy.
+ */
+.dialog-panel[data-art-done] .dialog-close {
+  align-self: flex-end;
+  justify-content: center;
+  width: calc(var(--target-min, 48px) * var(--f2-dlg-done-ratio, 1.7826));
+  padding: 0;
+  background-image: var(--f2-dlg-done);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  color: transparent;
+}
+.dialog-panel[data-art-done] .dialog-close:active {
+  background-image: var(--f2-dlg-done-dn, var(--f2-dlg-done));
+}
+
+/*
+ * Wyrownanie do paska IFACE (1024 px max, 640x100 => wysokosc 15,625% szerokosci).
+ * Nakladka siega tylko do gornej krawedzi paska (padding-bottom z szerokosci rodzica,
+ * tlo ograniczone do content-box), przepuszcza wskaznik pod pasek, wiec INV/MAP/CHA/PIP
+ * nie sa zaslaniane ani przyciemniane (pointer-events). Panel ma te sama szerokosc co pasek.
+ */
+.dialog-overlay[data-art] {
+  box-sizing: border-box;
+  padding-bottom: calc(min(100%, 1024px) * 100 / 640);
+  container-type: inline-size;
+  background: none;
+  pointer-events: none;
+}
+/* Przyciemnienie i blokada wskaznika tylko nad paskiem (wysokosc = 100% - pasek 15,625% szerokosci). */
+.dialog-overlay[data-art]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(100% - min(100cqw, 1024px) * 100 / 640);
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: auto;
+}
+.dialog-overlay[data-art] .dialog-panel {
+  position: relative;
+  pointer-events: auto;
+}
+.dialog-overlay[data-art][data-profile='desktop'] .dialog-panel,
+.dialog-overlay[data-art] .dialog-panel {
+  max-width: min(100%, 1024px);
+  max-height: 100%;
+}
+.dialog-overlay[data-art][data-profile='touch'] .dialog-panel {
+  padding: var(--space-1, 4px);
+  gap: var(--space-1, 4px);
+}
+/* Portret: w trybie skorki rysuje go podokno di_talk, wiec pole jest przezroczyste i bez napisu
+ * zastepczego (wypalone w grafice REVIEW pozostaje widoczne). */
+.dialog-panel[data-art] .dialog-portrait {
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+  font-size: 0;
+}
+/* Kursor hilight1 jako znacznik przed numerem opcji: wiersz ma miejsce na kursor, zeby go nie nachodzil na tekst. */
+.dialog-panel[data-art] .option-card {
+  padding-left: 2.4em;
+  position: relative;
+}
+.dialog-panel[data-art] .option-card[aria-current='true'] {
+  background-size: auto 1.5em;
+  background-position: 0.2em center;
+}
+/* Dotyk (873x393): stage ~332 px, pasek IFACE ~136 px, wiec na rozmowe zostaje ~196 px (a przy nakladce przyciskow
+ * mapy mniej). Panel wypelnia dostepne miejsce: kwestia NPC i lista odpowiedzi przewijaja sie niezaleznie
+ * (nie zaslaniaja paska), odpowiedzi to cele dotykowe >= 44 px, czytelna czcionka 15 px. Bez portretu
+ * (rysuje go grafika podokna), czcionka pikselowa 18 px (15 px wyglada jak 11), historia ukryta na niskim ekranie (miejsce dla kwestii i odpowiedzi). */
+.dialog-overlay[data-art][data-profile='touch'] .dialog-panel {
+  padding: 0;
+  gap: 0;
+  /* nie wchodzi pod nakladke przyciskow mapy (~58 px od gory sceny), dluzsze odpowiedzi przewijaja sie */
+  max-height: calc(100% - 58px);
+  overflow: hidden;
+}
+.dialog-overlay[data-art][data-profile='touch'] .dialog-panel .dialog-head {
+  padding: 4px var(--space-2, 8px);
+  min-height: 0;
+  flex: 0 1 auto;
+  max-height: 45%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.dialog-overlay[data-art][data-profile='touch'] .dialog-portrait {
+  display: none;
+}
+.dialog-overlay[data-art][data-profile='touch'] .dialog-npc-text {
+  font-size: calc(18px * var(--font-scale, 1));
+  line-height: 1.3;
+}
+.dialog-overlay[data-art][data-profile='touch'] .dialog-options {
+  flex: 1 1 auto;
+  min-height: 0;
+  gap: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.dialog-overlay[data-art][data-profile='touch'] .option-card {
+  flex: none;
+  min-height: 44px;
+  font-size: calc(18px * var(--font-scale, 1));
+  line-height: 1.25;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+@media (max-height: 520px) {
+  .dialog-overlay[data-art][data-profile='touch'] .dialog-history {
+    display: none;
+  }
+}

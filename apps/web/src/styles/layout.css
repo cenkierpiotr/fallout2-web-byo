@@ -1,0 +1,1234 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+/* Safari/iOS: dynamiczna wysokosc widoku (pasek adresu), bez gumowego przewijania i zoomu tekstu,
+   bez menu kontekstowego i podswietlenia dotkniecia na planszy gry. */
+@supports (height: 100dvh) {
+  html,
+  body,
+  #root {
+    height: 100dvh;
+  }
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  -webkit-touch-callout: none;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
+}
+
+canvas {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text-1);
+  font:
+    calc(15px * var(--font-scale) * var(--ui-scale, 1)) / 1.4 system-ui,
+    sans-serif;
+  overflow-x: hidden;
+}
+
+button,
+select,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button,
+select,
+input[type='search'] {
+  min-height: calc(var(--target-min) * var(--ui-scale, 1));
+  background: var(--color-panel);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0 var(--space-3);
+}
+
+button {
+  min-width: var(--target-min);
+  cursor: pointer;
+}
+
+button:hover,
+button[aria-pressed='true'],
+button[aria-current='true'] {
+  border-color: var(--color-accent);
+}
+
+button[aria-pressed='true'] {
+  color: var(--color-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
+  /* na niskim ekranie (telefon) calosc przewija sie, zamiast zgniatac .main */
+  overflow-y: auto;
+}
+
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-panel);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.app .f2-mainmenu {
+  top: var(--topbar-h, 0px);
+}
+
+.topbar h1 {
+  flex: 1 1 auto;
+  margin: 0;
+  font-size: 1.1em;
+  color: var(--color-accent);
+}
+
+/* Wersja bundle w topbarze: mala, wyszarzona, zeby gracz mogl sprawdzic jaka wersja dziala. */
+.topbar-version {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--color-text-muted, #999);
+  white-space: nowrap;
+}
+
+/* Niski ekran w poziomie (telefon 873x393): naglowek jednorzedowy i zwarty, zeby scena z paskiem IFACE
+   dostala jak najwiecej wysokosci. Polka filmow i status tekstu odsuwaja tresc o~53px w dol bez
+   korzysci na ekranie 393px wysokosci (ten sam wzor co .app--ingame), wiec je zwijamy.
+   Na PC (wysokie okno) bez zmian. */
+@media (max-height: 520px) and (orientation: landscape) {
+  .topbar {
+    flex-wrap: nowrap;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-2);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .topbar > * {
+    flex: 0 0 auto;
+  }
+  .topbar h1,
+  .topbar .topbar-version {
+    display: none;
+  }
+  .topbar button {
+    min-height: 34px;
+    padding: 0 var(--space-2);
+  }
+  .autosave-indicator {
+    min-height: 0;
+  }
+  /* e2e czeka na tekst statusu po textContent, ktory dziala takze przy display:none.
+     Selektory z .app (specyficznosc 0,2,0), bo nizej w pliku .movie-shelf { display: flex }
+     nadpisywalo zwykle display:none przez pozniejsza kolejnosc zrodlowa. */
+  .app .movie-shelf,
+  .app .status {
+    display: none;
+  }
+}
+
+.main {
+  flex: 1 1 auto;
+  min-height: min(60vh, 520px);
+  /* dluzsza zawartosc (np. kreator postaci) przewija sie w .main zamiast wchodzic pod panel kopii */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.backup {
+  flex: 0 0 auto;
+  max-height: 35vh;
+  overflow-y: auto;
+  position: relative;
+  z-index: 1;
+  padding: var(--space-2) var(--space-3);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-panel);
+}
+
+/* Hosted: panel kopii nie ubiera layoutu (nie zmniejsza canvasu), tylko wysuwa sie nad tresc. */
+.app--hosted .backup {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  max-height: min(35vh, 16rem);
+  box-shadow: 0 -4px 16px rgb(0 0 0 / 0.35);
+  border-top: 1px solid var(--color-border);
+}
+/* Hosted przed rozgrywka: polka filmow i pasek statusu sa zbędne, gra ma dostepac wiekszy obszar. */
+.app--hosted:not(.app--ingame):not(.app--backup-open) .movie-shelf {
+  display: none;
+}
+.app--hosted:not(.app--ingame):not(.app--backup-open) .status {
+  display: none;
+}
+
+.picker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  height: 100%;
+  padding: var(--space-4);
+  text-align: center;
+}
+
+.picker .primary {
+  background: var(--color-accent);
+  color: #1a1408;
+  border-color: var(--color-accent);
+  padding: 0 var(--space-5);
+  font-weight: 600;
+}
+
+.picker .hint,
+.muted {
+  color: var(--color-text-3);
+}
+
+.error {
+  color: #ff8a70;
+}
+
+.browser {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  height: 100%;
+  min-height: 0;
+}
+
+.list-pane {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  min-height: 0;
+  min-width: 0;
+  border-right: 1px solid var(--color-border);
+}
+
+.list-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.list-row {
+  display: block;
+  width: 100%;
+  height: var(--row-h, 32px);
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: 0;
+  border-width: 0 0 1px;
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.canvas-wrap {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  touch-action: none;
+}
+
+.canvas-wrap canvas {
+  display: block;
+  touch-action: none;
+}
+
+.canvas-wrap .overlay {
+  position: absolute;
+  left: var(--space-2);
+  top: var(--space-2);
+  pointer-events: none;
+  color: var(--color-text-2);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-panel);
+  border-top: 1px solid var(--color-border);
+}
+
+.dirs {
+  display: flex;
+  gap: var(--space-1);
+  touch-action: none;
+}
+
+.controls label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--target-min);
+}
+
+.controls input[type='range'] {
+  width: 140px;
+}
+
+@media (min-width: 1024px) {
+  .browser {
+    grid-template-columns: 340px 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .browser {
+    display: flex;
+    flex-direction: column;
+  }
+  .stage {
+    flex: 1 1 auto;
+    /* tresc wyzsza niz stage przewija sie w nim, zamiast wchodzic pod liste (order: 2) */
+    overflow-y: auto;
+  }
+  .list-pane {
+    flex: 0 0 40vh;
+    height: 40vh;
+    border-right: 0;
+    border-top: 1px solid var(--color-border);
+    order: 2;
+  }
+  .controls input[type='range'] {
+    width: 100px;
+  }
+}
+
+.status {
+  margin: 0;
+  padding: var(--space-1, 4px) var(--space-3);
+  min-height: 1.6em;
+  font-size: 0.9em;
+}
+
+.map-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.map-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  min-height: 0;
+  max-width: 560px;
+}
+
+.map-stage {
+  width: 100%;
+  height: 100%;
+}
+
+.map-stage canvas {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.map-hud {
+  position: absolute;
+  left: var(--space-2);
+  top: var(--space-2);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: calc(100% - 72px);
+  gap: var(--space-2) var(--space-3);
+  /* kontener nie lapie dotyku (na waskim ekranie zawija sie na kilka wierszy i zaslanial mape), tylko jego elementy */
+  pointer-events: none;
+}
+
+.canvas-wrap .overlay.map-hud {
+  pointer-events: none;
+}
+
+.map-hud > *,
+.canvas-wrap .overlay.map-hud > * {
+  pointer-events: auto;
+}
+/* Gdy wewnatrz map-hud otworzy sie Modal (RestHost), podnies kontekst warstwowania nad IfaceBar/msg-log/HUD. */
+.map-hud:has(.f2-modal__backdrop),
+.canvas-wrap .overlay.map-hud:has(.f2-modal__backdrop),
+.game-shell__hud:has(.f2-modal__backdrop) {
+  z-index: 1001;
+}
+
+.map-buttons {
+  z-index: 2;
+  position: absolute;
+  right: var(--space-2);
+  top: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  align-items: stretch;
+}
+
+.map-buttons button {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.map-notes {
+  position: absolute;
+  left: var(--space-2);
+  bottom: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+  color: var(--color-text);
+}
+
+.tabs {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.movie-shelf {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+}
+
+.movie-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.movie-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  cursor: pointer;
+}
+
+.movie-canvas {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.movie-fade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.movie-subtitle {
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  transform: translateX(-50%);
+  max-width: 90%;
+  margin: 0;
+  padding: var(--space-1) var(--space-3);
+  text-align: center;
+  color: #fff;
+  background: rgb(0 0 0 / 60%);
+  font-size: calc(20px * var(--font-scale));
+  pointer-events: none;
+}
+
+.movie-skip {
+  position: absolute;
+  right: var(--space-3);
+  top: var(--space-3);
+  min-width: var(--target-min);
+  min-height: var(--target-min);
+}
+
+/* Menu radialne akcji na mapie (long press / PPM); cele min. 56 px */
+.map-menu {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.map-menu__item {
+  position: absolute;
+  box-sizing: border-box;
+  pointer-events: auto;
+  border-radius: 50%;
+  padding: 0;
+  font-size: 0.75rem;
+  line-height: 1.1;
+  touch-action: manipulation;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  overflow: hidden;
+}
+
+.map-menu__icon {
+  flex: 0 0 auto;
+}
+
+.map-menu__label {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.05;
+}
+
+/* Profil dotykowy: wieksze cele w HUD mapy (>= 48 px, odstepy 8 px) */
+:root[data-profile='touch'] .map-hud button,
+:root[data-profile='touch'] .map-buttons button {
+  min-width: 48px;
+  min-height: 48px;
+}
+
+:root[data-profile='touch'] .map-buttons {
+  gap: var(--space-2);
+}
+
+.firstrun {
+  max-width: 44rem;
+  margin: 0 auto;
+  border: 2px dashed transparent;
+}
+
+.firstrun.dragging {
+  border-color: var(--color-accent);
+}
+
+.firstrun-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.firstrun .persist {
+  max-width: 36rem;
+}
+
+.tutorial-hint {
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-3);
+  transform: translateX(-50%);
+  max-width: min(32rem, 92vw);
+  z-index: 25;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+  padding: var(--space-3);
+  background: var(--color-panel);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.tutorial-hint p {
+  margin: 0;
+  flex: 1 1 100%;
+}
+
+.onboarding__scales {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.game-shell__hud {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 8px;
+  z-index: 20;
+}
+
+/* Waski ekran: pasek akcji na dole, zawijany (inaczej Pip-Boy i Ekwipunek wypadaja poza lewa krawedz i zaslaniaja HUD mapy) */
+@media (max-width: 640px) {
+  .game-shell__hud {
+    top: auto;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    pointer-events: none;
+  }
+  .game-shell__hud > *,
+  .game-shell__hud button {
+    pointer-events: auto;
+  }
+  .game-shell__hud button {
+    min-height: 48px;
+  }
+  .game-shell__hud [data-testid='combat-hud'] {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+  .game-shell .map-notes {
+    bottom: 120px;
+  }
+}
+
+.game-shell {
+  position: relative;
+  /* wypelnia .main (inaczej .map-view ma 0 px i mapa na telefonie zapada sie do 1 px wysokosci) */
+  height: 100%;
+  min-height: inherit;
+}
+
+/* Profile graczy */
+.profiles {
+  padding: 1rem;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+.profiles__list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+.profile-card {
+  border: 1px solid var(--border, #555);
+  border-radius: 8px;
+  padding: 0.5rem;
+  display: grid;
+  gap: 0.5rem;
+}
+.profile-card__main {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 48px;
+  width: 100%;
+  text-align: left;
+}
+.profile-card__name {
+  font-weight: 600;
+  flex: 1;
+}
+.profile-card__actions,
+.profiles__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.profile-card__actions button,
+.profiles__footer button,
+.file-button {
+  min-height: 44px;
+  min-width: 44px;
+}
+.profile-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+}
+.profile-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: end;
+}
+.profile-colors {
+  display: flex;
+  gap: 0.4rem;
+  border: 0;
+  padding: 0;
+}
+.profile-color {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.profile-color input {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+.profile-color:has(input:checked) {
+  outline: 3px solid #fff;
+}
+.file-button input {
+  display: none;
+}
+.autosave-indicator {
+  min-height: 1.2em;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  padding: 0 1rem;
+}
+
+/* Podpowiedz samouczka nie zaslania dialogu */
+.game-shell:has([data-testid='dialog-screen']) .tutorial-hint,
+body:has([role='dialog']) .tutorial-hint {
+  display: none;
+}
+
+/* W trakcie gry panel startowy (onboarding, polka filmow, status, zakladki, kopia) jest zwiniety; gra dostaje caly ekran */
+.app--ingame .onboarding,
+.app--ingame .movie-shelf,
+.app--ingame .status,
+.app--ingame .tabs,
+.app--ingame .backup {
+  display: none;
+}
+.app--ingame .main {
+  min-height: 0;
+}
+
+.app--ingame.app--backup-open .backup {
+  display: block;
+}
+
+.backup__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.backup__head h2 {
+  margin: 0;
+}
+
+/* Dziennik komunikatow (okienko komunikatow oryginalu): desktop zawsze rozwiniety po prawej u dolu */
+.msg-log {
+  position: absolute;
+  right: var(--space-2);
+  bottom: var(--space-2);
+  width: min(380px, 42%);
+  z-index: 15;
+  color: var(--color-text);
+  background: rgba(10, 12, 8, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+.msg-log__toggle {
+  display: none;
+  width: 100%;
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.msg-log__count {
+  opacity: 0.7;
+}
+.msg-log__list {
+  margin: 0;
+  padding: 4px 8px;
+  list-style: none;
+  max-height: 9.5em;
+  overflow-y: auto;
+}
+.msg-log__list li {
+  padding: 1px 0;
+}
+/* Waski ekran: zwiniety przycisk nad paskiem akcji HUD, rozwiniety nie siega paska akcji */
+@media (max-width: 640px) {
+  .msg-log {
+    right: 8px;
+    bottom: 176px;
+    width: auto;
+    max-width: calc(100% - 16px);
+    min-width: 140px;
+  }
+  .msg-log__toggle {
+    display: flex;
+  }
+  .msg-log__list {
+    display: none;
+  }
+  .msg-log--open {
+    left: 8px;
+    width: auto;
+  }
+  .msg-log--open .msg-log__list {
+    display: block;
+    max-height: 28vh;
+  }
+}
+
+/* --- Wybor gry (F2 / FO1) i ekran Fallout 1 CE (WASM) --- */
+
+.game-select {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: var(--space-5, 24px) var(--space-4, 16px) var(--space-6, 32px);
+  text-align: center;
+}
+
+.game-select__header h2 {
+  margin: 0 0 0.4rem;
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  color: var(--color-accent, #e0a030);
+  letter-spacing: 0.03em;
+}
+
+.game-select__subtitle {
+  margin: 0 auto;
+  max-width: 42rem;
+  color: var(--color-text-2, #bdb29a);
+  font-size: 0.95rem;
+}
+
+.game-select-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.1rem;
+  margin-top: 1.5rem;
+  align-items: stretch;
+}
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 0.55rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(77, 255, 124, 0.28);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(16, 26, 18, 0.94) 0%, rgba(18, 16, 13, 0.98) 100%);
+  box-shadow:
+    inset 0 0 24px rgba(0, 0, 0, 0.55),
+    0 4px 16px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  color: var(--color-text-1, #f1e9d8);
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+.game-card:hover,
+.game-card:focus-visible {
+  border-color: var(--color-accent, #e0a030);
+  box-shadow:
+    0 0 0 1px rgba(224, 160, 48, 0.35),
+    0 0 20px rgba(77, 255, 124, 0.16),
+    inset 0 0 20px rgba(77, 255, 124, 0.06);
+  transform: translateY(-2px);
+}
+
+.game-card__badge {
+  display: inline-block;
+  padding: 0.16rem 0.55rem;
+  border-radius: 4px;
+  border: 1px solid rgba(77, 255, 124, 0.4);
+  background: rgba(20, 56, 28, 0.55);
+  color: #7dff9f;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.game-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--color-accent, #e0a030);
+}
+
+.game-card p.muted {
+  margin: 0;
+  flex: 1 1 auto;
+  color: var(--color-text-2, #bdb29a);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+/* Wyrazne CTA na kartach wyboru gry w stylu terminala Fallout. */
+.game-card__play {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.45rem;
+  padding: 0.42rem 1.25rem;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #f0b245 0%, #d49022 100%);
+  color: #120d05;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 8px rgba(224, 160, 48, 0.25);
+}
+
+.game-select__hint {
+  margin: 1rem auto 0;
+  color: var(--color-text-3, #9a907b);
+  font-size: 0.88rem;
+}
+
+.game-select-details {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border, #3a352b);
+  text-align: left;
+}
+
+.game-select-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.9rem;
+}
+
+.game-feature {
+  padding: 0.95rem 1rem;
+  border: 1px solid rgba(58, 53, 43, 0.95);
+  border-left: 3px solid rgba(77, 255, 124, 0.45);
+  border-radius: 6px;
+  background: rgba(24, 22, 18, 0.88);
+}
+
+.game-feature h4 {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  color: #7dff9f;
+}
+
+.game-feature p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--color-text-2, #bdb29a);
+}
+
+.game-select-footer {
+  margin-top: 1.5rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(58, 53, 43, 0.65);
+  color: var(--color-text-3, #9a907b);
+  font-size: 0.8rem;
+}
+
+.game-select-footer p {
+  margin: 0;
+}
+
+/* Menu "Wiecej" w trybie hosted: narzedzia (mapy/dzwiek/przegladarka/diagnostyka) niedomyślne, ale dostepne. */
+.tabs-more {
+  position: relative;
+  display: inline-block;
+}
+
+.tabs-more__menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: grid;
+  gap: 0.2em;
+  padding: 0.4em;
+  background: var(--color-panel, #1b1b1b);
+  border: 1px solid var(--color-border, #444);
+  border-radius: 6px;
+  min-width: 10em;
+  z-index: 20;
+}
+
+.tabs-more__menu button {
+  text-align: left;
+  padding: 0.3em 0.6em;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.tabs-more__menu button.is-active {
+  background: var(--color-accent, #4dff7c);
+  color: #08130b;
+  font-weight: 700;
+}
+
+/* Segmentowany przelacznik F2/F1 w topbarze (latwe przelaczanie gier). */
+.game-switch {
+  display: inline-flex;
+  border: 1px solid var(--color-border);
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.game-switch__btn {
+  padding: 0.3em 0.9em;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.game-switch__btn.is-active {
+  background: var(--color-accent, #4dff7c);
+  color: #08130b;
+  font-weight: 700;
+}
+
+.fo1-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6em;
+  padding: 1em;
+}
+
+/* Wiersz tytulu ekranu F1 z przyciskiem powrotu do wyboru gry. */
+.fo1-screen__top {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+  justify-content: center;
+}
+
+.fo1-screen__top h2 {
+  margin: 0;
+}
+
+.fo1-screen canvas {
+  background: #000;
+  /* SDL3/Emscripten wpisuje inline style width/height 640x480; !important wymusza skalowanie CSS z proporcja 4:3. */
+  width: min(100%, calc(78vh * 4 / 3)) !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 78vh !important;
+  aspect-ratio: 4 / 3;
+  image-rendering: pixelated;
+  /* Dotyk: bez tego przegladarka konsumuje gesty (scroll/pinch) i zglasza pointercancel zanim dotkniecie dojdzie do gry. */
+  touch-action: none;
+}
+
+/* Kontener canvasu F1: przekazuje szerokosc w oknie, w pelnym ekranie centruje obraz. */
+.fo1-stage {
+  display: flex;
+  flex: 0 1 auto;
+  justify-content: center;
+  width: 100%;
+}
+
+.fo1-actions {
+  display: flex;
+  gap: 0.8em;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Faza hosta dla E2E (zawsze w DOM, niewidoczna dla gracza). */
+.fo1-phase {
+  display: none;
+}
+
+.fo1-hosted {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4em;
+}
+
+/* Pelny ekran: chrome aplikacji znika, gra dostaje caly ekran z zachowaniem proporcji. */
+:fullscreen {
+  --topbar-h: 0px;
+}
+:fullscreen .app {
+  overflow: hidden;
+}
+:fullscreen .topbar,
+:fullscreen .tabs,
+:fullscreen .status,
+:fullscreen .movie-shelf,
+:fullscreen .onboarding,
+:fullscreen .backup,
+:fullscreen .autosave-indicator {
+  display: none;
+}
+:fullscreen .main {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Pelny ekran kreatora postaci F2: scena skalowana na 100% okna z zachowaniem 4:3 */
+:fullscreen [data-testid='creator-root'],
+:fullscreen .f2-creator--art {
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  overflow: hidden;
+}
+:fullscreen .f2-creator__toolbar {
+  position: fixed;
+  top: 10px;
+  right: 14px;
+  width: auto;
+  margin: 0;
+  z-index: 50;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+:fullscreen .f2-creator__toolbar:hover {
+  opacity: 1;
+}
+:fullscreen .f2-creator__scene {
+  width: min(100vw, calc(100vh * 4 / 3)) !important;
+  height: min(100vh, calc(100vw * 3 / 4)) !important;
+  max-width: none !important;
+  max-height: none !important;
+  aspect-ratio: auto !important;
+  margin: auto;
+}
+:fullscreen .f2-creator__extras-wrapper:not(.is-open) {
+  display: none;
+}
+:fullscreen .f2-creator__extras-wrapper.is-open {
+  display: block;
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(92vw, 840px);
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 60;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.95);
+  background: rgba(15, 58, 26, 0.96);
+  border: 2px solid var(--f2-art-green, #2f8f3f);
+  border-radius: 6px;
+  padding: 12px;
+}
+:fullscreen .fo1-screen {
+  position: relative;
+  height: 100%;
+  padding: 0;
+  gap: 0;
+  justify-content: center;
+  background: #000;
+}
+:fullscreen .fo1-screen__top,
+:fullscreen .fo1-screen > .muted,
+:fullscreen .fo1-actions,
+:fullscreen .fo1-hosted {
+  display: none;
+}
+:fullscreen .fo1-screen canvas {
+  width: min(100vw, calc(100vh * 4 / 3)) !important;
+  height: min(100vh, calc(100vw * 3 / 4)) !important;
+  max-width: none !important;
+  max-height: none !important;
+  /* bez tego aspect-ratio 4/3 z trybu okna deformuje obraz przy nieproporcjonalnym ekranie */
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+/* Canvas F1 w pelnym ekranie na samym canvasie (element :fullscreen, nie dokument) */
+canvas:fullscreen,
+:fullscreen .fo1-screen canvas,
+.fo1-stage:fullscreen canvas {
+  width: min(100vw, calc(100vh * 4 / 3)) !important;
+  height: min(100vh, calc(100vw * 3 / 4)) !important;
+  max-width: none !important;
+  max-height: none !important;
+  /* bez tego aspect-ratio 4/3 z trybu okna deformuje obraz przy nieproporcjonalnym ekranie */
+  aspect-ratio: auto;
+  object-fit: contain;
+  image-rendering: pixelated;
+  background: #000;
+}
+/* Pelny ekran na kontenerze canvasu F1 (.fo1-stage): czarne tlo, obraz wycentrowany,
+   przycisk wyjscia nadal dostepny (nie ucina widoku jak fullscreen dokumentu). */
+.fo1-stage:fullscreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+.fo1-fs-exit {
+  position: fixed;
+  top: 8px;
+  right: 8px;
+  z-index: 40;
+  opacity: 0.35;
+}
+.fo1-fs-exit:hover,
+.fo1-fs-exit:focus-visible {
+  opacity: 1;
+}

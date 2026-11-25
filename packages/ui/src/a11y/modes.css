@@ -1,0 +1,30 @@
+/* Tryby dostepnosci ustawiane atrybutami na <html> (patrz applyA11y). Dotyczy tylko warstwy UI, nie canvasa gry. */
+
+/* Daltonizm: tokeny stanow w paletach Okabe-Ito; rozroznienie dodatkowo kodowane ksztaltem/tekstem w komponentach. */
+:root[data-colorblind='protan'],
+:root[data-colorblind='deutan'] {
+  --color-state-ok: #56b4e9;
+  --color-state-warning: #f0e442;
+  --color-state-danger: #e69f00;
+  --color-state-info: #cc79a7;
+}
+:root[data-colorblind='tritan'] {
+  --color-state-ok: #00b894;
+  --color-state-warning: #ff9ec7;
+  --color-state-danger: #ff5a5a;
+  --color-state-info: #9aa4ff;
+}
+
+/* Ograniczenie ruchu: bez animacji i przejsc, plynne przewijanie wylaczone. */
+:root[data-reduce-motion='true'] {
+  --motion-fast: 0ms;
+  --motion-base: 0ms;
+}
+[data-reduce-motion='true'] *,
+[data-reduce-motion='true'] *::before,
+[data-reduce-motion='true'] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}

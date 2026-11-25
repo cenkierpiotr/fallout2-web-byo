@@ -1,0 +1,446 @@
+{
+  "traits": [
+    {
+      "index": 0,
+      "key": "FastMetabolism",
+      "msgId": 100,
+      "descMsgId": 200,
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 14,
+          "delta": 2
+        },
+        {
+          "kind": "stat",
+          "target": 31,
+          "cancelBase": true
+        },
+        {
+          "kind": "stat",
+          "target": 32,
+          "cancelBase": true
+        }
+      ],
+      "status": "W"
+    },
+    {
+      "index": 1,
+      "key": "Bruiser",
+      "msgId": 101,
+      "descMsgId": 201,
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 0,
+          "delta": 2
+        },
+        {
+          "kind": "stat",
+          "target": 8,
+          "delta": -2
+        }
+      ],
+      "status": "W"
+    },
+    {
+      "index": 2,
+      "key": "SmallFrame",
+      "msgId": 102,
+      "descMsgId": 202,
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 5,
+          "delta": 1
+        },
+        {
+          "kind": "stat",
+          "target": 12,
+          "deltaPerBase": {
+            "stat": 0,
+            "factor": -10
+          }
+        }
+      ],
+      "status": "W"
+    },
+    {
+      "index": 3,
+      "key": "OneHander",
+      "msgId": 103,
+      "descMsgId": 203,
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "oneHander"
+        }
+      ],
+      "status": "W"
+    },
+    {
+      "index": 4,
+      "key": "Finesse",
+      "msgId": 104,
+      "descMsgId": 204,
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 15,
+          "delta": 10
+        },
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "finesse"
+        }
+      ],
+      "status": "W"
+    },
+    {
+      "index": 5,
+      "key": "Kamikaze",
+      "msgId": 105,
+      "descMsgId": 205,
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 9,
+          "cancelBase": true
+        },
+        {
+          "kind": "stat",
+          "target": 13,
+          "delta": 5
+        }
+      ],
+      "status": "W"
+    },
+    {
+      "index": 6,
+      "key": "HeavyHanded",
+      "msgId": 106,
+      "descMsgId": 206,
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 11,
+          "delta": 4
+        },
+        {
+          "kind": "stat",
+          "target": 16,
+          "delta": -30
+        }
+      ],
+      "status": "W"
+    },
+    {
+      "index": 7,
+      "key": "FastShot",
+      "msgId": 107,
+      "descMsgId": 207,
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "fastShot"
+        }
+      ],
+      "status": "W"
+    },
+    {
+      "index": 8,
+      "key": "BloodyMess",
+      "msgId": 108,
+      "descMsgId": 208,
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "bloodyMess"
+        }
+      ],
+      "status": "Z"
+    },
+    {
+      "index": 9,
+      "key": "Jinxed",
+      "msgId": 109,
+      "descMsgId": 209,
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "jinxed"
+        }
+      ],
+      "status": "Z"
+    },
+    {
+      "index": 10,
+      "key": "GoodNatured",
+      "msgId": 110,
+      "descMsgId": 210,
+      "effects": [
+        {
+          "kind": "skill",
+          "target": 0,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 1,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 2,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 3,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 4,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 5,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 6,
+          "delta": 15
+        },
+        {
+          "kind": "skill",
+          "target": 7,
+          "delta": 15
+        },
+        {
+          "kind": "skill",
+          "target": 14,
+          "delta": 15
+        },
+        {
+          "kind": "skill",
+          "target": 15,
+          "delta": 15
+        }
+      ],
+      "status": "W"
+    },
+    {
+      "index": 11,
+      "key": "ChemReliant",
+      "msgId": 111,
+      "descMsgId": 211,
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "chemReliant"
+        }
+      ],
+      "status": "W"
+    },
+    {
+      "index": 12,
+      "key": "ChemResistant",
+      "msgId": 112,
+      "descMsgId": 212,
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "chemResistant"
+        }
+      ],
+      "status": "W"
+    },
+    {
+      "index": 13,
+      "key": "SexAppeal",
+      "msgId": 113,
+      "descMsgId": 213,
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "sexAppeal"
+        }
+      ],
+      "status": "Z"
+    },
+    {
+      "index": 14,
+      "key": "Skilled",
+      "msgId": 114,
+      "descMsgId": 214,
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 5,
+          "proc": "skillPointsPerLevel"
+        }
+      ],
+      "status": "W"
+    },
+    {
+      "index": 15,
+      "key": "Gifted",
+      "msgId": 115,
+      "descMsgId": 215,
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 0,
+          "delta": 1
+        },
+        {
+          "kind": "stat",
+          "target": 1,
+          "delta": 1
+        },
+        {
+          "kind": "stat",
+          "target": 2,
+          "delta": 1
+        },
+        {
+          "kind": "stat",
+          "target": 3,
+          "delta": 1
+        },
+        {
+          "kind": "stat",
+          "target": 4,
+          "delta": 1
+        },
+        {
+          "kind": "stat",
+          "target": 5,
+          "delta": 1
+        },
+        {
+          "kind": "stat",
+          "target": 6,
+          "delta": 1
+        },
+        {
+          "kind": "skill",
+          "target": 0,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 1,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 2,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 3,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 4,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 5,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 6,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 7,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 8,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 9,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 10,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 11,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 12,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 13,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 14,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 15,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 16,
+          "delta": -10
+        },
+        {
+          "kind": "skill",
+          "target": 17,
+          "delta": -10
+        },
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": -5,
+          "proc": "skillPointsPerLevel"
+        }
+      ],
+      "status": "W"
+    }
+  ]
+}

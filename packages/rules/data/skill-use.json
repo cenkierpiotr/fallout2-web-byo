@@ -1,0 +1,138 @@
+{
+  "roll": {
+    "critsEnabledAfterTicks": 864000,
+    "critDivisor": 10,
+    "dieMin": 1,
+    "dieMax": 100,
+    "chanceCap": 95,
+    "chanceCapStatus": "Z"
+  },
+  "usage": {
+    "slots": 3,
+    "windowTicks": 900000,
+    "skills": [
+      6,
+      7,
+      13
+    ],
+    "status": "D"
+  },
+  "heal": {
+    "firstAid": {
+      "skill": 6,
+      "min": 1,
+      "max": 5,
+      "healerMin": 4,
+      "healerMax": 10,
+      "minutes": 30,
+      "minutesStatus": "Z"
+    },
+    "doctor": {
+      "skill": 7,
+      "min": 4,
+      "max": 10,
+      "healerMin": 4,
+      "healerMax": 10,
+      "minutes": 60,
+      "minutesStatus": "Z"
+    },
+    "healerPerk": 19,
+    "limbMasks": [
+      1,
+      2,
+      4,
+      8,
+      16
+    ],
+    "limbMessages": [
+      520,
+      525,
+      530,
+      531,
+      532
+    ]
+  },
+  "repair": {
+    "skill": 13,
+    "bodyTypeRobot": 2,
+    "limbMasks": [
+      64,
+      16,
+      32,
+      8,
+      4
+    ],
+    "limbMasksStatus": "D (tabela 0x4aa2f0..0x4aa300)",
+    "limbMessageBase": 530,
+    "minutes": 60,
+    "minutesStatus": "Z (koszt czasu 0x4a3518 niezdekodowany)"
+  },
+  "sneak": {
+    "skill": 8,
+    "successTicks": 600,
+    "failTicks": [
+      {
+        "above": 250,
+        "ticks": 100
+      },
+      {
+        "above": 200,
+        "ticks": 120
+      },
+      {
+        "above": 170,
+        "ticks": 150
+      },
+      {
+        "above": 135,
+        "ticks": 200
+      },
+      {
+        "above": 100,
+        "ticks": 300
+      },
+      {
+        "above": 80,
+        "ticks": 400
+      }
+    ],
+    "defaultTicks": 600
+  },
+  "lockpick": {
+    "skill": 9,
+    "toolBonus": {},
+    "minutes": 10,
+    "status": "Z"
+  },
+  "steal": {
+    "skill": 10,
+    "minutes": 5,
+    "status": "D: formula 0x4abbe4 w steal.ts; minutes (czas akcji) Z"
+  },
+  "science": {
+    "skill": 12,
+    "minutes": 10,
+    "status": "Z"
+  },
+  "traps": {
+    "skill": 11,
+    "minutes": 5,
+    "status": "Z"
+  },
+  "xpOncePerObject": [
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "messages": {
+    "heal": 500,
+    "noNeedFirst": 501,
+    "noNeedDoctor": 502,
+    "fail": 503,
+    "xp": 505,
+    "exhausted": 512,
+    "jammed": 513
+  }
+}

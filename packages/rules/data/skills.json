@@ -1,0 +1,324 @@
+{
+  "max": 300,
+  "tag": {
+    "slots": 4,
+    "baseSlots": 3,
+    "bonusFlat": 20,
+    "perk": 51
+  },
+  "traitAdjust": [
+    {
+      "trait": 15,
+      "skills": "all",
+      "add": -10
+    },
+    {
+      "trait": 10,
+      "skills": [0, 1, 2, 3, 4, 5],
+      "add": -10
+    },
+    {
+      "trait": 10,
+      "skills": [6, 7, 14, 15],
+      "add": 15
+    }
+  ],
+  "perkBonus": [
+    {
+      "perk": 31,
+      "skills": [12, 13],
+      "add": 10
+    },
+    {
+      "perk": 32,
+      "skills": [6, 7],
+      "add": 10
+    },
+    {
+      "perk": 107,
+      "skills": [6, 7],
+      "add": 5
+    },
+    {
+      "perk": 97,
+      "skills": [7],
+      "add": 10
+    },
+    {
+      "perk": 105,
+      "skills": [8, 9, 10, 11],
+      "add": 10
+    },
+    {
+      "perk": 33,
+      "skills": [9, 10],
+      "add": 15
+    },
+    {
+      "perk": 91,
+      "skills": [10],
+      "add": 20
+    },
+    {
+      "perk": 34,
+      "skills": [14],
+      "add": 20
+    },
+    {
+      "perk": 116,
+      "skills": [14],
+      "add": 5
+    },
+    {
+      "perk": 99,
+      "skills": [14, 15],
+      "add": 10
+    },
+    {
+      "perk": 103,
+      "skills": [15],
+      "add": 20
+    },
+    {
+      "perk": 83,
+      "skills": [16],
+      "add": 20
+    },
+    {
+      "perk": 47,
+      "skills": [17],
+      "add": 15
+    },
+    {
+      "perk": 16,
+      "skills": [17],
+      "add": 25
+    }
+  ],
+  "ghost": {
+    "perk": 38,
+    "skill": 8,
+    "add": 20,
+    "maxLight": 45875
+  },
+  "difficulty": {
+    "firstSkill": 5,
+    "byLevel": {
+      "0": 20,
+      "1": 0,
+      "2": -10
+    },
+    "default": 1
+  },
+  "costTable": [
+    {
+      "upTo": 100,
+      "cost": 1
+    },
+    {
+      "upTo": 125,
+      "cost": 2
+    },
+    {
+      "upTo": 150,
+      "cost": 3
+    },
+    {
+      "upTo": 175,
+      "cost": 4
+    },
+    {
+      "upTo": 200,
+      "cost": 5
+    },
+    {
+      "upTo": 299,
+      "cost": 6
+    }
+  ],
+  "skills": [
+    {
+      "index": 0,
+      "key": "smallGuns",
+      "msgId": 100,
+      "stats": [5],
+      "multiplier": 4,
+      "base": 5,
+      "pointMult": 1,
+      "xpPerUse": 0
+    },
+    {
+      "index": 1,
+      "key": "bigGuns",
+      "msgId": 101,
+      "stats": [5],
+      "multiplier": 2,
+      "base": 0,
+      "pointMult": 1,
+      "xpPerUse": 0
+    },
+    {
+      "index": 2,
+      "key": "energyWeapons",
+      "msgId": 102,
+      "stats": [5],
+      "multiplier": 2,
+      "base": 0,
+      "pointMult": 1,
+      "xpPerUse": 0
+    },
+    {
+      "index": 3,
+      "key": "unarmed",
+      "msgId": 103,
+      "stats": [5, 0],
+      "multiplier": 2,
+      "base": 30,
+      "pointMult": 1,
+      "xpPerUse": 0
+    },
+    {
+      "index": 4,
+      "key": "melee",
+      "msgId": 104,
+      "stats": [5, 0],
+      "multiplier": 2,
+      "base": 20,
+      "pointMult": 1,
+      "xpPerUse": 0
+    },
+    {
+      "index": 5,
+      "key": "throwing",
+      "msgId": 105,
+      "stats": [5],
+      "multiplier": 4,
+      "base": 0,
+      "pointMult": 1,
+      "xpPerUse": 0
+    },
+    {
+      "index": 6,
+      "key": "firstAid",
+      "msgId": 106,
+      "stats": [1, 4],
+      "multiplier": 2,
+      "base": 0,
+      "pointMult": 1,
+      "xpPerUse": 25
+    },
+    {
+      "index": 7,
+      "key": "doctor",
+      "msgId": 107,
+      "stats": [1, 4],
+      "multiplier": 1,
+      "base": 5,
+      "pointMult": 1,
+      "xpPerUse": 50
+    },
+    {
+      "index": 8,
+      "key": "sneak",
+      "msgId": 108,
+      "stats": [5],
+      "multiplier": 3,
+      "base": 5,
+      "pointMult": 1,
+      "xpPerUse": 0
+    },
+    {
+      "index": 9,
+      "key": "lockpick",
+      "msgId": 109,
+      "stats": [1, 5],
+      "multiplier": 1,
+      "base": 10,
+      "pointMult": 1,
+      "xpPerUse": 25,
+      "marginXp": true
+    },
+    {
+      "index": 10,
+      "key": "steal",
+      "msgId": 110,
+      "stats": [5],
+      "multiplier": 3,
+      "base": 0,
+      "pointMult": 1,
+      "xpPerUse": 25,
+      "marginXp": true
+    },
+    {
+      "index": 11,
+      "key": "traps",
+      "msgId": 111,
+      "stats": [1, 5],
+      "multiplier": 1,
+      "base": 10,
+      "pointMult": 1,
+      "xpPerUse": 25,
+      "marginXp": true
+    },
+    {
+      "index": 12,
+      "key": "science",
+      "msgId": 112,
+      "stats": [4],
+      "multiplier": 4,
+      "base": 0,
+      "pointMult": 1,
+      "xpPerUse": 0
+    },
+    {
+      "index": 13,
+      "key": "repair",
+      "msgId": 113,
+      "stats": [4],
+      "multiplier": 3,
+      "base": 0,
+      "pointMult": 1,
+      "xpPerUse": 0
+    },
+    {
+      "index": 14,
+      "key": "speech",
+      "msgId": 114,
+      "stats": [3],
+      "multiplier": 5,
+      "base": 0,
+      "pointMult": 1,
+      "xpPerUse": 0
+    },
+    {
+      "index": 15,
+      "key": "barter",
+      "msgId": 115,
+      "stats": [3],
+      "multiplier": 4,
+      "base": 0,
+      "pointMult": 1,
+      "xpPerUse": 0
+    },
+    {
+      "index": 16,
+      "key": "gambling",
+      "msgId": 116,
+      "stats": [6],
+      "multiplier": 5,
+      "base": 0,
+      "pointMult": 1,
+      "xpPerUse": 0
+    },
+    {
+      "index": 17,
+      "key": "outdoorsman",
+      "msgId": 117,
+      "stats": [2, 4],
+      "multiplier": 2,
+      "base": 0,
+      "pointMult": 1,
+      "xpPerUse": 100
+    }
+  ]
+}

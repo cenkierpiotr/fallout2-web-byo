@@ -1,0 +1,25 @@
+:root {
+  --target-min: 32px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius: 6px;
+  --font-scale: 1;
+  --color-bg: #14120f;
+  --color-panel: #1f1c17;
+  --color-accent: #e0a030;
+  --color-text-1: #f1e9d8;
+  --color-text-2: #bdb29a;
+  --color-text-3: #9a907b;
+  --color-border: #3a352b;
+  color-scheme: dark;
+}
+
+[data-profile='touch'] {
+  --target-min: 48px;
+}

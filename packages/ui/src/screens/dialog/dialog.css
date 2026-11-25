@@ -1,0 +1,279 @@
+/* Ekran dialogu. Cel dotyku opcji >= 48 px niezaleznie od profilu (wymog 9.3). */
+.f2-dialog {
+  --dialog-target: max(48px, var(--target-min));
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.f2-dialog__panel {
+  width: 100%;
+  max-width: 1000px;
+  max-height: 100%;
+  overflow-y: auto;
+  background: var(--color-bg-panelRaised);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.f2-dialog__head {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+.f2-dialog[data-profile='touch'] .f2-dialog__head {
+  flex-direction: column;
+  align-items: stretch;
+}
+.f2-dialog__portrait {
+  flex: none;
+  width: 112px;
+  height: 112px;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-panel);
+  color: var(--color-text-secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-size-xxl);
+  font-family: var(--font-family-heading);
+}
+.f2-dialog[data-profile='touch'] .f2-dialog__portrait {
+  width: 72px;
+  height: 72px;
+}
+.f2-dialog__speech {
+  flex: 1;
+  min-width: 0;
+}
+.f2-dialog__name {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-1);
+}
+.f2-dialog__npc-text {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  line-height: 1.5;
+}
+.f2-dialog__history {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-2);
+  overflow-y: auto;
+  max-height: 20vh;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+.f2-dialog__history[data-expanded='true'] {
+  max-height: 40vh;
+}
+.f2-dialog__history li[data-who='player'] {
+  text-align: right;
+  color: var(--color-accent);
+}
+.f2-dialog__tools {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+.f2-dialog__tool {
+  min-height: var(--dialog-target);
+  padding: 0 var(--space-4);
+  background: transparent;
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.f2-dialog__options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.f2-option-card,
+.f2-dialog__close {
+  width: 100%;
+  min-height: var(--dialog-target);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-left-width: 4px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-overlay);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-md);
+  cursor: pointer;
+}
+.f2-option-card:hover,
+.f2-dialog__tool:hover,
+.f2-dialog__close:hover {
+  border-color: var(--color-accent);
+}
+.f2-option-card:focus-visible {
+  background: var(--color-bg-panel);
+}
+.f2-dialog__close {
+  justify-content: center;
+}
+.f2-option-card__key {
+  flex: none;
+  min-width: 1.5em;
+  text-align: center;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+.f2-dialog[data-profile='touch'] .f2-option-card__key {
+  display: none;
+}
+.f2-option-card__text {
+  flex: 1;
+  min-width: 0;
+}
+.f2-option-card__req {
+  flex: none;
+  padding: 2px var(--space-2);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  color: var(--color-accent);
+  font-size: var(--font-size-xs);
+}
+.f2-option-card[data-reaction='good'] {
+  border-left-color: var(--color-state-ok);
+}
+.f2-option-card[data-reaction='bad'] {
+  border-left-color: var(--color-state-danger);
+}
+
+/*
+ * Skorka FRM (zadanie 9), jak w oryginale: kwestia NPC siedzi w podoknie rozmowy di_talk
+ * (640x190 w danych klasycznych), opcje odpowiedzi to numerowane linie tekstu rysowane
+ * BEZ tla nad scena (przyciemnienie robi istniejaca nakladka .f2-dialog). Caly dialog
+ * nie dostaje wspolnego tla FRM. Reguly wlaczone wylacznie przez [data-art], wiec
+ * fallback bez grafik jest 1:1 jak przed skorka.
+ */
+.f2-dialog__panel[data-art] {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  color: var(--f2-art-green, #2f8f3f);
+  font-family: var(--f2-art-font, monospace);
+  letter-spacing: 0.04em;
+  image-rendering: pixelated;
+  /* Welon z palety dla dodatkow bez FRM w oryginale (portret, historia). */
+  --dialog-panel-bg: rgba(3, 7, 3, 0.78);
+}
+/* Podokno di_talk za glowa rozmowy (kwestia NPC). Rozciagniete 100%x100% na obszar glowy;
+ * TODO verify: oryginal rysuje podokno 640x190 na dole ekranu, u nas wysokosc wynika z tresci. */
+.f2-dialog__panel[data-art] .f2-dialog__head {
+  background-image: var(--f2-dlg-bg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border-radius: 0;
+}
+.f2-dialog__panel[data-art] .f2-dialog__npc-text {
+  color: var(--f2-art-yellow, #e0c040);
+  text-shadow: 1px 1px 0 #000;
+}
+.f2-dialog__panel[data-art] .f2-dialog__name {
+  color: var(--f2-art-green, #2f8f3f);
+}
+/* Portret: rama z palety zamiast modern radius (w oryginale glowa mowcy rysowana jest w tym miejscu). */
+.f2-dialog__panel[data-art] .f2-dialog__portrait {
+  border: 2px solid var(--f2-art-green, #2f8f3f);
+  border-radius: 0;
+  background: var(--dialog-panel-bg, rgba(3, 7, 3, 0.78));
+  font-family: var(--f2-art-font, monospace);
+}
+/* Historia i przyciski pomocnicze: nasze dodatki bez FRM w oryginale, hence welon z palety. */
+.f2-dialog__panel[data-art] .f2-dialog__history {
+  border: 1px solid var(--f2-art-green, #2f8f3f);
+  border-radius: 0;
+  background: var(--dialog-panel-bg, rgba(3, 7, 3, 0.78));
+  color: var(--f2-art-green, #2f8f3f);
+  font-family: var(--f2-art-font, monospace);
+}
+.f2-dialog__panel[data-art] .f2-dialog__history li[data-who='player'] {
+  color: var(--f2-art-yellow, #e0c040);
+}
+.f2-dialog__panel[data-art] .f2-dialog__tool {
+  border: 1px solid var(--f2-art-green, #2f8f3f);
+  border-radius: 0;
+  background: transparent;
+  font-family: var(--f2-art-font, monospace);
+}
+/* Opcje odpowiedzi: lista numerowana jak w oryginale (numer + tekst, bez kart, bez tla) -
+ * rysowana nad scena. Pasek hilight1 FRM jako tlo fokusowanego wiersza, gdy jest grafika.
+ * TODO verify: hilight1 (89x81) w oryginale podswietla aktualny wiersz odpowiedzi. */
+.f2-dialog__panel[data-art] .f2-option-card,
+.f2-dialog__panel[data-art] .f2-dialog__close {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  color: var(--f2-art-green, #2f8f3f);
+  font-family: var(--f2-art-font, monospace);
+  letter-spacing: 0.04em;
+}
+.f2-dialog__panel[data-art] .f2-option-card:hover,
+.f2-dialog__panel[data-art] .f2-option-card:focus-visible,
+.f2-dialog__panel[data-art] .f2-dialog__close:hover {
+  color: var(--f2-art-yellow, #e0c040);
+}
+.f2-dialog__panel[data-art] .f2-option-card:focus-visible {
+  background: var(--f2-dlg-hi) center / auto 100% no-repeat;
+}
+.f2-dialog__panel[data-art] .f2-option-card__key {
+  color: var(--f2-art-yellow, #e0c040);
+  font-weight: 400;
+}
+.f2-dialog__panel[data-art] .f2-option-card__req {
+  border: 1px solid var(--f2-art-yellow, #e0c040);
+  border-radius: 0;
+  color: var(--f2-art-yellow, #e0c040);
+}
+/* Reakcje (perk Empathy): kolorowy pasek po lewej wiersza, czytelny na tle sceny
+ * (border-left z jawnym stylem solid, bo wczesniejszy border: 0 zeruje border-style). */
+.f2-dialog__panel[data-art] .f2-option-card[data-reaction='good'] {
+  border-left: 3px solid var(--color-state-ok, #6aa84f);
+}
+.f2-dialog__panel[data-art] .f2-option-card[data-reaction='bad'] {
+  border-left: 3px solid var(--color-state-danger, #cc4125);
+}
+/*
+ * Duzy Done (di_done1/di_done2, 82x46 w danych klasycznych) zamiast tekstu Zamknij w trybie
+ * message - jak w oryginale. Rozmiar liczony z realnych proporcji wczytanej grafiki,
+ * wiec RPU+HD vs Classic nie psuja ukladu; tekstu w oryginale nie ma (grafika niesie tresc).
+ * TODO verify: oryginal sadzi duzy Done w prawym dolnym rogu podokna rozmowy.
+ */
+.f2-dialog__panel[data-art-done] .f2-dialog__close {
+  align-self: flex-end;
+  justify-content: center;
+  width: calc(var(--dialog-target) * var(--f2-dlg-done-ratio, 1.7826));
+  min-height: var(--dialog-target);
+  padding: 0;
+  background-image: var(--f2-dlg-done);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  color: transparent;
+}
+.f2-dialog__panel[data-art-done] .f2-dialog__close:active {
+  background-image: var(--f2-dlg-done-dn, var(--f2-dlg-done));
+}

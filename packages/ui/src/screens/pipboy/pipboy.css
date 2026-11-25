@@ -1,0 +1,227 @@
+.f2-pipboy__root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-height: 320px;
+}
+.f2-pipboy__panel {
+  flex: 1;
+  padding: var(--space-3);
+  overflow-y: auto;
+}
+.f2-pipboy__placeholder {
+  color: var(--color-text-secondary);
+}
+.f2-pipboy__status {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.f2-pipboy__name {
+  margin: 0;
+}
+.f2-pipboy__bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--space-2);
+  align-items: center;
+}
+.f2-pipboy__quests,
+.f2-pipboy__archives,
+.f2-pipboy__alarm,
+.f2-pipboy__reader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.f2-pipboy__heading {
+  margin: 0 0 var(--space-2);
+}
+.f2-pipboy__list {
+  margin: 0;
+  padding-left: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.f2-pipboy__quest--completed {
+  color: var(--color-text-secondary);
+}
+.f2-pipboy__tag {
+  margin-left: var(--space-2);
+  font-size: 0.85em;
+  color: var(--color-text-secondary);
+}
+.f2-pipboy__link,
+.f2-pipboy__pager button {
+  min-height: 44px;
+  min-width: 44px;
+  background: none;
+  border: 1px solid currentColor;
+  color: inherit;
+  cursor: pointer;
+  padding: 0 var(--space-3);
+}
+.f2-pipboy__page {
+  white-space: pre-wrap;
+  margin: 0;
+  font-family: inherit;
+}
+.f2-pipboy__pager,
+.f2-pipboy__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+.f2-pipboy__automap {
+  margin: 0;
+}
+.f2-pipboy__automap canvas {
+  max-width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+}
+
+/* --- skorka FRM: scena pip.frm (zadanie ekranowe) --- */
+.f2-pipboy--art {
+  width: 100%;
+}
+/* Rodzic sceny musi miec okreslona wysokosc (inaczej .f2-art-frame kolapsuje do 0). */
+.f2-pipboy__scene {
+  width: 100%;
+  aspect-ratio: 640 / 480;
+  max-height: 85vh;
+}
+.f2-pipboy__root--art {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  gap: 0;
+}
+.f2-pipboy__lcd {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: var(--f2-art-green, #2f8f3f);
+  font-size: clamp(11px, 1.75cqw, 18px);
+  overflow: hidden;
+}
+.f2-pipboy__lcd .f2-pipboy__panel {
+  padding: 4px 6px;
+  scrollbar-width: thin;
+}
+.f2-pipboy__lcd h3,
+.f2-pipboy__lcd .f2-pipboy__heading {
+  color: var(--f2-art-yellow, #e0c040);
+  font-weight: 400;
+}
+.f2-pipboy__lcd .f2-pipboy__quest--completed,
+.f2-pipboy__lcd .f2-pipboy__tag,
+.f2-pipboy__lcd .f2-pipboy__placeholder {
+  color: inherit;
+  opacity: 0.7;
+}
+.f2-pipboy__tabs-at {
+  width: 100%;
+  height: 100%;
+}
+/* Zakladki jako przezroczyste hotspoty nad wypalonymi napisami tla (STATUS, AUTOMAPS, ARCHIVES);
+   nazwa dostepna dla czytnikow ekranu, wizualnie widac tylko napis z grafiki. Pozycje w % obszaru
+   STRIP (130x118 jedn. grafiki). Kolejnosc: status, quests, archives, map, clock. */
+.f2-pipboy__tabs-at--strip .f2-tabs {
+  position: relative;
+  height: 100%;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+.f2-pipboy__tabs-at--strip .f2-tab {
+  position: absolute;
+  left: 9%;
+  width: 77%;
+  height: 20%;
+  box-sizing: border-box;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  padding: 0;
+  min-height: 0;
+  cursor: pointer;
+}
+.f2-pipboy__tabs-at--strip .f2-tab > svg,
+.f2-pipboy__tabs-at--strip .f2-tab > span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.f2-pipboy__tabs-at--strip .f2-tab:nth-child(1) { top: 4%; }
+.f2-pipboy__tabs-at--strip .f2-tab:nth-child(3) { top: 73%; }
+.f2-pipboy__tabs-at--strip .f2-tab:nth-child(4) { top: 50%; }
+/* Zadania i budzik nie maja wypalonego napisu: dzielą wyblakly slot i dostaja wlasny maly napis. */
+.f2-pipboy__tabs-at--strip .f2-tab:nth-child(2),
+.f2-pipboy__tabs-at--strip .f2-tab:nth-child(5) {
+  top: 27%;
+  background: rgba(15, 20, 8, 0.85);
+  color: var(--f2-art-yellow, #e0c040);
+  font-family: var(--f2-art-font, monospace);
+  font-size: 1.6cqw;
+}
+.f2-pipboy__tabs-at--strip .f2-tab:nth-child(2) { width: 46%; }
+.f2-pipboy__tabs-at--strip .f2-tab:nth-child(5) { left: 58%; width: 28%; }
+.f2-pipboy__tabs-at--strip .f2-tab:nth-child(2) > span,
+.f2-pipboy__tabs-at--strip .f2-tab:nth-child(5) > span {
+  position: static;
+  width: auto;
+  height: auto;
+  clip: auto;
+}
+.f2-pipboy__tabs-at--strip .f2-tab[aria-selected='true'] {
+  border-color: var(--f2-art-yellow, #e0c040);
+}
+.f2-pipboy__tabs-at--strip .f2-tab:hover {
+  background: rgba(224, 192, 64, 0.12);
+}
+.f2-pipboy__tabs-at .f2-tab:focus-visible {
+  outline: 2px solid var(--f2-art-yellow, #e0c040);
+}
+.f2-pipboy__touch .f2-tab {
+  background: rgba(15, 58, 26, 0.85);
+  border: 1px solid var(--f2-art-green, #2f8f3f);
+  color: var(--f2-art-green, #2f8f3f);
+  font-family: var(--f2-art-font, monospace);
+  font-size: 0.8em;
+  padding: 0 4px;
+}
+.f2-pipboy__touch .f2-tab[aria-selected='true'] {
+  color: var(--f2-art-yellow, #e0c040);
+  border-color: var(--f2-art-yellow, #e0c040);
+}
+/* Dotyk: tresc na calej scenie, zakladki pod trescia, cele >= 44px. */
+.f2-pipboy__touch {
+  position: absolute;
+  inset: 3%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: rgba(15, 58, 26, 0.9);
+  border: 2px solid var(--f2-art-green, #2f8f3f);
+  padding: 4px;
+}
+.f2-pipboy__touch .f2-pipboy__lcd {
+  flex: 1;
+  min-height: 0;
+}
+.f2-pipboy__touch .f2-tab {
+  min-height: 44px;
+  min-width: 44px;
+}
+.f2-pipboy__touch .f2-tabs {
+  height: auto;
+}

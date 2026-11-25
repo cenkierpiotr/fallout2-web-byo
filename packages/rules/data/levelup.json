@@ -1,0 +1,32 @@
+{
+  "maxLevel": 99,
+  "xpFactor": 500,
+  "maxXp": 2147483647,
+  "swiftLearner": {
+    "perk": 50,
+    "percentPerRank": 5
+  },
+  "hp": {
+    "base": 2,
+    "enDivisor": 2,
+    "lifegiverPerk": 28,
+    "perRank": 4
+  },
+  "skillPoints": {
+    "base": 5,
+    "perIntelligence": 2,
+    "educatedPerk": 18,
+    "perEducatedRank": 2,
+    "skilledTrait": 14,
+    "skilledBonus": 5,
+    "giftedTrait": 15,
+    "giftedPenalty": 5,
+    "cap": 99
+  },
+  "perk": {
+    "interval": 3,
+    "skilledExtra": 1,
+    "cap": 37,
+    "scanMax": 118
+  }
+}

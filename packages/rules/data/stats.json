@@ -1,0 +1,655 @@
+{
+  "params": {
+    "ageTicksPerYear": 315360000,
+    "overloadDivisor": 40,
+    "mirroredShadesPid": 433,
+    "mirroredShadesStatus": "W",
+    "noPerksClampPrimaries": false,
+    "noPerksClampStatus": "Z: spec nie mowi czy f2_stat_level_no_perks zaciska; domyslnie bez zacisku (R11a-U3)",
+    "derivedOrder": [
+      7,
+      8,
+      9,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      31,
+      32
+    ]
+  },
+  "stats": [
+    {
+      "index": 0,
+      "key": "ST",
+      "msgId": 100,
+      "min": 1,
+      "max": 10,
+      "default": 5,
+      "kind": "primary",
+      "derived": null
+    },
+    {
+      "index": 1,
+      "key": "PE",
+      "msgId": 101,
+      "min": 1,
+      "max": 10,
+      "default": 5,
+      "kind": "primary",
+      "derived": null
+    },
+    {
+      "index": 2,
+      "key": "EN",
+      "msgId": 102,
+      "min": 1,
+      "max": 10,
+      "default": 5,
+      "kind": "primary",
+      "derived": null
+    },
+    {
+      "index": 3,
+      "key": "CH",
+      "msgId": 103,
+      "min": 1,
+      "max": 10,
+      "default": 5,
+      "kind": "primary",
+      "derived": null
+    },
+    {
+      "index": 4,
+      "key": "IN",
+      "msgId": 104,
+      "min": 1,
+      "max": 10,
+      "default": 5,
+      "kind": "primary",
+      "derived": null
+    },
+    {
+      "index": 5,
+      "key": "AG",
+      "msgId": 105,
+      "min": 1,
+      "max": 10,
+      "default": 5,
+      "kind": "primary",
+      "derived": null
+    },
+    {
+      "index": 6,
+      "key": "LK",
+      "msgId": 106,
+      "min": 1,
+      "max": 10,
+      "default": 5,
+      "kind": "primary",
+      "derived": null
+    },
+    {
+      "index": 7,
+      "key": "maxHP",
+      "msgId": 107,
+      "min": 0,
+      "max": 999,
+      "default": 0,
+      "kind": "derived",
+      "derived": {
+        "formula": "15 + ST0 + 2*EN0"
+      }
+    },
+    {
+      "index": 8,
+      "key": "maxAP",
+      "msgId": 108,
+      "min": 1,
+      "max": 99,
+      "default": 0,
+      "kind": "derived",
+      "derived": {
+        "formula": "5 + trunc(AG/2)"
+      }
+    },
+    {
+      "index": 9,
+      "key": "AC",
+      "msgId": 109,
+      "min": 0,
+      "max": 999,
+      "default": 0,
+      "kind": "derived",
+      "derived": {
+        "formula": "AG"
+      }
+    },
+    {
+      "index": 10,
+      "key": "unarmedDmg",
+      "msgId": 110,
+      "min": 0,
+      "max": 2147483647,
+      "default": 0,
+      "kind": "derived",
+      "derived": null
+    },
+    {
+      "index": 11,
+      "key": "meleeDmg",
+      "msgId": 111,
+      "min": 0,
+      "max": 500,
+      "default": 0,
+      "kind": "derived",
+      "derived": {
+        "formula": "max(1, ST - 5)"
+      }
+    },
+    {
+      "index": 12,
+      "key": "carryWeight",
+      "msgId": 112,
+      "min": 0,
+      "max": 999,
+      "default": 0,
+      "kind": "derived",
+      "derived": {
+        "formula": "25 + 25*ST"
+      }
+    },
+    {
+      "index": 13,
+      "key": "sequence",
+      "msgId": 113,
+      "min": 0,
+      "max": 60,
+      "default": 0,
+      "kind": "derived",
+      "derived": {
+        "formula": "2*PE"
+      }
+    },
+    {
+      "index": 14,
+      "key": "healingRate",
+      "msgId": 114,
+      "min": 0,
+      "max": 30,
+      "default": 0,
+      "kind": "derived",
+      "derived": {
+        "formula": "max(1, trunc(EN/3))"
+      }
+    },
+    {
+      "index": 15,
+      "key": "critChance",
+      "msgId": 115,
+      "min": 0,
+      "max": 100,
+      "default": 0,
+      "kind": "derived",
+      "derived": {
+        "formula": "LK"
+      }
+    },
+    {
+      "index": 16,
+      "key": "betterCrit",
+      "msgId": 116,
+      "min": -60,
+      "max": 100,
+      "default": 0,
+      "kind": "derived",
+      "derived": {
+        "formula": "0"
+      }
+    },
+    {
+      "index": 17,
+      "key": "DT_normal",
+      "msgId": 117,
+      "min": 0,
+      "max": 100,
+      "default": 0,
+      "kind": "resist",
+      "derived": null
+    },
+    {
+      "index": 18,
+      "key": "DT_laser",
+      "msgId": 118,
+      "min": 0,
+      "max": 100,
+      "default": 0,
+      "kind": "resist",
+      "derived": null
+    },
+    {
+      "index": 19,
+      "key": "DT_fire",
+      "msgId": 119,
+      "min": 0,
+      "max": 100,
+      "default": 0,
+      "kind": "resist",
+      "derived": null
+    },
+    {
+      "index": 20,
+      "key": "DT_plasma",
+      "msgId": 120,
+      "min": 0,
+      "max": 100,
+      "default": 0,
+      "kind": "resist",
+      "derived": null
+    },
+    {
+      "index": 21,
+      "key": "DT_electrical",
+      "msgId": 121,
+      "min": 0,
+      "max": 100,
+      "default": 0,
+      "kind": "resist",
+      "derived": null
+    },
+    {
+      "index": 22,
+      "key": "DT_emp",
+      "msgId": 122,
+      "min": 0,
+      "max": 100,
+      "default": 0,
+      "kind": "resist",
+      "derived": null
+    },
+    {
+      "index": 23,
+      "key": "DT_explosion",
+      "msgId": 123,
+      "min": 0,
+      "max": 100,
+      "default": 0,
+      "kind": "resist",
+      "derived": null
+    },
+    {
+      "index": 24,
+      "key": "DR_normal",
+      "msgId": 124,
+      "min": 0,
+      "max": 90,
+      "default": 0,
+      "kind": "resist",
+      "derived": null
+    },
+    {
+      "index": 25,
+      "key": "DR_laser",
+      "msgId": 125,
+      "min": 0,
+      "max": 90,
+      "default": 0,
+      "kind": "resist",
+      "derived": null
+    },
+    {
+      "index": 26,
+      "key": "DR_fire",
+      "msgId": 126,
+      "min": 0,
+      "max": 90,
+      "default": 0,
+      "kind": "resist",
+      "derived": null
+    },
+    {
+      "index": 27,
+      "key": "DR_plasma",
+      "msgId": 127,
+      "min": 0,
+      "max": 90,
+      "default": 0,
+      "kind": "resist",
+      "derived": null
+    },
+    {
+      "index": 28,
+      "key": "DR_electrical",
+      "msgId": 128,
+      "min": 0,
+      "max": 90,
+      "default": 0,
+      "kind": "resist",
+      "derived": null
+    },
+    {
+      "index": 29,
+      "key": "DR_emp",
+      "msgId": 129,
+      "min": 0,
+      "max": 100,
+      "default": 0,
+      "kind": "resist",
+      "derived": null
+    },
+    {
+      "index": 30,
+      "key": "DR_explosion",
+      "msgId": 130,
+      "min": 0,
+      "max": 90,
+      "default": 0,
+      "kind": "resist",
+      "derived": null
+    },
+    {
+      "index": 31,
+      "key": "radRes",
+      "msgId": 131,
+      "min": 0,
+      "max": 95,
+      "default": 0,
+      "kind": "derived",
+      "derived": {
+        "formula": "2*EN"
+      }
+    },
+    {
+      "index": 32,
+      "key": "poisonRes",
+      "msgId": 132,
+      "min": 0,
+      "max": 95,
+      "default": 0,
+      "kind": "derived",
+      "derived": {
+        "formula": "5*EN"
+      }
+    },
+    {
+      "index": 33,
+      "key": "age",
+      "msgId": 133,
+      "min": 16,
+      "max": 101,
+      "default": 25,
+      "kind": "misc",
+      "derived": null
+    },
+    {
+      "index": 34,
+      "key": "gender",
+      "msgId": 134,
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "kind": "misc",
+      "derived": null
+    },
+    {
+      "index": 35,
+      "key": "curHP",
+      "msgId": 135,
+      "min": 0,
+      "max": 2000,
+      "default": 0,
+      "kind": "misc",
+      "derived": null
+    },
+    {
+      "index": 36,
+      "key": "curPoison",
+      "msgId": 136,
+      "min": 0,
+      "max": 2000,
+      "default": 0,
+      "kind": "misc",
+      "derived": null
+    },
+    {
+      "index": 37,
+      "key": "curRad",
+      "msgId": 137,
+      "min": 0,
+      "max": 2000,
+      "default": 0,
+      "kind": "misc",
+      "derived": null
+    }
+  ],
+  "traitAdjust": [
+    {
+      "trait": 15,
+      "stat": 0,
+      "add": 1
+    },
+    {
+      "trait": 15,
+      "stat": 1,
+      "add": 1
+    },
+    {
+      "trait": 15,
+      "stat": 2,
+      "add": 1
+    },
+    {
+      "trait": 15,
+      "stat": 3,
+      "add": 1
+    },
+    {
+      "trait": 15,
+      "stat": 4,
+      "add": 1
+    },
+    {
+      "trait": 15,
+      "stat": 5,
+      "add": 1
+    },
+    {
+      "trait": 15,
+      "stat": 6,
+      "add": 1
+    },
+    {
+      "trait": 1,
+      "stat": 0,
+      "add": 2
+    },
+    {
+      "trait": 1,
+      "stat": 8,
+      "add": -2
+    },
+    {
+      "trait": 2,
+      "stat": 5,
+      "add": 1
+    },
+    {
+      "trait": 2,
+      "stat": 12,
+      "addPerBase": {
+        "stat": 0,
+        "factor": -10
+      }
+    },
+    {
+      "trait": 5,
+      "stat": 9,
+      "cancelBase": true
+    },
+    {
+      "trait": 5,
+      "stat": 13,
+      "add": 5
+    },
+    {
+      "trait": 6,
+      "stat": 11,
+      "add": 4
+    },
+    {
+      "trait": 6,
+      "stat": 16,
+      "add": -30
+    },
+    {
+      "trait": 0,
+      "stat": 14,
+      "add": 2
+    },
+    {
+      "trait": 0,
+      "stat": 31,
+      "cancelBase": true
+    },
+    {
+      "trait": 0,
+      "stat": 32,
+      "cancelBase": true
+    },
+    {
+      "trait": 4,
+      "stat": 15,
+      "add": 10
+    }
+  ],
+  "perkAdjust": [
+    {
+      "stat": 0,
+      "perk": 84,
+      "add": 1
+    },
+    {
+      "stat": 0,
+      "perk": 79,
+      "add": 1,
+      "condition": "curHP<maxHP/2"
+    },
+    {
+      "stat": 1,
+      "perk": 85,
+      "add": 1
+    },
+    {
+      "stat": 2,
+      "perk": 86,
+      "add": 1
+    },
+    {
+      "stat": 3,
+      "perk": 87,
+      "add": 1
+    },
+    {
+      "stat": 4,
+      "perk": 88,
+      "add": 1
+    },
+    {
+      "stat": 5,
+      "perk": 89,
+      "add": 1
+    },
+    {
+      "stat": 6,
+      "perk": 90,
+      "add": 1
+    },
+    {
+      "stat": 31,
+      "perk": 78,
+      "add": 10
+    },
+    {
+      "stat": 32,
+      "perk": 78,
+      "add": 10
+    },
+    {
+      "stat": 24,
+      "perk": 74,
+      "add": 5,
+      "elsePerk": 75,
+      "elseAdd": 10
+    },
+    {
+      "stat": 30,
+      "perk": 74,
+      "add": 5,
+      "elsePerk": 75,
+      "elseAdd": 10
+    },
+    {
+      "stat": 25,
+      "perk": 76,
+      "add": 5,
+      "elsePerk": 77,
+      "elseAdd": 10
+    },
+    {
+      "stat": 26,
+      "perk": 76,
+      "add": 5,
+      "elsePerk": 77,
+      "elseAdd": 10
+    },
+    {
+      "stat": 27,
+      "perk": 76,
+      "add": 5,
+      "elsePerk": 77,
+      "elseAdd": 10
+    },
+    {
+      "stat": 7,
+      "perk": 108,
+      "add": 2
+    },
+    {
+      "stat": 7,
+      "perk": 109,
+      "add": 4
+    },
+    {
+      "stat": 7,
+      "perk": 110,
+      "add": -2
+    },
+    {
+      "stat": 7,
+      "perk": 111,
+      "add": -4
+    },
+    {
+      "stat": 7,
+      "perk": 112,
+      "add": 2
+    },
+    {
+      "stat": 7,
+      "perk": 113,
+      "add": 4
+    },
+    {
+      "stat": 7,
+      "perk": 114,
+      "add": -2
+    },
+    {
+      "stat": 7,
+      "perk": 115,
+      "add": -4
+    }
+  ]
+}

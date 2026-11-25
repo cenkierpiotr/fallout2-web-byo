@@ -1,0 +1,143 @@
+.f2-clock {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-panel);
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+.f2-clock__time {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-lg);
+  font-variant-numeric: tabular-nums;
+}
+.f2-clock__date {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+.f2-rest__root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: min(100%, 24rem);
+}
+.f2-rest__now,
+.f2-rest__hp {
+  margin: 0;
+}
+.f2-rest__warning {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-state-danger);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+}
+.f2-rest__modes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: var(--space-2);
+}
+.f2-rest__root[data-profile='touch'] .f2-rest__modes {
+  grid-template-columns: 1fr;
+}
+.f2-rest__custom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-2);
+}
+.f2-rest__label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.f2-rest__label input {
+  width: 6rem;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-panel);
+  color: var(--color-text-primary);
+}
+.f2-rest__hint {
+  flex-basis: 100%;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+.f2-rest__hint--error {
+  color: var(--color-state-danger);
+}
+.f2-rest__result {
+  min-height: 1.5em;
+}
+.f2-rest__footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* --- skorka FRM: odpoczynek na tle pip.frm (zadanie ekranowe) --- */
+.f2-rest--art {
+  width: 100%;
+}
+/* Rodzic sceny musi miec okreslona wysokosc (inaczej .f2-art-frame kolapsuje do 0). */
+.f2-rest__scene {
+  width: 100%;
+  aspect-ratio: 640 / 480;
+  max-height: 85vh;
+}
+.f2-rest__lcd,
+.f2-rest__touch {
+  box-sizing: border-box;
+  color: var(--f2-art-green, #2f8f3f);
+  font-size: 0.8em;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.f2-rest__lcd {
+  width: 100%;
+  height: 100%;
+  padding: 4px 6px;
+  font-size: clamp(11px, 1.75cqw, 18px);
+}
+.f2-rest__touch {
+  position: absolute;
+  inset: 3%;
+  padding: 6px;
+  background: rgba(15, 58, 26, 0.92);
+  border: 2px solid var(--f2-art-green, #2f8f3f);
+}
+.f2-rest--art .f2-rest__root {
+  min-width: 0;
+  gap: 6px;
+}
+.f2-rest--art .f2-rest__modes {
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+}
+.f2-rest--art .f2-rest__label input {
+  background: #000;
+  color: var(--f2-art-green, #2f8f3f);
+  border-color: var(--f2-art-green, #2f8f3f);
+}
+.f2-rest--art .f2-rest__hint,
+.f2-rest--art .f2-rest__hint--error {
+  color: inherit;
+}
+.f2-rest--art .f2-button {
+  background: rgba(15, 58, 26, 0.85);
+  border: 1px solid var(--f2-art-green, #2f8f3f);
+  color: var(--f2-art-green, #2f8f3f);
+  font-family: var(--f2-art-font, monospace);
+  font-size: 0.9em;
+  min-height: 26px;
+}
+.f2-rest--art .f2-button:disabled {
+  opacity: 0.5;
+}
+.f2-rest__touch .f2-button,
+.f2-rest__touch .f2-rest__label input {
+  min-height: 44px;
+  min-width: 44px;
+}

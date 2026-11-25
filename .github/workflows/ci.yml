@@ -1,0 +1,83 @@
+name: CI
+on:
+  push:
+    branches: [main, master, 'etap*', 'integ/**']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  guard:
+    # Straznik: pliki gry i pakiety PL nie moga byc w repo
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node scripts/guard-no-game-files.mjs
+
+  check:
+    # lint + typecheck + testy; testy golden sa pomijane (skipIf) bo F2_GAME_DIR/F2_PATCH_DIR nie sa ustawione
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+
+  build:
+    needs: [guard, check]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @f2/web build
+      - name: Straznik artefaktu (brak plikow gry w dist)
+        run: node scripts/guard-no-game-files.mjs --dist apps/web/dist
+      - name: Zip statyczny (tylko aplikacja)
+        run: cd apps/web/dist && zip -qr ../../../f2-web-static.zip . && cd ../../.. && ls -l f2-web-static.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: f2-web-static
+          path: f2-web-static.zip
+          retention-days: 3 # limit Actions storage 0.5GB
+          compression-level: 0
+      - uses: actions/upload-pages-artifact@v3
+        if: github.ref == 'refs/heads/main' && vars.PAGES_ENABLED == 'true'
+        with:
+          path: apps/web/dist
+          retention-days: 3
+
+  deploy-pages:
+    # tylko gdy zmienna repo PAGES_ENABLED=true (Pages dla repo prywatnego wymaga planu z ta funkcja)
+    if: github.ref == 'refs/heads/main' && vars.PAGES_ENABLED == 'true'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

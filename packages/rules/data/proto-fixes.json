@@ -1,0 +1,386 @@
+{
+  "source": "tools/diff-rules/src/patch-diff.ts (vanilla vs 1.02.25)",
+  "patches": [
+    {
+      "fix": "protoCritterImmunity",
+      "pid": 16777245,
+      "changes": [
+        {
+          "field": "bonusStats[17]",
+          "vanilla": 500,
+          "patched": 999
+        },
+        {
+          "field": "bonusStats[18]",
+          "vanilla": 500,
+          "patched": 999
+        },
+        {
+          "field": "bonusStats[19]",
+          "vanilla": 500,
+          "patched": 999
+        },
+        {
+          "field": "bonusStats[21]",
+          "vanilla": 500,
+          "patched": 999
+        },
+        {
+          "field": "bonusStats[22]",
+          "vanilla": 500,
+          "patched": 999
+        },
+        {
+          "field": "bonusStats[23]",
+          "vanilla": 500,
+          "patched": 999
+        },
+        {
+          "field": "bonusStats[24]",
+          "vanilla": 500,
+          "patched": 999
+        },
+        {
+          "field": "bonusStats[25]",
+          "vanilla": 500,
+          "patched": 999
+        },
+        {
+          "field": "bonusStats[26]",
+          "vanilla": 500,
+          "patched": 999
+        },
+        {
+          "field": "bonusStats[28]",
+          "vanilla": 500,
+          "patched": 999
+        },
+        {
+          "field": "bonusStats[29]",
+          "vanilla": 500,
+          "patched": 999
+        },
+        {
+          "field": "bonusStats[30]",
+          "vanilla": 500,
+          "patched": 999
+        }
+      ]
+    },
+    {
+      "fix": "protoCritterImmunity",
+      "pid": 16777291,
+      "changes": [
+        {
+          "field": "bonusStats[29]",
+          "vanilla": 0,
+          "patched": 500
+        }
+      ]
+    },
+    {
+      "fix": "protoCritterImmunity",
+      "pid": 16777295,
+      "changes": [
+        {
+          "field": "bonusStats[29]",
+          "vanilla": 0,
+          "patched": 500
+        }
+      ]
+    },
+    {
+      "fix": "protoNoBarterFlag",
+      "pid": 16777318,
+      "changes": [
+        {
+          "field": "critterFlags",
+          "vanilla": 2,
+          "patched": 0
+        }
+      ]
+    },
+    {
+      "fix": "protoNoBarterFlag",
+      "pid": 16777335,
+      "changes": [
+        {
+          "field": "critterFlags",
+          "vanilla": 2,
+          "patched": 0
+        }
+      ]
+    },
+    {
+      "fix": "protoNoBarterFlag",
+      "pid": 16777382,
+      "changes": [
+        {
+          "field": "critterFlags",
+          "vanilla": 2,
+          "patched": 0
+        }
+      ]
+    },
+    {
+      "fix": "protoStealableCritters",
+      "pid": 16777456,
+      "changes": [
+        {
+          "field": "critterFlags",
+          "vanilla": 96,
+          "patched": 64
+        }
+      ]
+    },
+    {
+      "fix": "protoStealableCritters",
+      "pid": 16777457,
+      "changes": [
+        {
+          "field": "critterFlags",
+          "vanilla": 96,
+          "patched": 64
+        }
+      ]
+    },
+    {
+      "fix": "protoK9ArmorClass",
+      "pid": 16777688,
+      "changes": [
+        {
+          "field": "bonusStats[9]",
+          "vanilla": 0,
+          "patched": 26
+        }
+      ]
+    },
+    {
+      "fix": "protoK9ArmorClass",
+      "pid": 16777689,
+      "changes": [
+        {
+          "field": "bonusStats[9]",
+          "vanilla": 0,
+          "patched": 27
+        }
+      ]
+    },
+    {
+      "fix": "protoK9ArmorClass",
+      "pid": 16777690,
+      "changes": [
+        {
+          "field": "bonusStats[9]",
+          "vanilla": 0,
+          "patched": 28
+        }
+      ]
+    },
+    {
+      "fix": "protoK9ArmorClass",
+      "pid": 16777691,
+      "changes": [
+        {
+          "field": "bonusStats[9]",
+          "vanilla": 0,
+          "patched": 29
+        }
+      ]
+    },
+    {
+      "fix": "protoItemArt",
+      "pid": 276,
+      "changes": [
+        {
+          "field": "fid",
+          "vanilla": 14,
+          "patched": 192
+        }
+      ]
+    },
+    {
+      "fix": "protoItemArt",
+      "pid": 277,
+      "changes": [
+        {
+          "field": "fid",
+          "vanilla": 14,
+          "patched": 193
+        }
+      ]
+    },
+    {
+      "fix": "protoItemArt",
+      "pid": 278,
+      "changes": [
+        {
+          "field": "fid",
+          "vanilla": 41,
+          "patched": 53
+        }
+      ]
+    },
+    {
+      "fix": "protoQuestItems",
+      "pid": 79,
+      "changes": [
+        {
+          "field": "data[8]",
+          "vanilla": 0,
+          "patched": 1
+        }
+      ]
+    },
+    {
+      "fix": "protoQuestItems",
+      "pid": 310,
+      "changes": [
+        {
+          "field": "data[1]",
+          "vanilla": 4294967295,
+          "patched": 37
+        },
+        {
+          "field": "data[4]",
+          "vanilla": 0,
+          "patched": 5
+        }
+      ]
+    },
+    {
+      "fix": "protoQuestItems",
+      "pid": 311,
+      "changes": [
+        {
+          "field": "data[1]",
+          "vanilla": 4294967295,
+          "patched": 37
+        },
+        {
+          "field": "data[4]",
+          "vanilla": 0,
+          "patched": 10
+        }
+      ]
+    },
+    {
+      "fix": "protoQuestItems",
+      "pid": 329,
+      "changes": [
+        {
+          "field": "scriptId",
+          "vanilla": -1,
+          "patched": 50332105
+        }
+      ]
+    },
+    {
+      "fix": "protoQuestItems",
+      "pid": 334,
+      "changes": [
+        {
+          "field": "data[0]",
+          "vanilla": 4294967295,
+          "patched": 36
+        },
+        {
+          "field": "data[3]",
+          "vanilla": 0,
+          "patched": 50
+        },
+        {
+          "field": "data[6]",
+          "vanilla": 0,
+          "patched": 15
+        },
+        {
+          "field": "data[7]",
+          "vanilla": 0,
+          "patched": 75
+        },
+        {
+          "field": "data[10]",
+          "vanilla": 0,
+          "patched": 20
+        },
+        {
+          "field": "data[11]",
+          "vanilla": 0,
+          "patched": 100
+        }
+      ]
+    },
+    {
+      "fix": "protoQuestItems",
+      "pid": 423,
+      "changes": [
+        {
+          "field": "data[5]",
+          "vanilla": 0,
+          "patched": 1
+        }
+      ]
+    },
+    {
+      "fix": "protoQuestItems",
+      "pid": 426,
+      "changes": [
+        {
+          "field": "data[5]",
+          "vanilla": 0,
+          "patched": 1
+        }
+      ]
+    },
+    {
+      "fix": "protoQuestItems",
+      "pid": 486,
+      "changes": [
+        {
+          "field": "data[5]",
+          "vanilla": 0,
+          "patched": 1
+        }
+      ]
+    },
+    {
+      "fix": "protoQuestItems",
+      "pid": 488,
+      "changes": [
+        {
+          "field": "data[1]",
+          "vanilla": 20,
+          "patched": 0
+        },
+        {
+          "field": "data[2]",
+          "vanilla": 12917412,
+          "patched": 0
+        }
+      ]
+    },
+    {
+      "fix": "protoWeaponSoundSwap",
+      "pid": 350,
+      "changes": [
+        {
+          "field": "tail[0]",
+          "vanilla": 76,
+          "patched": 82
+        }
+      ]
+    },
+    {
+      "fix": "protoWeaponSoundSwap",
+      "pid": 387,
+      "changes": [
+        {
+          "field": "tail[0]",
+          "vanilla": 82,
+          "patched": 76
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "@f2/map-stats",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@f2/formats": "workspace:*",
+    "@f2/vfs": "workspace:*"
+  }
+}

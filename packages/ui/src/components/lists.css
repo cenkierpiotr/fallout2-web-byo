@@ -1,0 +1,99 @@
+.f2-toast-region {
+  position: fixed;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: min(360px, calc(100vw - 2 * var(--space-4)));
+}
+.f2-toast {
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg-overlay);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  border-left-width: 4px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-2);
+}
+.f2-toast--ok {
+  border-left-color: var(--color-state-ok);
+}
+.f2-toast--warning {
+  border-left-color: var(--color-state-warning);
+}
+.f2-toast--danger {
+  border-left-color: var(--color-state-danger);
+}
+.f2-toast--info {
+  border-left-color: var(--color-state-info);
+}
+.f2-list,
+.f2-grid,
+.f2-dialog__options {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.f2-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.f2-grid {
+  display: grid;
+  gap: var(--space-2);
+}
+.f2-list__button,
+.f2-dialog__option {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: var(--target-min);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg-panelRaised);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.f2-list__button:hover,
+.f2-dialog__option:hover:not(:disabled) {
+  background: var(--color-bg-overlay);
+}
+.f2-dialog__option:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.f2-vlist {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.f2-vlist__row {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-3);
+}
+.f2-dialog {
+  background: var(--color-bg-panelRaised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+.f2-dialog__speaker {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-lg);
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+}
+.f2-dialog__text {
+  margin-bottom: var(--space-3);
+}
+.f2-dialog__options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}

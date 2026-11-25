@@ -1,0 +1,232 @@
+.f2-endgame,
+.f2-death,
+.f2-credits,
+.f2-mainmenu {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: #000;
+  color: var(--color-text-primary);
+  overflow: hidden;
+}
+.f2-endgame__frame,
+.f2-death__frame {
+  position: relative;
+  flex: 1 1 auto;
+  width: min(100%, 64rem);
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+.f2-endgame__art,
+.f2-death__art {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.f2-endgame__art--placeholder,
+.f2-death__art--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-panel);
+  color: var(--color-text-secondary);
+}
+/* Panorama (art 327): obraz szerszy od ramki, przesuwany w czasie narracji. */
+.f2-endgame[data-pan='-1'] .f2-endgame__art,
+.f2-endgame[data-pan='1'] .f2-endgame__art {
+  width: 200%;
+  max-width: none;
+  animation: f2-pan var(--f2-pan-seconds, 20s) linear forwards;
+}
+.f2-endgame[data-pan='1'] .f2-endgame__art {
+  animation-direction: reverse;
+}
+@keyframes f2-pan {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.f2-endgame__caption,
+.f2-death__caption {
+  width: min(100%, 48rem);
+  min-height: 4.5em;
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  background: rgba(0, 0, 0, 0.85);
+  font-size: var(--font-size-md);
+  line-height: 1.4;
+}
+.f2-death__heading {
+  position: absolute;
+  top: var(--space-3);
+  left: 0;
+  right: 0;
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-family-heading);
+}
+.f2-death__hint {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+.f2-credits {
+  justify-content: flex-start;
+}
+.f2-credits__roll {
+  width: min(100%, 40rem);
+  text-align: center;
+  padding-top: 100vh;
+  padding-bottom: 100vh;
+  animation: f2-credits-roll var(--f2-credits-seconds, 60s) linear forwards;
+}
+@keyframes f2-credits-roll {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+.f2-credits__line {
+  margin: 0;
+  min-height: var(--f2-credits-line, 28px);
+  line-height: var(--f2-credits-line, 28px);
+}
+.f2-credits__line--title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+}
+.f2-credits__line--section {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+}
+.f2-credits__skip,
+.f2-endgame__next {
+  position: absolute;
+  right: var(--space-4);
+  bottom: var(--space-4);
+}
+.f2-mainmenu {
+  justify-content: center;
+  background: var(--color-bg-app, #000);
+}
+.f2-mainmenu__title {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+}
+.f2-mainmenu__nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: min(100%, 20rem);
+}
+.f2-mainmenu__version {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+@media (prefers-reduced-motion: reduce) {
+  .f2-endgame__art,
+  .f2-credits__roll {
+    animation: none !important;
+  }
+  .f2-credits__roll {
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-4);
+    overflow-y: auto;
+    max-height: 100%;
+  }
+}
+
+/* --- menu glowne: skorka FRM (zadanie ekranowe) --- */
+.f2-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+.f2-mainmenu--art,
+.f2-mainmenu--art .f2-art-frame,
+.f2-mainmenu--art .f2-art-stage {
+  /* background-color, nie skrot: skrot zerowal background-size/repeat z ArtStage (tlo kafelkowalo sie 2x2). */
+  background-color: #000;
+}
+.f2-mainmenu--art {
+  justify-content: center;
+}
+.f2-mainmenu--art .f2-art-frame {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+}
+.f2-mainmenu--art .f2-mainmenu__nav--art,
+.f2-mainmenu--art .f2-mainmenu__list {
+  margin: 0;
+  padding: 0;
+  width: auto;
+}
+.f2-mainmenu--art .f2-mainmenu__list {
+  position: absolute;
+  top: 50%;
+  /* Prawa strona sceny: wypalone plytki mainmenu.frm (x 16..207 z 640) zostaja odsloniete, nie przykryte przyciskami. */
+  left: calc(100% * 222 / 640);
+  right: calc(100% * 12 / 640);
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: auto;
+  padding: var(--space-2);
+}
+.f2-mainmenu__entry {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 26px;
+  padding: 2px 4px;
+  border: 0;
+  background: transparent;
+  color: #d4d0c8;
+  font-family: var(--f2-art-font);
+  font-size: clamp(11px, 3.4cqw, 26px);
+  letter-spacing: 0.04em;
+  text-align: center;
+  cursor: pointer;
+}
+.f2-mainmenu__entry:hover,
+.f2-mainmenu__entry:focus-visible {
+  color: var(--f2-art-yellow);
+  outline: 2px solid var(--f2-art-yellow);
+  outline-offset: -2px;
+}
+.f2-mainmenu__list .f2-mainmenu__entry {
+  font-size: 20px;
+  border: 2px solid #3a2a1a;
+  background: rgba(0, 0, 0, 0.75);
+}
+.f2-mainmenu__version--art {
+  margin: 0;
+  font-size: 14px;
+  color: #e0c040;
+}
+.f2-art-at > .f2-mainmenu__entry {
+  height: 100%;
+  min-height: 0;
+  line-height: 1;
+}

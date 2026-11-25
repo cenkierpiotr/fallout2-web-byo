@@ -1,0 +1,143 @@
+{
+  "statRoll": {
+    "dieMin": 1,
+    "dieMax": 10,
+    "status": "D (0x4afa78)"
+  },
+  "hitPoints": {
+    "deadBit": 128,
+    "status": "D (0x42d1a4)"
+  },
+  "healHours": {
+    "perThreeHours": 14,
+    "divisor": 3,
+    "status": "D (0x42d9f4)"
+  },
+  "restHeal": {
+    "arg": 3,
+    "divisor": 3,
+    "status": "D (0x494eb8)"
+  },
+  "poison": {
+    "tickDelta": -2,
+    "tickHp": -1,
+    "baseDelay": 505,
+    "perPoison": 5,
+    "ticksPerUnit": 10,
+    "interruptHpAtMost": 5,
+    "messages": {
+      "poisoned": 3000,
+      "tick": 3001,
+      "less": 3002,
+      "cured": 3003
+    },
+    "status": "D (0x42d210, 0x42d318); komunikaty W"
+  },
+  "radiation": {
+    "levelThresholds": [
+      100,
+      200,
+      400,
+      600,
+      1000
+    ],
+    "enduranceModByLevel": [
+      2,
+      0,
+      -2,
+      -4,
+      -6,
+      -8
+    ],
+    "enduranceStat": 2,
+    "delayHoursMin": 4,
+    "delayHoursMax": 18,
+    "ticksPerHour": 36000,
+    "recoveryTicks": 6048000,
+    "recoveryStatus": "D (0x42d740: 0x5c4900 = 7 dob)",
+    "minorMessageMax": 5,
+    "bigMessageMin": 10,
+    "messages": {
+      "geigerSmall": 1008,
+      "geigerBig": 1009,
+      "big": 1007,
+      "levelBase": 1000,
+      "death": 1006
+    },
+    "effectStats": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      35,
+      14
+    ],
+    "effectStatsStatus": "D (0x518358); stat 35 Z",
+    "effects": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        -1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        -1,
+        0,
+        0,
+        0,
+        0,
+        -1,
+        0,
+        -3
+      ],
+      [
+        -2,
+        0,
+        -1,
+        0,
+        0,
+        -2,
+        -5,
+        -5
+      ],
+      [
+        -4,
+        -3,
+        -3,
+        -3,
+        -1,
+        -5,
+        -15,
+        -10
+      ],
+      [
+        -6,
+        -5,
+        -5,
+        -5,
+        -3,
+        -6,
+        -20,
+        -10
+      ]
+    ],
+    "effectsNote": "wiersz = poziom 1..6 (0x518378, 8 intow na wiersz)",
+    "status": "D (0x42d3a4, 0x42d4f4, 0x42d63c, 0x42d740)"
+  }
+}

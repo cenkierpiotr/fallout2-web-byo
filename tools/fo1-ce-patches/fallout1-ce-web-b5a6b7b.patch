@@ -1,0 +1,260 @@
+diff --git a/src/movie_lib.cc b/src/movie_lib.cc
+index 7d7f07e..69e128e 100644
+--- a/src/movie_lib.cc
++++ b/src/movie_lib.cc
+@@ -12,6 +12,10 @@
+ #include "audio_engine.h"
+ #include "platform_compat.h"
+ 
++#ifdef __EMSCRIPTEN__
++#include <emscripten.h>
++#endif
++
+ namespace fallout {
+ 
+ typedef struct STRUCT_6B3690 {
+@@ -1198,7 +1202,17 @@ static void _MVE_sndSync()
+         return;
+     }
+ 
++#ifdef __EMSCRIPTEN__
++    int emSpins = 0;
++#endif
+     while (1) {
++#ifdef __EMSCRIPTEN__
++        // Kursor odtwarzania przesuwa callback audio w JS; bez oddania sterowania
++        // przegladarce ta petla nigdy sie nie konczy (zamarza strona w filmie).
++        if (emSpins++ > 0) {
++            emscripten_sleep(1);
++        }
++#endif
+         if (!audioEngineSoundBufferGetStatus(gMveSoundBuffer, &dwStatus)) {
+             return;
+         }
+diff --git a/src/plib/gnw/dxinput.cc b/src/plib/gnw/dxinput.cc
+index fa8490d..3035d0f 100644
+--- a/src/plib/gnw/dxinput.cc
++++ b/src/plib/gnw/dxinput.cc
+@@ -23,6 +23,45 @@ float gEmMouseX = 0.0f;
+ float gEmMouseY = 0.0f;
+ SDL_MouseButtonFlags gEmMouseButtons = 0;
+ 
++// Pozycja zgloszona silnikowi w ostatnim odczycie (mouse_info ustawia kursor bezwzglednie).
++float gEmCurX = 0.0f;
++float gEmCurY = 0.0f;
++
++// Kolejka przejsc przyciskow: kazde przejscie (najechanie, wcisniecie, zwolnienie) trafia
++// do osobnego odczytu stanu myszy, niezaleznie od FPS silnika. Inaczej szybkie tapniecie
++// gubilo sie (down+up miedzy klatkami) albo bylo zjadane przez "najechanie" przycisku GNW.
++struct EmMouseEvent {
++    float x;
++    float y;
++    SDL_MouseButtonFlags buttons;
++    Uint64 time;
++};
++static constexpr int kEmQueueCap = 64;
++static EmMouseEvent gEmQueue[kEmQueueCap];
++static int gEmQueueHead = 0;
++static int gEmQueueCount = 0;
++static SDL_MouseButtonFlags gEmQueuedButtons = 0; // stan po ostatnim wpisie w kolejce
++static float gEmQueuedX = -1.0f;
++static float gEmQueuedY = -1.0f;
++
++static void emEnqueue(float x, float y, SDL_MouseButtonFlags buttons)
++{
++    if (gEmQueueCount == kEmQueueCap) {
++        // pelna: porzuc najstarszy wpis
++        gEmQueueHead = (gEmQueueHead + 1) % kEmQueueCap;
++        gEmQueueCount--;
++    }
++    EmMouseEvent& ev = gEmQueue[(gEmQueueHead + gEmQueueCount) % kEmQueueCap];
++    ev.x = x;
++    ev.y = y;
++    ev.buttons = buttons;
++    ev.time = SDL_GetTicks();
++    gEmQueueCount++;
++    gEmQueuedButtons = buttons;
++    gEmQueuedX = x;
++    gEmQueuedY = y;
++}
++
+ static int emscriptenMouseMaxX()
+ {
+     int width = screenGetWidth();
+@@ -112,9 +151,28 @@ bool dxinput_get_mouse_state(MouseData* mouseState)
+     // Read from event-driven tracking updated by JS pointer event workaround.
+     static float prevX = -1.0f;
+     static float prevY = -1.0f;
+-    x = gEmMouseX;
+-    y = gEmMouseY;
+-    SDL_MouseButtonFlags buttons = gEmMouseButtons;
++    SDL_MouseButtonFlags buttons;
++    // Wpisy starsze niz 1 s (np. klikniecia, gdy silnik nie czytal myszy) sa porzucane,
++    // zeby nie "odtwarzaly sie" pozniej; zostaje stan biezacy.
++    Uint64 nowTicks = SDL_GetTicks();
++    while (gEmQueueCount > 0 && nowTicks - gEmQueue[gEmQueueHead].time > 1000) {
++        gEmQueueHead = (gEmQueueHead + 1) % kEmQueueCap;
++        gEmQueueCount--;
++    }
++    if (gEmQueueCount > 0) {
++        EmMouseEvent& ev = gEmQueue[gEmQueueHead];
++        gEmQueueHead = (gEmQueueHead + 1) % kEmQueueCap;
++        gEmQueueCount--;
++        x = ev.x;
++        y = ev.y;
++        buttons = ev.buttons;
++    } else {
++        x = gEmMouseX;
++        y = gEmMouseY;
++        buttons = gEmMouseButtons;
++    }
++    gEmCurX = x;
++    gEmCurY = y;
+     if (prevX < 0.0f) {
+         prevX = x;
+         prevY = y;
+@@ -210,30 +268,10 @@ void handleMouseEvent(SDL_Event* event)
+     // may return stale data because the Asyncify yield/resume cycle can desync
+     // SDL's internal mouse state.  Track position and buttons directly from
+     // the events that GNW95_process_message already dispatches to us.
++    // Pozycje i przyciski podaje wylacznie most JS (fallout_push_mouse_*), w ukladzie
++    // wspolrzednych gry. Zdarzenia SDL licza pozycje wzgledem rozmiaru okna SDL, ktory
++    // rozjezdza sie z canvasem po pelnym ekranie -> ignorowane (poza kolkiem).
+     switch (event->type) {
+-    case SDL_EVENT_MOUSE_MOTION:
+-        gEmMouseX = event->motion.x;
+-        gEmMouseY = event->motion.y;
+-        clampEmscriptenMousePosition();
+-        break;
+-    case SDL_EVENT_MOUSE_BUTTON_DOWN:
+-        gEmMouseX = event->button.x;
+-        gEmMouseY = event->button.y;
+-        clampEmscriptenMousePosition();
+-        if (event->button.button == SDL_BUTTON_LEFT)
+-            gEmMouseButtons |= SDL_BUTTON_MASK(SDL_BUTTON_LEFT);
+-        if (event->button.button == SDL_BUTTON_RIGHT)
+-            gEmMouseButtons |= SDL_BUTTON_MASK(SDL_BUTTON_RIGHT);
+-        break;
+-    case SDL_EVENT_MOUSE_BUTTON_UP:
+-        gEmMouseX = event->button.x;
+-        gEmMouseY = event->button.y;
+-        clampEmscriptenMousePosition();
+-        if (event->button.button == SDL_BUTTON_LEFT)
+-            gEmMouseButtons &= ~SDL_BUTTON_MASK(SDL_BUTTON_LEFT);
+-        if (event->button.button == SDL_BUTTON_RIGHT)
+-            gEmMouseButtons &= ~SDL_BUTTON_MASK(SDL_BUTTON_RIGHT);
+-        break;
+     case SDL_EVENT_MOUSE_WHEEL:
+         gMouseWheelDeltaX += event->wheel.x;
+         gMouseWheelDeltaY += event->wheel.y;
+@@ -303,11 +341,28 @@ void fallout_push_mouse_button(float x, float y, int button, int down) {
+     SDL_MouseButtonFlags mask = 0;
+     if (button == 0) mask = SDL_BUTTON_MASK(SDL_BUTTON_LEFT);
+     else if (button == 2) mask = SDL_BUTTON_MASK(SDL_BUTTON_RIGHT);
+-    if (down) {
+-        fallout::gEmMouseButtons |= mask;
+-    } else {
+-        fallout::gEmMouseButtons &= ~mask;
++    if (mask == 0) {
++        return;
++    }
++
++    float px = fallout::gEmMouseX;
++    float py = fallout::gEmMouseY;
++    SDL_MouseButtonFlags base = fallout::gEmQueueCount > 0 ? fallout::gEmQueuedButtons : fallout::gEmMouseButtons;
++    float lastX = fallout::gEmQueueCount > 0 ? fallout::gEmQueuedX : fallout::gEmCurX;
++    float lastY = fallout::gEmQueueCount > 0 ? fallout::gEmQueuedY : fallout::gEmCurY;
++
++    // Kursor przeskoczyl (tapniecie): najpierw sam ruch, zeby przycisk GNW zdazyl
++    // obsluzyc najechanie, dopiero potem zmiana stanu przycisku.
++    if (static_cast<int>(px) != static_cast<int>(lastX) || static_cast<int>(py) != static_cast<int>(lastY)) {
++        // Kilka klatek: GNW potrzebuje wiecej niz jednego odczytu, by uznac najechanie.
++        for (int i = 0; i < 3; i++) {
++            fallout::emEnqueue(px, py, base);
++        }
+     }
++
++    SDL_MouseButtonFlags next = down ? (base | mask) : (base & ~mask);
++    fallout::emEnqueue(px, py, next);
++    fallout::gEmMouseButtons = next;
+ }
+ 
+ } // extern "C"
+diff --git a/src/plib/gnw/input.cc b/src/plib/gnw/input.cc
+index 78b470c..a1ef913 100644
+--- a/src/plib/gnw/input.cc
++++ b/src/plib/gnw/input.cc
+@@ -1094,6 +1094,20 @@ void GNW95_process_message()
+     // is disabled, because if we ignore it, we'll never be able to reactivate
+     // it again.
+ 
++#ifdef __EMSCRIPTEN__
++    // Petle silnika (filmy, czekanie na puszczenie przycisku, menu bez
++    // ogranicznika FPS) kreca sie bez oddania sterowania przegladarce: zamarza
++    // obraz, audio (callback JS) i zdarzenia wejscia. Oddaj sterowanie co ~16 ms.
++    {
++        static Uint64 lastYield = 0;
++        Uint64 now = SDL_GetTicks();
++        if (now - lastYield >= 16) {
++            emscripten_sleep(0);
++            lastYield = SDL_GetTicks();
++        }
++    }
++#endif
++
+     KeyboardData keyboardData;
+     SDL_Event e;
+     while (SDL_PollEvent(&e)) {
+@@ -1104,6 +1118,9 @@ void GNW95_process_message()
+         case SDL_EVENT_MOUSE_WHEEL:
+             handleMouseEvent(&e);
+             break;
++#ifndef __EMSCRIPTEN__
++        // W przegladarce dotyk obsluguje most pointer (fallout_push_mouse_button):
++        // gesty SDL dublowalyby tapniecia i omijaly kolejke myszy.
+         case SDL_EVENT_FINGER_DOWN:
+             touch_handle_start(&(e.tfinger));
+             break;
+@@ -1113,6 +1130,7 @@ void GNW95_process_message()
+         case SDL_EVENT_FINGER_UP:
+             touch_handle_end(&(e.tfinger));
+             break;
++#endif
+         case SDL_EVENT_KEY_DOWN:
+         case SDL_EVENT_KEY_UP:
+             if (!kb_is_disabled()) {
+diff --git a/src/plib/gnw/mouse.cc b/src/plib/gnw/mouse.cc
+index f6c84e8..a29929c 100644
+--- a/src/plib/gnw/mouse.cc
++++ b/src/plib/gnw/mouse.cc
+@@ -11,6 +11,12 @@
+ 
+ namespace fallout {
+ 
++#ifdef __EMSCRIPTEN__
++extern float gEmCurX;
++extern float gEmCurY;
++#endif
++
++
+ static void mouse_colorize();
+ static void mouse_anim();
+ static void mouse_clip();
+@@ -504,9 +510,17 @@ void mouse_info()
+         y = 0;
+     }
+ 
++#ifdef __EMSCRIPTEN__
++    // Most JS podaje pozycje BEZWZGLEDNA (wspolrzedne gry). Przyrosty skalowane czuloscia
++    // rozjezdzaly kursor wzgledem miejsca klikniecia/tapniecia -> przyciski nie reagowaly.
++    // Przesun kursor dokladnie tam, gdzie wskazal gracz (hotspot = mouse_x + mouse_hotx).
++    x = static_cast<int>(gEmCurX) - (mouse_x + mouse_hotx);
++    y = static_cast<int>(gEmCurY) - (mouse_y + mouse_hoty);
++#else
+     // Adjust for mouse senstivity.
+     x = (int)(x * mouse_sensitivity);
+     y = (int)(y * mouse_sensitivity);
++#endif
+ 
+     if (vcr_state == VCR_STATE_PLAYING) {
+         if (((vcr_terminate_flags & VCR_TERMINATE_ON_MOUSE_PRESS) != 0 && buttons != 0)

@@ -1,0 +1,98 @@
+@import '../fonts/font.css';
+
+:root {
+  --f2-art-green: #2f8f3f;
+  --f2-art-green-dark: #0f3a1a;
+  --f2-art-yellow: #e0c040;
+  --f2-art-font: 'F2 Pixel', 'Courier New', monospace;
+}
+
+/* Ramka wypelnia rodzica (rodzic musi miec okreslona wysokosc); scena jest wpisana contain-style. */
+.f2-art-frame {
+  container-type: size;
+  width: 100%;
+  height: 100%;
+  /* Bez okreslonej wysokosci rodzica container-type:size zapadal ramke do 0; proporcje (ustawiane przez
+     rodzica jako --f2-art-ratio) wyznaczaja wtedy wysokosc z szerokosci. Przy wysokosci okreslonej nie maja wplywu. */
+  aspect-ratio: var(--f2-art-ratio, auto);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.f2-art-stage {
+  container-type: inline-size;
+  position: relative;
+  width: min(100cqw, calc(100cqh * var(--f2-art-ratio, 1)));
+  margin: 0 auto;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  font-family: var(--f2-art-font);
+  letter-spacing: 0.04em;
+}
+.f2-art-fallback {
+  width: 100%;
+  font-family: var(--f2-art-font);
+  letter-spacing: 0.04em;
+}
+.f2-art-at {
+  position: absolute;
+  box-sizing: border-box;
+}
+.f2-art-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  line-height: 0;
+  /* tap ma byc klikiem (bez panoramowania/podwojnego dotkniecia), nie gestem przegladarki */
+  touch-action: manipulation;
+}
+.f2-art-button img {
+  display: block;
+  image-rendering: pixelated;
+}
+.f2-art-button:focus-visible {
+  outline: 2px solid var(--f2-art-yellow);
+  outline-offset: 2px;
+}
+.f2-art-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+/* Fallback ArtButton (zwykly Button bez FRM): przy dotyku cel min 44px, ale nigdy mniejszy
+   niz cel profilu (--target-min, np. 48px w profilu touch). PC bez zmian (brak zmiennej). */
+.f2-art-button__fallback > .f2-button {
+  min-width: max(var(--target-min, 32px), var(--f2-art-touch-min, 0px));
+  min-height: max(var(--target-min, 32px), var(--f2-art-touch-min, 0px));
+}
+.f2-art-digits {
+  display: inline-flex;
+  font-family: var(--f2-art-font);
+  color: var(--f2-art-green);
+}
+.f2-art-digit--blank {
+  background: #1c1c1c;
+}
+.f2-art-digit {
+  display: inline-block;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  font-size: 0;
+  color: transparent;
+}
+.f2-art-extras {
+  box-sizing: border-box;
+  border: 2px solid var(--f2-art-green);
+  background: var(--f2-art-green-dark);
+  color: var(--f2-art-green);
+  font-family: var(--f2-art-font);
+  letter-spacing: 0.04em;
+  padding: 8px 12px;
+}
+.f2-art-extras__title {
+  margin: 0 0 6px;
+  color: var(--f2-art-yellow);
+  font-weight: 400;
+  font-size: 1.25em;
+}

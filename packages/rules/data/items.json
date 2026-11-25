@@ -1,0 +1,127 @@
+{
+  "params": {
+    "ticksPerMinute": 600,
+    "ticksPerMinuteStatus": "D (duration * 600, items.md Leki pkt 4)",
+    "hpStat": 35,
+    "hpStatStatus": "D (0x23)",
+    "randomStatId": -2,
+    "randomStatRange": [
+      0,
+      6
+    ],
+    "randomStatStatus": "Z: zakres losowego statu i ponowne uzycie tego samego statu w etapach opoznionych",
+    "antidotePid": 260,
+    "antidoteStatus": "D (0x104)",
+    "addictionRollRange": [
+      1,
+      100
+    ],
+    "chemReliantTrait": 11,
+    "chemResistantTrait": 12,
+    "flowerChildPerk": 42,
+    "addictionStatus": "D",
+    "overdoseConsumesItem": true,
+    "overdoseStatus": "Z: spec mowi tylko 'efekt nie jest stosowany'; zakladamy zuzycie sztuki",
+    "twoHandedFlagExt": 512,
+    "twoHandedStatus": "Z: bit flagsExt oznaczajacy bron dwureczna (R12-U1)",
+    "containerDefaultMaxSize": 250,
+    "ammoDefaultStack": 20,
+    "inventoryDefaultsStatus": "D (0x49ebfc)"
+  },
+  "withdrawal": {
+    "durationMinutes": 10080,
+    "chemReliantMinutes": 5040,
+    "status": "D (0x2760, 0x13b0; Flower Child polowa; items.md R12-U2)"
+  },
+  "drugs": [
+    {
+      "drugPid": 106,
+      "name": "Nuka-Cola",
+      "addictionIndex": 21,
+      "maxCount": 0
+    },
+    {
+      "drugPid": 87,
+      "name": "Buffout",
+      "addictionIndex": 22,
+      "maxCount": 4
+    },
+    {
+      "drugPid": 53,
+      "name": "Mentats",
+      "addictionIndex": 23,
+      "maxCount": 4
+    },
+    {
+      "drugPid": 110,
+      "name": "Psycho",
+      "addictionIndex": 24,
+      "maxCount": 4
+    },
+    {
+      "drugPid": 48,
+      "name": "RadAway",
+      "addictionIndex": 25,
+      "maxCount": 0
+    },
+    {
+      "drugPid": 124,
+      "name": "Beer",
+      "addictionIndex": 26,
+      "maxCount": 0
+    },
+    {
+      "drugPid": 125,
+      "name": "Booze",
+      "addictionIndex": 26,
+      "maxCount": 0
+    },
+    {
+      "drugPid": 259,
+      "name": "Jet",
+      "addictionIndex": 296,
+      "maxCount": 4
+    },
+    {
+      "drugPid": 304,
+      "name": "Deck of Tragic Cards",
+      "addictionIndex": 295,
+      "maxCount": 0
+    }
+  ],
+  "books": {
+    "status": "D: zysk n=(100-skill)/10, Comprehension (perk 81) n*150/100 (0x49bac4); PID-y/skille ksiazek i czas (11-IN)*60 min z exe 0x49bb29",
+    "comprehensionPerk": 81,
+    "comprehensionPercent": 50,
+    "minutesBase": 11,
+    "minutesPerIntelligenceDeficit": 60,
+    "minMinutes": 60,
+    "entries": [
+      {
+        "pid": 73,
+        "skill": 12,
+        "name": "Big Book of Science"
+      },
+      {
+        "pid": 76,
+        "skill": 13,
+        "name": "Dean's Electronics"
+      },
+      {
+        "pid": 80,
+        "skill": 6,
+        "name": "First Aid Book"
+      },
+      {
+        "pid": 86,
+        "skill": 17,
+        "name": "Scout Handbook"
+      },
+      {
+        "pid": 102,
+        "skill": 0,
+        "name": "Guns and Bullets"
+      }
+    ]
+  }
+}

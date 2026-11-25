@@ -1,0 +1,229 @@
+.f2-modal__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: var(--space-4);
+}
+.f2-modal {
+  background: var(--color-bg-panelRaised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2);
+  width: min(560px, 100%);
+  max-height: 90vh;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+.f2-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+.f2-modal__title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-lg);
+}
+.f2-modal__body {
+  padding: var(--space-4);
+}
+.f2-modal__backdrop--art {
+  padding: 0;
+  background: #000;
+  align-items: stretch;
+}
+.f2-modal--art {
+  position: relative;
+  width: 100%;
+  max-height: none;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+  background: #000;
+}
+.f2-modal--art .f2-modal__header {
+  position: absolute;
+  top: max(4px, env(safe-area-inset-top));
+  right: max(4px, env(safe-area-inset-right));
+  z-index: 2;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.f2-modal--art .f2-modal__title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.f2-modal--art .f2-modal__header button {
+  min-width: 44px;
+  min-height: 44px;
+  background: rgba(0, 0, 0, 0.55);
+}
+.f2-modal--art .f2-modal__body {
+  flex: 1;
+  min-height: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.f2-modal--art .f2-modal__body > * {
+  flex: 0 0 auto;
+  width: 100%;
+}
+.f2-modal--art .f2-pipboy--art {
+  display: flex;
+  flex-direction: column;
+}
+/* Scena ekranu ze skorka wypelnia okno; ArtStage sam wpisuje proporcje tla. */
+.f2-modal--art .f2-inv__scene,
+.f2-modal--art .f2-pipboy__scene,
+.f2-modal--art .f2-char__scene,
+.f2-modal--art .f2-rest__scene {
+  flex: 0 0 auto;
+  height: 100dvh;
+  max-height: none;
+  aspect-ratio: auto;
+  width: 100%;
+}
+.f2-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background: var(--color-bg-panelRaised);
+  border-top: 1px solid var(--color-border);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  box-shadow: var(--shadow-2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform var(--motion-base);
+}
+.f2-sheet--half {
+  max-height: 50vh;
+}
+.f2-sheet--full {
+  max-height: 92vh;
+}
+.f2-sheet__handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--target-min);
+  cursor: grab;
+  touch-action: none;
+}
+.f2-sheet__grip {
+  width: 36px;
+  height: 4px;
+  background: var(--color-border);
+  border-radius: 2px;
+}
+.f2-sheet__body {
+  overflow: auto;
+  padding: var(--space-4);
+}
+/* Ekwipunek: scena + panel dodatkow dziela wysokosc okna (PC), dodatki nie wypadaja pod zgieciem. */
+.f2-modal--art .f2-modal__body > .f2-inv-screen--art:not(.f2-inv-screen--touch) {
+  flex: 1 1 0;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.f2-modal--art .f2-inv-screen--art:not(.f2-inv-screen--touch) .f2-inv__scene {
+  flex: 1 1 0;
+  min-height: 0;
+  height: auto;
+}
+.f2-modal--art .f2-inv-screen--art:not(.f2-inv-screen--touch) .f2-art-extras {
+  flex: 0 0 auto;
+  margin-top: 0;
+  max-height: 34%;
+  overflow-y: auto;
+}
+/* Dotyk: scena ma proporcje tla, a nie cale okno; dalej tresc pod nia. */
+.f2-modal--art .f2-inv-screen--touch .f2-inv__scene {
+  height: auto;
+  aspect-ratio: 499 / 377;
+  max-height: 70dvh;
+}
+/* Zapisy: scena + panel dodatkow dziela wysokosc okna (PC); pod scena na dotyku. */
+.f2-modal--art .f2-modal__body > .f2-saves__root--art:not(:has(.f2-saves__touch-list)) {
+  flex: 1 1 0;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.f2-modal--art .f2-saves__root--art:not(:has(.f2-saves__touch-list)) .f2-saves__scene {
+  flex: 1 1 0;
+  min-height: 0;
+  height: auto;
+  max-height: none;
+  aspect-ratio: auto;
+}
+.f2-modal--art .f2-saves__root--art:not(:has(.f2-saves__touch-list)) .f2-art-extras {
+  flex: 0 0 auto;
+  margin-top: 0;
+  max-height: 30%;
+  overflow-y: auto;
+}
+/* Handel: trade.frm ma proporcje 640/191, pod nim podsumowanie i dodatki; wycentrowanie na PC. */
+.f2-modal--art .f2-barter-screen--art:not(.f2-barter-screen--touch):not(:has(.f2-barter__touch)) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  padding: var(--space-3);
+  box-sizing: border-box;
+}
+.f2-modal--art .f2-barter-screen--art:not(.f2-barter-screen--touch):not(:has(.f2-barter__touch)) .f2-barter__scene {
+  max-height: 60dvh;
+  max-width: min(100%, calc(60dvh * 640 / 191));
+  margin-inline: auto;
+}
+/* Opcje: wycentrowanie na czarnym tle modala i spojne tlo dodatkow ponizej. */
+.f2-modal--art .f2-options-host {
+  margin: auto;
+  max-width: 960px;
+  width: 100%;
+  padding: var(--space-4);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.f2-modal--art .f2-options-host__extras {
+  border: 2px solid var(--f2-art-green, #2f8f3f);
+  background: var(--f2-art-green-dark, #0f3a1a);
+  color: var(--f2-art-green, #2f8f3f);
+  font-family: var(--f2-art-font, monospace);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.f2-modal--art .f2-options--skin {
+  margin: auto;
+  max-width: 960px;
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}

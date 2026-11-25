@@ -1,0 +1,39 @@
+{
+  "name": "fallout2-web-byo",
+  "private": true,
+  "version": "1.1.0",
+  "type": "module",
+  "packageManager": "pnpm@12.18.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc -b packages/formats packages/engine-core packages/vm packages/rules packages/vfs packages/render packages/assets packages/input tools/dat2 tools/frm2png tools/inventory && tsc -p packages/tools && tsc -p apps/web/tsconfig.json && tsc -p packages/ui/tsconfig.json && tsc -p packages/app/tsconfig.json && tsc -p packages/formats/tsconfig.test.json && tsc -p packages/rules/tsconfig.test.json",
+    "lint:i18n": "pnpm --filter @f2/ui lint:i18n",
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "check": "pnpm lint && pnpm typecheck && pnpm test",
+    "dev": "pnpm --filter @f2/web dev",
+    "dat2": "tsx tools/dat2/src/cli.ts",
+    "frm2png": "tsx tools/frm2png/src/cli.ts",
+    "inventory": "tsx tools/inventory/src/cli.ts",
+    "tools": "tsx packages/tools/src/cli.ts",
+    "e2e": "playwright test",
+    "e2e:axe": "playwright test -c playwright.axe.config.ts",
+    "release": "node scripts/release.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@eslint/js": "^9.0.0",
+    "@playwright/test": "1.65.0",
+    "@types/node": "^24.19.2",
+    "axe-core": "^4.14.0",
+    "eslint": "^9.0.0",
+    "prettier": "^3.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.6.0",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^4.1.12"
+  }
+}

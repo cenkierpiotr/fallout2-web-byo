@@ -1,0 +1,3046 @@
+{
+  "perks": [
+    {
+      "index": 0,
+      "key": "Awareness",
+      "msgId": 101,
+      "descMsgId": 1101,
+      "maxRank": 1,
+      "minLevel": 3,
+      "stats": {
+        "PE": 5
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Awareness"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M6",
+      "status": "Z"
+    },
+    {
+      "index": 1,
+      "key": "BonusHtHAttacks",
+      "msgId": 102,
+      "descMsgId": 1102,
+      "maxRank": 1,
+      "minLevel": 15,
+      "stats": {
+        "AG": 6
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "BonusHtHAttacks"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 2,
+      "key": "BonusHtHDamage",
+      "msgId": 103,
+      "descMsgId": 1103,
+      "maxRank": 3,
+      "minLevel": 3,
+      "stats": {
+        "ST": 6,
+        "AG": 6
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 11,
+          "delta": 2
+        }
+      ],
+      "scriptOnly": false,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 3,
+      "key": "BonusMove",
+      "msgId": 104,
+      "descMsgId": 1104,
+      "maxRank": 2,
+      "minLevel": 6,
+      "stats": {
+        "AG": 5
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "BonusMove"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 4,
+      "key": "BonusRangedDamage",
+      "msgId": 105,
+      "descMsgId": 1105,
+      "maxRank": 2,
+      "minLevel": 6,
+      "stats": {
+        "AG": 6,
+        "LK": 6
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "BonusRangedDamage"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 5,
+      "key": "BonusRateOfFire",
+      "msgId": 106,
+      "descMsgId": 1106,
+      "maxRank": 1,
+      "minLevel": 15,
+      "stats": {
+        "PE": 6,
+        "IN": 6,
+        "AG": 7
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "BonusRateOfFire"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 6,
+      "key": "EarlierSequence",
+      "msgId": 107,
+      "descMsgId": 1107,
+      "maxRank": 3,
+      "minLevel": 3,
+      "stats": {
+        "PE": 6
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 13,
+          "delta": 2
+        }
+      ],
+      "scriptOnly": false,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 7,
+      "key": "FasterHealing",
+      "msgId": 108,
+      "descMsgId": 1108,
+      "maxRank": 3,
+      "minLevel": 3,
+      "stats": {
+        "EN": 6
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 14,
+          "delta": 2
+        }
+      ],
+      "scriptOnly": false,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 8,
+      "key": "MoreCriticals",
+      "msgId": 109,
+      "descMsgId": 1109,
+      "maxRank": 3,
+      "minLevel": 6,
+      "stats": {
+        "LK": 6
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 15,
+          "delta": 5
+        }
+      ],
+      "scriptOnly": false,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 9,
+      "key": "NightVision",
+      "msgId": 110,
+      "descMsgId": 1110,
+      "maxRank": 1,
+      "minLevel": 3,
+      "stats": {
+        "PE": 6
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "NightVision"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 10,
+      "key": "Presence",
+      "msgId": 111,
+      "descMsgId": 1111,
+      "maxRank": 3,
+      "minLevel": 3,
+      "stats": {
+        "CH": 6
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Presence"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skrypt",
+      "status": "W"
+    },
+    {
+      "index": 11,
+      "key": "RadResistance",
+      "msgId": 112,
+      "descMsgId": 1112,
+      "maxRank": 2,
+      "minLevel": 6,
+      "stats": {
+        "EN": 6,
+        "IN": 4
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 31,
+          "delta": 15
+        }
+      ],
+      "scriptOnly": false,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 12,
+      "key": "Toughness",
+      "msgId": 113,
+      "descMsgId": 1113,
+      "maxRank": 3,
+      "minLevel": 3,
+      "stats": {
+        "EN": 6,
+        "LK": 6
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 24,
+          "delta": 10
+        }
+      ],
+      "scriptOnly": false,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 13,
+      "key": "StrongBack",
+      "msgId": 114,
+      "descMsgId": 1114,
+      "maxRank": 3,
+      "minLevel": 3,
+      "stats": {
+        "ST": 6,
+        "EN": 6
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 12,
+          "delta": 50
+        }
+      ],
+      "scriptOnly": false,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 14,
+      "key": "Sharpshooter",
+      "msgId": 115,
+      "descMsgId": 1115,
+      "maxRank": 1,
+      "minLevel": 9,
+      "stats": {
+        "PE": 7,
+        "IN": 6
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Sharpshooter"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 15,
+      "key": "SilentRunning",
+      "msgId": 116,
+      "descMsgId": 1116,
+      "maxRank": 1,
+      "minLevel": 6,
+      "stats": {
+        "AG": 6
+      },
+      "skills": [
+        {
+          "skill": 8,
+          "name": "Sneak",
+          "min": 50
+        }
+      ],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [],
+      "scriptOnly": false,
+      "category": "skill",
+      "status": "Z"
+    },
+    {
+      "index": 16,
+      "key": "Survivalist",
+      "msgId": 117,
+      "descMsgId": 1117,
+      "maxRank": 1,
+      "minLevel": 3,
+      "stats": {
+        "EN": 6,
+        "IN": 6
+      },
+      "skills": [
+        {
+          "skill": 17,
+          "name": "Outdoorsman",
+          "min": 40
+        }
+      ],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "skill",
+          "target": 17,
+          "delta": 25
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skill",
+      "status": "D"
+    },
+    {
+      "index": 17,
+      "key": "MasterTrader",
+      "msgId": 118,
+      "descMsgId": 1118,
+      "maxRank": 1,
+      "minLevel": 12,
+      "stats": {
+        "CH": 7
+      },
+      "skills": [
+        {
+          "skill": 15,
+          "name": "Barter",
+          "min": 75
+        }
+      ],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "MasterTrader"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M4",
+      "status": "D"
+    },
+    {
+      "index": 18,
+      "key": "Educated",
+      "msgId": 119,
+      "descMsgId": 1119,
+      "maxRank": 3,
+      "minLevel": 6,
+      "stats": {
+        "IN": 6
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Educated"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M4",
+      "status": "D"
+    },
+    {
+      "index": 19,
+      "key": "Healer",
+      "msgId": 120,
+      "descMsgId": 1120,
+      "maxRank": 2,
+      "minLevel": 3,
+      "stats": {
+        "PE": 7,
+        "IN": 5,
+        "AG": 6
+      },
+      "skills": [
+        {
+          "skill": 6,
+          "name": "First Aid",
+          "min": 40
+        }
+      ],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Healer"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M4",
+      "status": "D"
+    },
+    {
+      "index": 20,
+      "key": "FortuneFinder",
+      "msgId": 121,
+      "descMsgId": 1121,
+      "maxRank": 1,
+      "minLevel": 6,
+      "stats": {
+        "LK": 8
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "FortuneFinder"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M7",
+      "status": "D"
+    },
+    {
+      "index": 21,
+      "key": "BetterCriticals",
+      "msgId": 122,
+      "descMsgId": 1122,
+      "maxRank": 1,
+      "minLevel": 9,
+      "stats": {
+        "PE": 6,
+        "AG": 4,
+        "LK": 6
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 16,
+          "delta": 20
+        }
+      ],
+      "scriptOnly": false,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 22,
+      "key": "Empathy",
+      "msgId": 123,
+      "descMsgId": 1123,
+      "maxRank": 1,
+      "minLevel": 6,
+      "stats": {
+        "PE": 7,
+        "IN": 5
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Empathy"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M4",
+      "status": "D"
+    },
+    {
+      "index": 23,
+      "key": "Slayer",
+      "msgId": 124,
+      "descMsgId": 1124,
+      "maxRank": 1,
+      "minLevel": 24,
+      "stats": {
+        "ST": 8,
+        "AG": 8
+      },
+      "skills": [
+        {
+          "skill": 3,
+          "name": "Unarmed",
+          "min": 80
+        }
+      ],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Slayer"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 24,
+      "key": "Sniper",
+      "msgId": 125,
+      "descMsgId": 1125,
+      "maxRank": 1,
+      "minLevel": 24,
+      "stats": {
+        "PE": 8,
+        "AG": 8
+      },
+      "skills": [
+        {
+          "skill": 0,
+          "name": "Small Guns",
+          "min": 80
+        }
+      ],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Sniper"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 25,
+      "key": "SilentDeath",
+      "msgId": 126,
+      "descMsgId": 1126,
+      "maxRank": 1,
+      "minLevel": 18,
+      "stats": {
+        "AG": 10
+      },
+      "skills": [
+        {
+          "skill": 8,
+          "name": "Sneak",
+          "min": 80
+        },
+        {
+          "skill": 3,
+          "name": "Unarmed",
+          "min": 80
+        }
+      ],
+      "skillOp": "AND",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "SilentDeath"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 26,
+      "key": "ActionBoy",
+      "msgId": 127,
+      "descMsgId": 1127,
+      "maxRank": 2,
+      "minLevel": 12,
+      "stats": {
+        "AG": 5
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 8,
+          "delta": 1
+        }
+      ],
+      "scriptOnly": false,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 27,
+      "key": "MentalBlock",
+      "msgId": 128,
+      "descMsgId": 1128,
+      "maxRank": 1,
+      "minLevel": 310,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "MentalBlock"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skrypt",
+      "status": "W"
+    },
+    {
+      "index": 28,
+      "key": "Lifegiver",
+      "msgId": 129,
+      "descMsgId": 1129,
+      "maxRank": 2,
+      "minLevel": 12,
+      "stats": {
+        "EN": 4
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Lifegiver"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M4",
+      "status": "D"
+    },
+    {
+      "index": 29,
+      "key": "Dodger",
+      "msgId": 130,
+      "descMsgId": 1130,
+      "maxRank": 1,
+      "minLevel": 9,
+      "stats": {
+        "AG": 6
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 9,
+          "delta": 5
+        }
+      ],
+      "scriptOnly": false,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 30,
+      "key": "Snakeater",
+      "msgId": 131,
+      "descMsgId": 1131,
+      "maxRank": 2,
+      "minLevel": 6,
+      "stats": {
+        "EN": 3
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 32,
+          "delta": 25
+        }
+      ],
+      "scriptOnly": false,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 31,
+      "key": "MrFixit",
+      "msgId": 132,
+      "descMsgId": 1132,
+      "maxRank": 1,
+      "minLevel": 12,
+      "stats": {},
+      "skills": [
+        {
+          "skill": 13,
+          "name": "Repair",
+          "min": 40
+        },
+        {
+          "skill": 12,
+          "name": "Science",
+          "min": 40
+        }
+      ],
+      "skillOp": "OR",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "skill",
+          "target": 12,
+          "delta": 10
+        },
+        {
+          "kind": "skill",
+          "target": 13,
+          "delta": 10
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skill",
+      "status": "D"
+    },
+    {
+      "index": 32,
+      "key": "Medic",
+      "msgId": 133,
+      "descMsgId": 1133,
+      "maxRank": 1,
+      "minLevel": 12,
+      "stats": {},
+      "skills": [
+        {
+          "skill": 6,
+          "name": "First Aid",
+          "min": 40
+        },
+        {
+          "skill": 7,
+          "name": "Doctor",
+          "min": 40
+        }
+      ],
+      "skillOp": "OR",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "skill",
+          "target": 6,
+          "delta": 10
+        },
+        {
+          "kind": "skill",
+          "target": 7,
+          "delta": 10
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skill",
+      "status": "D"
+    },
+    {
+      "index": 33,
+      "key": "MasterThief",
+      "msgId": 134,
+      "descMsgId": 1134,
+      "maxRank": 1,
+      "minLevel": 12,
+      "stats": {},
+      "skills": [
+        {
+          "skill": 10,
+          "name": "Steal",
+          "min": 50
+        },
+        {
+          "skill": 9,
+          "name": "Lockpick",
+          "min": 50
+        }
+      ],
+      "skillOp": "AND",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "skill",
+          "target": 9,
+          "delta": 15
+        },
+        {
+          "kind": "skill",
+          "target": 10,
+          "delta": 15
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skill",
+      "status": "D"
+    },
+    {
+      "index": 34,
+      "key": "Speaker",
+      "msgId": 135,
+      "descMsgId": 1135,
+      "maxRank": 1,
+      "minLevel": 9,
+      "stats": {},
+      "skills": [
+        {
+          "skill": 14,
+          "name": "Speech",
+          "min": 50
+        }
+      ],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "skill",
+          "target": 14,
+          "delta": 20
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skill",
+      "status": "D"
+    },
+    {
+      "index": 35,
+      "key": "HeaveHo",
+      "msgId": 136,
+      "descMsgId": 1136,
+      "maxRank": 3,
+      "minLevel": 6,
+      "stats": {
+        "ST": -9
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "HeaveHo"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 36,
+      "key": "ErrorUnimped",
+      "msgId": 137,
+      "descMsgId": 1137,
+      "maxRank": 1,
+      "minLevel": 310,
+      "stats": {
+        "PE": 4
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "ErrorUnimped"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skrypt",
+      "status": "W"
+    },
+    {
+      "index": 37,
+      "key": "Pickpocket",
+      "msgId": 138,
+      "descMsgId": 1138,
+      "maxRank": 1,
+      "minLevel": 15,
+      "stats": {
+        "AG": 8
+      },
+      "skills": [
+        {
+          "skill": 10,
+          "name": "Steal",
+          "min": 80
+        }
+      ],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Pickpocket"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M4",
+      "status": "D"
+    },
+    {
+      "index": 38,
+      "key": "Ghost",
+      "msgId": 139,
+      "descMsgId": 1139,
+      "maxRank": 1,
+      "minLevel": 6,
+      "stats": {},
+      "skills": [
+        {
+          "skill": 8,
+          "name": "Sneak",
+          "min": 60
+        }
+      ],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Ghost"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skill",
+      "status": "D"
+    },
+    {
+      "index": 39,
+      "key": "CultOfPersonality",
+      "msgId": 140,
+      "descMsgId": 1140,
+      "maxRank": 1,
+      "minLevel": 12,
+      "stats": {
+        "CH": 10
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "CultOfPersonality"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skrypt",
+      "status": "W"
+    },
+    {
+      "index": 40,
+      "key": "Scrounger",
+      "msgId": 141,
+      "descMsgId": 1141,
+      "maxRank": 1,
+      "minLevel": 310,
+      "stats": {
+        "LK": 8
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Scrounger"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M7",
+      "status": "Z"
+    },
+    {
+      "index": 41,
+      "key": "Explorer",
+      "msgId": 142,
+      "descMsgId": 1142,
+      "maxRank": 1,
+      "minLevel": 9,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Explorer"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M7",
+      "status": "D"
+    },
+    {
+      "index": 42,
+      "key": "FlowerChild",
+      "msgId": 143,
+      "descMsgId": 1143,
+      "maxRank": 1,
+      "minLevel": 310,
+      "stats": {
+        "EN": 5
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "FlowerChild"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M4",
+      "status": "D"
+    },
+    {
+      "index": 43,
+      "key": "Pathfinder",
+      "msgId": 144,
+      "descMsgId": 1144,
+      "maxRank": 2,
+      "minLevel": 6,
+      "stats": {
+        "EN": 6
+      },
+      "skills": [
+        {
+          "skill": 17,
+          "name": "Outdoorsman",
+          "min": 40
+        }
+      ],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Pathfinder"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M7",
+      "status": "D"
+    },
+    {
+      "index": 44,
+      "key": "AnimalFriend",
+      "msgId": 145,
+      "descMsgId": 1145,
+      "maxRank": 1,
+      "minLevel": 310,
+      "stats": {
+        "IN": 5
+      },
+      "skills": [
+        {
+          "skill": 17,
+          "name": "Outdoorsman",
+          "min": 25
+        }
+      ],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "AnimalFriend"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M6",
+      "status": "Z"
+    },
+    {
+      "index": 45,
+      "key": "Scout",
+      "msgId": 146,
+      "descMsgId": 1146,
+      "maxRank": 1,
+      "minLevel": 3,
+      "stats": {
+        "PE": 7
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Scout"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M7",
+      "status": "D"
+    },
+    {
+      "index": 46,
+      "key": "MysteriousStranger",
+      "msgId": 147,
+      "descMsgId": 1147,
+      "maxRank": 1,
+      "minLevel": 9,
+      "stats": {
+        "LK": 4
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "MysteriousStranger"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M7",
+      "status": "Z"
+    },
+    {
+      "index": 47,
+      "key": "Ranger",
+      "msgId": 148,
+      "descMsgId": 1148,
+      "maxRank": 1,
+      "minLevel": 6,
+      "stats": {
+        "PE": 6
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "skill",
+          "target": 17,
+          "delta": 15
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skill",
+      "status": "D"
+    },
+    {
+      "index": 48,
+      "key": "QuickPockets",
+      "msgId": 149,
+      "descMsgId": 1149,
+      "maxRank": 1,
+      "minLevel": 3,
+      "stats": {
+        "AG": 5
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "QuickPockets"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M4",
+      "status": "D"
+    },
+    {
+      "index": 49,
+      "key": "SmoothTalker",
+      "msgId": 150,
+      "descMsgId": 1150,
+      "maxRank": 3,
+      "minLevel": 3,
+      "stats": {
+        "IN": 4
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "SmoothTalker"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skrypt",
+      "status": "D"
+    },
+    {
+      "index": 50,
+      "key": "SwiftLearner",
+      "msgId": 151,
+      "descMsgId": 1151,
+      "maxRank": 3,
+      "minLevel": 3,
+      "stats": {
+        "IN": 4
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "SwiftLearner"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M4",
+      "status": "D"
+    },
+    {
+      "index": 51,
+      "key": "Tag",
+      "msgId": 152,
+      "descMsgId": 1152,
+      "maxRank": 1,
+      "minLevel": 12,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Tag"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M4",
+      "status": "D"
+    },
+    {
+      "index": 52,
+      "key": "Mutate",
+      "msgId": 153,
+      "descMsgId": 1153,
+      "maxRank": 1,
+      "minLevel": 9,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Mutate"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M4",
+      "status": "W"
+    },
+    {
+      "index": 53,
+      "key": "NukaColaAddiction",
+      "msgId": 154,
+      "descMsgId": 1154,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "NukaColaAddiction"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "skrypt",
+      "status": "W"
+    },
+    {
+      "index": 54,
+      "key": "BuffoutAddiction",
+      "msgId": 155,
+      "descMsgId": 1155,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 0,
+          "delta": -2
+        },
+        {
+          "kind": "stat",
+          "target": 2,
+          "delta": -2
+        },
+        {
+          "kind": "stat",
+          "target": 5,
+          "delta": -3
+        }
+      ],
+      "scriptOnly": true,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 55,
+      "key": "MentatsAddiction",
+      "msgId": 156,
+      "descMsgId": 1156,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 4,
+          "delta": -3
+        },
+        {
+          "kind": "stat",
+          "target": 5,
+          "delta": -2
+        }
+      ],
+      "scriptOnly": true,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 56,
+      "key": "PsychoAddiction",
+      "msgId": 157,
+      "descMsgId": 1157,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 4,
+          "delta": -2
+        }
+      ],
+      "scriptOnly": true,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 57,
+      "key": "RadawayAddiction",
+      "msgId": 158,
+      "descMsgId": 1158,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 31,
+          "delta": -20
+        }
+      ],
+      "scriptOnly": true,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 58,
+      "key": "WeaponLongRange",
+      "msgId": 159,
+      "descMsgId": 1159,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "WeaponLongRange"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 59,
+      "key": "WeaponAccurate",
+      "msgId": 160,
+      "descMsgId": 1160,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "WeaponAccurate"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 60,
+      "key": "WeaponPenetrate",
+      "msgId": 161,
+      "descMsgId": 1161,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "WeaponPenetrate"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 61,
+      "key": "WeaponKnockback",
+      "msgId": 162,
+      "descMsgId": 1162,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "WeaponKnockback"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 62,
+      "key": "PoweredArmor",
+      "msgId": 163,
+      "descMsgId": 1163,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 31,
+          "delta": 30
+        },
+        {
+          "kind": "stat",
+          "target": 0,
+          "delta": 3
+        }
+      ],
+      "scriptOnly": true,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 63,
+      "key": "CombatArmor",
+      "msgId": 164,
+      "descMsgId": 1164,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 31,
+          "delta": 20
+        }
+      ],
+      "scriptOnly": true,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 64,
+      "key": "WeaponScopeRange",
+      "msgId": 165,
+      "descMsgId": 1165,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "WeaponScopeRange"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 65,
+      "key": "WeaponFastReload",
+      "msgId": 166,
+      "descMsgId": 1166,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "WeaponFastReload"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 66,
+      "key": "WeaponNightSight",
+      "msgId": 167,
+      "descMsgId": 1167,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "WeaponNightSight"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 67,
+      "key": "WeaponFlameboy",
+      "msgId": 168,
+      "descMsgId": 1168,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "WeaponFlameboy"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 68,
+      "key": "ArmorAdvancedI",
+      "msgId": 169,
+      "descMsgId": 1169,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 31,
+          "delta": 60
+        },
+        {
+          "kind": "stat",
+          "target": 0,
+          "delta": 4
+        }
+      ],
+      "scriptOnly": true,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 69,
+      "key": "ArmorAdvancedII",
+      "msgId": 170,
+      "descMsgId": 1170,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 31,
+          "delta": 75
+        },
+        {
+          "kind": "stat",
+          "target": 0,
+          "delta": 4
+        }
+      ],
+      "scriptOnly": true,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 70,
+      "key": "JetAddiction",
+      "msgId": 171,
+      "descMsgId": 1171,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 8,
+          "delta": -1
+        },
+        {
+          "kind": "stat",
+          "target": 0,
+          "delta": -1
+        },
+        {
+          "kind": "stat",
+          "target": 1,
+          "delta": -1
+        }
+      ],
+      "scriptOnly": true,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 71,
+      "key": "TragicAddiction",
+      "msgId": 172,
+      "descMsgId": 1172,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 1,
+          "delta": -2
+        },
+        {
+          "kind": "stat",
+          "target": 4,
+          "delta": -1
+        },
+        {
+          "kind": "stat",
+          "target": 6,
+          "delta": -1
+        }
+      ],
+      "scriptOnly": true,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 72,
+      "key": "ArmorCharisma",
+      "msgId": 173,
+      "descMsgId": 1173,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 3,
+          "delta": 2
+        }
+      ],
+      "scriptOnly": true,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 73,
+      "key": "GeckoSkinning",
+      "msgId": 174,
+      "descMsgId": 1174,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "GeckoSkinning"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "skrypt",
+      "status": "W"
+    },
+    {
+      "index": 74,
+      "key": "DermalImpactArmor",
+      "msgId": 175,
+      "descMsgId": 1175,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "DermalImpactArmor"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "skrypt",
+      "status": "D"
+    },
+    {
+      "index": 75,
+      "key": "DermalImpactAssltEnhance",
+      "msgId": 176,
+      "descMsgId": 1176,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 3,
+          "delta": -1
+        }
+      ],
+      "scriptOnly": true,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 76,
+      "key": "PhoenixArmorImplants",
+      "msgId": 177,
+      "descMsgId": 1177,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "PhoenixArmorImplants"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "skrypt",
+      "status": "D"
+    },
+    {
+      "index": 77,
+      "key": "PhoenixAssaultEnhancement",
+      "msgId": 178,
+      "descMsgId": 1178,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 3,
+          "delta": -1
+        }
+      ],
+      "scriptOnly": true,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 78,
+      "key": "VaultCityInoculations",
+      "msgId": 179,
+      "descMsgId": 1179,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "VaultCityInoculations"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "skrypt",
+      "status": "D"
+    },
+    {
+      "index": 79,
+      "key": "AdrenalineRush",
+      "msgId": 180,
+      "descMsgId": 1180,
+      "maxRank": 1,
+      "minLevel": 6,
+      "stats": {
+        "ST": -10
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [],
+      "scriptOnly": false,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 80,
+      "key": "CautiousNature",
+      "msgId": 181,
+      "descMsgId": 1181,
+      "maxRank": 1,
+      "minLevel": 3,
+      "stats": {
+        "PE": 6
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "CautiousNature"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M7",
+      "status": "D"
+    },
+    {
+      "index": 81,
+      "key": "Comprehension",
+      "msgId": 182,
+      "descMsgId": 1182,
+      "maxRank": 1,
+      "minLevel": 3,
+      "stats": {
+        "IN": 6
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Comprehension"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M4",
+      "status": "D"
+    },
+    {
+      "index": 82,
+      "key": "DemolitionExpert",
+      "msgId": 183,
+      "descMsgId": 1183,
+      "maxRank": 1,
+      "minLevel": 9,
+      "stats": {
+        "AG": 4
+      },
+      "skills": [
+        {
+          "skill": 11,
+          "name": "Traps",
+          "min": 75
+        }
+      ],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "DemolitionExpert"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 83,
+      "key": "Gambler",
+      "msgId": 184,
+      "descMsgId": 1184,
+      "maxRank": 1,
+      "minLevel": 6,
+      "stats": {},
+      "skills": [
+        {
+          "skill": 16,
+          "name": "Gambling",
+          "min": 50
+        }
+      ],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "skill",
+          "target": 16,
+          "delta": 20
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skill",
+      "status": "D"
+    },
+    {
+      "index": 84,
+      "key": "GainStrength",
+      "msgId": 185,
+      "descMsgId": 1185,
+      "maxRank": 1,
+      "minLevel": 12,
+      "stats": {
+        "ST": -10
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [],
+      "scriptOnly": false,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 85,
+      "key": "GainPerception",
+      "msgId": 186,
+      "descMsgId": 1186,
+      "maxRank": 1,
+      "minLevel": 12,
+      "stats": {
+        "PE": -10
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [],
+      "scriptOnly": false,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 86,
+      "key": "GainEndurance",
+      "msgId": 187,
+      "descMsgId": 1187,
+      "maxRank": 1,
+      "minLevel": 12,
+      "stats": {
+        "EN": -10
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [],
+      "scriptOnly": false,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 87,
+      "key": "GainCharisma",
+      "msgId": 188,
+      "descMsgId": 1188,
+      "maxRank": 1,
+      "minLevel": 12,
+      "stats": {
+        "CH": -10
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [],
+      "scriptOnly": false,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 88,
+      "key": "GainIntelligence",
+      "msgId": 189,
+      "descMsgId": 1189,
+      "maxRank": 1,
+      "minLevel": 12,
+      "stats": {
+        "IN": -10
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [],
+      "scriptOnly": false,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 89,
+      "key": "GainAgility",
+      "msgId": 190,
+      "descMsgId": 1190,
+      "maxRank": 1,
+      "minLevel": 12,
+      "stats": {
+        "AG": -10
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [],
+      "scriptOnly": false,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 90,
+      "key": "GainLuck",
+      "msgId": 191,
+      "descMsgId": 1191,
+      "maxRank": 1,
+      "minLevel": 12,
+      "stats": {
+        "LK": -10
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [],
+      "scriptOnly": false,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 91,
+      "key": "Harmless",
+      "msgId": 192,
+      "descMsgId": 1192,
+      "maxRank": 1,
+      "minLevel": 6,
+      "stats": {},
+      "skills": [
+        {
+          "skill": 10,
+          "name": "Steal",
+          "min": 50
+        },
+        {
+          "gvar": 0,
+          "name": "",
+          "min": 50
+        }
+      ],
+      "skillOp": "AND",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "skill",
+          "target": 10,
+          "delta": 20
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skill",
+      "status": "D"
+    },
+    {
+      "index": 92,
+      "key": "HereAndNow",
+      "msgId": 193,
+      "descMsgId": 1193,
+      "maxRank": 1,
+      "minLevel": 3,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "HereAndNow"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M4",
+      "status": "D"
+    },
+    {
+      "index": 93,
+      "key": "HtHEvade",
+      "msgId": 194,
+      "descMsgId": 1194,
+      "maxRank": 1,
+      "minLevel": 12,
+      "stats": {},
+      "skills": [
+        {
+          "skill": 3,
+          "name": "Unarmed",
+          "min": 75
+        }
+      ],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "HtHEvade"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 94,
+      "key": "KamaSutraMaster",
+      "msgId": 195,
+      "descMsgId": 1195,
+      "maxRank": 1,
+      "minLevel": 3,
+      "stats": {
+        "EN": 5,
+        "AG": 5
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "KamaSutraMaster"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skrypt",
+      "status": "W"
+    },
+    {
+      "index": 95,
+      "key": "KarmaBeacon",
+      "msgId": 196,
+      "descMsgId": 1196,
+      "maxRank": 1,
+      "minLevel": 9,
+      "stats": {
+        "CH": 6
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "KarmaBeacon"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skrypt",
+      "status": "W"
+    },
+    {
+      "index": 96,
+      "key": "LightStep",
+      "msgId": 197,
+      "descMsgId": 1197,
+      "maxRank": 1,
+      "minLevel": 9,
+      "stats": {
+        "AG": 5,
+        "LK": 5
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "LightStep"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M4",
+      "status": "W"
+    },
+    {
+      "index": 97,
+      "key": "LivingAnatomy",
+      "msgId": 198,
+      "descMsgId": 1198,
+      "maxRank": 1,
+      "minLevel": 12,
+      "stats": {},
+      "skills": [
+        {
+          "skill": 7,
+          "name": "Doctor",
+          "min": 60
+        }
+      ],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "skill",
+          "target": 7,
+          "delta": 10
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skill",
+      "status": "D"
+    },
+    {
+      "index": 98,
+      "key": "MagneticPersonality",
+      "msgId": 199,
+      "descMsgId": 1199,
+      "maxRank": 1,
+      "minLevel": 6,
+      "stats": {
+        "CH": -10
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "MagneticPersonality"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skrypt",
+      "status": "W"
+    },
+    {
+      "index": 99,
+      "key": "Negotiator",
+      "msgId": 200,
+      "descMsgId": 1200,
+      "maxRank": 1,
+      "minLevel": 6,
+      "stats": {},
+      "skills": [
+        {
+          "skill": 15,
+          "name": "Barter",
+          "min": 50
+        },
+        {
+          "skill": 14,
+          "name": "Speech",
+          "min": 50
+        }
+      ],
+      "skillOp": "AND",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "skill",
+          "target": 14,
+          "delta": 10
+        },
+        {
+          "kind": "skill",
+          "target": 15,
+          "delta": 10
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skill",
+      "status": "D"
+    },
+    {
+      "index": 100,
+      "key": "PackRat",
+      "msgId": 201,
+      "descMsgId": 1201,
+      "maxRank": 1,
+      "minLevel": 6,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "stat",
+          "target": 12,
+          "delta": 50
+        }
+      ],
+      "scriptOnly": false,
+      "category": "stat",
+      "status": "D"
+    },
+    {
+      "index": 101,
+      "key": "Pyromaniac",
+      "msgId": 202,
+      "descMsgId": 1202,
+      "maxRank": 1,
+      "minLevel": 9,
+      "stats": {},
+      "skills": [
+        {
+          "skill": 1,
+          "name": "Big Guns",
+          "min": 75
+        }
+      ],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Pyromaniac"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 102,
+      "key": "QuickRecovery",
+      "msgId": 203,
+      "descMsgId": 1203,
+      "maxRank": 1,
+      "minLevel": 6,
+      "stats": {
+        "AG": 5
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "QuickRecovery"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 103,
+      "key": "Salesman",
+      "msgId": 204,
+      "descMsgId": 1204,
+      "maxRank": 1,
+      "minLevel": 6,
+      "stats": {},
+      "skills": [
+        {
+          "skill": 15,
+          "name": "Barter",
+          "min": 50
+        }
+      ],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "skill",
+          "target": 15,
+          "delta": 20
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skill",
+      "status": "D"
+    },
+    {
+      "index": 104,
+      "key": "Stonewall",
+      "msgId": 205,
+      "descMsgId": 1205,
+      "maxRank": 1,
+      "minLevel": 3,
+      "stats": {
+        "ST": 6
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Stonewall"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 105,
+      "key": "Thief",
+      "msgId": 206,
+      "descMsgId": 1206,
+      "maxRank": 1,
+      "minLevel": 3,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "skill",
+          "target": 8,
+          "delta": 10
+        },
+        {
+          "kind": "skill",
+          "target": 9,
+          "delta": 10
+        },
+        {
+          "kind": "skill",
+          "target": 10,
+          "delta": 10
+        },
+        {
+          "kind": "skill",
+          "target": 11,
+          "delta": 10
+        }
+      ],
+      "scriptOnly": false,
+      "category": "skill",
+      "status": "D"
+    },
+    {
+      "index": 106,
+      "key": "WeaponHandling",
+      "msgId": 207,
+      "descMsgId": 1207,
+      "maxRank": 1,
+      "minLevel": 12,
+      "stats": {
+        "ST": -7,
+        "AG": 5
+      },
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "WeaponHandling"
+        }
+      ],
+      "scriptOnly": false,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 107,
+      "key": "VaultCityTraining",
+      "msgId": 208,
+      "descMsgId": 1208,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [
+        {
+          "skill": 7,
+          "name": "Doctor",
+          "min": 75
+        }
+      ],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "skill",
+          "target": 6,
+          "delta": 5
+        },
+        {
+          "kind": "skill",
+          "target": 7,
+          "delta": 5
+        }
+      ],
+      "scriptOnly": true,
+      "category": "skill",
+      "status": "D"
+    },
+    {
+      "index": 108,
+      "key": "AlcoholRaisedHitPoints",
+      "msgId": 209,
+      "descMsgId": 1209,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "AlcoholRaisedHitPoints"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "skrypt",
+      "status": "D"
+    },
+    {
+      "index": 109,
+      "key": "AlcoholRaisedHitPointsII",
+      "msgId": 210,
+      "descMsgId": 1210,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "AlcoholRaisedHitPointsII"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "skrypt",
+      "status": "D"
+    },
+    {
+      "index": 110,
+      "key": "AlcoholLoweredHitPoints",
+      "msgId": 211,
+      "descMsgId": 1211,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "AlcoholLoweredHitPoints"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "skrypt",
+      "status": "D"
+    },
+    {
+      "index": 111,
+      "key": "AlcoholLoweredHitPointsII",
+      "msgId": 212,
+      "descMsgId": 1212,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "AlcoholLoweredHitPointsII"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "skrypt",
+      "status": "D"
+    },
+    {
+      "index": 112,
+      "key": "AutodocRaisedHitPoints",
+      "msgId": 213,
+      "descMsgId": 1213,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "AutodocRaisedHitPoints"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "skrypt",
+      "status": "D"
+    },
+    {
+      "index": 113,
+      "key": "AutodocRaisedHitPointsII",
+      "msgId": 214,
+      "descMsgId": 1214,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "AutodocRaisedHitPointsII"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "skrypt",
+      "status": "D"
+    },
+    {
+      "index": 114,
+      "key": "AutodocLoweredHitPoints",
+      "msgId": 215,
+      "descMsgId": 1215,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "AutodocLoweredHitPoints"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "skrypt",
+      "status": "D"
+    },
+    {
+      "index": 115,
+      "key": "AutodocLoweredHitPointsII",
+      "msgId": 216,
+      "descMsgId": 1216,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "AutodocLoweredHitPointsII"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "skrypt",
+      "status": "D"
+    },
+    {
+      "index": 116,
+      "key": "ExpertExcrementExpeditor",
+      "msgId": 217,
+      "descMsgId": 1217,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "skill",
+          "target": 14,
+          "delta": 5
+        }
+      ],
+      "scriptOnly": true,
+      "category": "skill",
+      "status": "D"
+    },
+    {
+      "index": 117,
+      "key": "WeaponEnhancedKnockout",
+      "msgId": 218,
+      "descMsgId": 1218,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "WeaponEnhancedKnockout"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "proceduralny-M6",
+      "status": "D"
+    },
+    {
+      "index": 118,
+      "key": "Jinxed",
+      "msgId": 219,
+      "descMsgId": 1219,
+      "maxRank": -1,
+      "minLevel": 1,
+      "stats": {},
+      "skills": [],
+      "skillOp": "none",
+      "perks": [],
+      "effects": [
+        {
+          "kind": "proc",
+          "target": -1,
+          "delta": 0,
+          "proc": "Jinxed"
+        }
+      ],
+      "scriptOnly": true,
+      "category": "proceduralny-M6",
+      "status": "D"
+    }
+  ]
+}

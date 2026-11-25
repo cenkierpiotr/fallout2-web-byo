@@ -1,0 +1,9 @@
+{
+  "name": "@f2/mve2png",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@f2/video": "workspace:*"
+  }
+}

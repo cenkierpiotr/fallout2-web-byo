@@ -1,0 +1,54 @@
+# Zasoby gry (prawa autorskie) NIGDY do repo
+/game/
+*.dat
+*.DAT
+*.frm
+*.FRM
+*.acm
+*.ACM
+*.mve
+*.iso
+*.zip
+analysis/
+node_modules/
+dist/
+.env
+
+# Zasoby gry i artefakty (Zadanie 1)
+*.fr[0-5]
+*.FR[0-5]
+*.map
+*.pro
+*.int
+*.msg
+*.lip
+*.pal
+*.lst
+*.gam
+*.aaf
+*.fon
+*.msk
+*.rix
+*.sve
+*.gcd
+*.bio
+*.7z
+*.rar
+*.exe
+*.dll
+assets-hd/
+test-results/
+playwright-report/
+coverage/
+*.tsbuildinfo
+analysis/*.snapshot
+
+# Wyniki frm2png (obrazy z zasobow gry)
+*.png
+
+# Robocze dane tlumaczen (teksty EN z gry)
+i18n/work/
+
+# Pobrane paczki modow (RPU/TeamX) - nigdy do repo
+downloads/
+f2-*.mjs

@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prototyp ekranu dialogu (placeholdery)</title>
+    <style>
+      :root {
+        --target-min: 32px;
+        --space-2: 8px;
+        --space-3: 12px;
+        --space-4: 16px;
+        --radius: 6px;
+        --font-scale: 1;
+        --color-bg: #14120f;
+        --color-panel: #1f1c17;
+        --color-accent: #e0a030;
+        --color-text-1: #f1e9d8;
+        --color-text-2: #bdb29a;
+        --color-text-3: #857b67;
+        --color-border: #3a352b;
+        color-scheme: dark;
+      }
+      [data-profile='touch'] {
+        --target-min: 48px;
+      }
+      body {
+        margin: 0;
+        background: #2a2a2a;
+        font-family: system-ui, sans-serif;
+        color: var(--color-text-1);
+      }
+      .stage {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        background: linear-gradient(#3b4a3b, #1a1a14);
+      }
+      .panel {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 960px;
+        background: var(--color-panel);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: var(--space-4);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+      }
+      .head {
+        display: flex;
+        gap: var(--space-3);
+        align-items: center;
+      }
+      .portrait {
+        flex: none;
+        width: 96px;
+        height: 96px;
+        border: 2px solid var(--color-accent);
+        border-radius: var(--radius);
+        background: var(--color-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-text-3);
+      }
+      .npc {
+        margin: 0;
+        font-size: 20px;
+        line-height: 1.5;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+      }
+      .hist {
+        font-size: 14px;
+        color: var(--color-text-2);
+      }
+      .hist .p {
+        text-align: right;
+        color: var(--color-accent);
+      }
+      button {
+        box-sizing: border-box;
+        width: 100%;
+        min-height: var(--target-min);
+        display: flex;
+        gap: var(--space-3);
+        align-items: center;
+        text-align: left;
+        padding: var(--space-2) var(--space-3);
+        border: 1px solid var(--color-border);
+        border-left-width: 4px;
+        border-radius: var(--radius);
+        background: rgba(0, 0, 0, 0.2);
+        color: inherit;
+        font: inherit;
+        font-size: 17px;
+        cursor: pointer;
+      }
+      button:hover,
+      button:focus-visible {
+        border-color: var(--color-accent);
+        outline: 2px solid var(--color-accent);
+      }
+      .k {
+        color: var(--color-text-3);
+        font-size: 13px;
+        min-width: 20px;
+      }
+      .req {
+        margin-left: auto;
+        background: var(--color-accent);
+        color: #14120f;
+        font-size: 12px;
+        padding: 2px 6px;
+        border-radius: 3px;
+      }
+      [data-profile='touch'] .k {
+        display: none;
+      }
+    </style>
+  </head>
+  <body data-profile="desktop">
+    <div class="stage">
+      <div class="panel" role="dialog" aria-label="Rozmowa">
+        <div class="head">
+          <div class="portrait">Portret</div>
+          <p class="npc" aria-live="polite">[Tekst NPC: placeholder]</p>
+        </div>
+        <ul class="hist">
+          <li>[NPC: poprzednia kwestia]</li>
+          <li class="p">[Gracz: poprzedni wybor]</li>
+        </ul>
+        <ul>
+          <li>
+            <button><span class="k">1</span>[Opcja 1]</button>
+          </li>
+          <li>
+            <button><span class="k">2</span>[Opcja 2]<span class="req">IQ 6</span></button>
+          </li>
+          <li>
+            <button><span class="k">3</span>[Opcja 3]</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      // przelacznik profilu: ?profile=touch
+      if (location.search.includes('touch')) document.body.dataset.profile = 'touch';
+    </script>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+/* Generowany z tokens.json (pnpm --filter @f2/ui tokens). Nie edytowac recznie. */
+
+:root {
+  --color-bg-panel: #0d0b09;
+  --color-bg-panelRaised: #17130f;
+  --color-bg-overlay: #221c15;
+  --color-border: #7a6850;
+  --color-accent: #e0a030;
+  --color-accentHover: #f2b84a;
+  --color-text-primary: #f4ede2;
+  --color-text-secondary: #cfc3b0;
+  --color-text-muted: #a39583;
+  --color-state-ok: #4cc27a;
+  --color-state-warning: #f0c040;
+  --color-state-danger: #ff6b5e;
+  --color-state-info: #5aaaf0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --font-family-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-family-heading: Georgia, 'Times New Roman', serif;
+  --font-size-xs: calc(14px * var(--font-scale));
+  --font-size-sm: calc(16px * var(--font-scale));
+  --font-size-md: calc(18px * var(--font-scale));
+  --font-size-lg: calc(20px * var(--font-scale));
+  --font-size-xl: calc(24px * var(--font-scale));
+  --font-size-xxl: calc(32px * var(--font-scale));
+  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
+  --shadow-2: 0 4px 12px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.4);
+  --motion-fast: 150ms;
+  --motion-base: 200ms;
+  --font-scale: 1;
+  --target-min: 32px;
+}
+
+[data-theme="retro"] {
+  --color-bg-panel: #001400;
+  --color-bg-panelRaised: #002200;
+  --color-bg-overlay: #003300;
+  --color-border: #00a000;
+  --color-accent: #33ff33;
+  --color-accentHover: #80ff80;
+  --color-text-primary: #66ff66;
+  --color-text-secondary: #4ee04e;
+  --color-text-muted: #3cc83c;
+  --color-state-ok: #66ff99;
+  --color-state-warning: #ffd24d;
+  --color-state-danger: #ff7070;
+  --color-state-info: #4de6e6;
+}
+
+[data-theme="high-contrast"] {
+  --color-bg-panel: #000000;
+  --color-bg-panelRaised: #000000;
+  --color-bg-overlay: #000000;
+  --color-border: #ffffff;
+  --color-accent: #ffd000;
+  --color-accentHover: #ffe35c;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #e6e6e6;
+  --color-text-muted: #c8c8c8;
+  --color-state-ok: #4dff88;
+  --color-state-warning: #ffe14d;
+  --color-state-danger: #ff7a7a;
+  --color-state-info: #6cc4ff;
+}
+
+[data-profile="touch"] {
+  --target-min: 48px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-base: 0ms;
+  }
+}

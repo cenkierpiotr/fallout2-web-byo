@@ -1,0 +1,25 @@
+/*
+ * Czcionka motywu retro. Bitmapowa czcionka AAF z gry nie ma polskich znakow (ą ć ę ł ń ó ś ź ż),
+ * wiec tekst DOM w motywie retro uzywa webowej czcionki "retro-like" z pelnym Latin Extended-A.
+ * VT323 (SIL OFL 1.1, Google Fonts / google/fonts ofl/vt323), plik: assets/fonts/VT323-Regular.ttf.
+ * Licencja: assets/fonts/OFL-VT323.txt. Motyw modern uzywa czcionki systemowej (bez zmian).
+ */
+@font-face {
+  font-family: 'VT323 F2';
+  src: url('../../assets/fonts/VT323-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+[data-theme='retro'] {
+  --font-family-body: 'VT323 F2', 'Courier New', ui-monospace, monospace;
+  --font-family-heading: 'VT323 F2', 'Courier New', ui-monospace, monospace;
+  /* VT323 jest drobna: wieksze rozmiary dla czytelnosci, skala uzytkownika nadal dziala */
+  --font-size-xs: calc(16px * var(--font-scale));
+  --font-size-sm: calc(18px * var(--font-scale));
+  --font-size-md: calc(22px * var(--font-scale));
+  --font-size-lg: calc(24px * var(--font-scale));
+  --font-size-xl: calc(30px * var(--font-scale));
+  --font-size-xxl: calc(40px * var(--font-scale));
+}

@@ -1,0 +1,15 @@
+{
+  "diagnostics.title": "Diagnostyka",
+  "diagnostics.intro": "Telemetria jest lokalna: dane zostają w tej przeglądarce i nigdy nie są wysyłane. Możesz je wyeksportować i dołączyć do zgłoszenia błędu.",
+  "diagnostics.events": "Zdarzenia: {count}",
+  "diagnostics.storage": "Zajęte miejsce: {kb} KB",
+  "diagnostics.errors": "Błędy: {count}",
+  "diagnostics.fps": "Średnio {avg} FPS, minimum {min} FPS ({samples} próbek)",
+  "diagnostics.fpsNone": "Brak próbek wydajności",
+  "diagnostics.export": "Eksportuj telemetrię (JSONL)",
+  "diagnostics.clear": "Wyczyść dane",
+  "diagnostics.exported": "Wyeksportowano {count} zdarzeń",
+  "diagnostics.exportEmpty": "Brak zdarzeń do eksportu",
+  "diagnostics.exportFailed": "Eksport nie powiódł się",
+  "diagnostics.cleared": "Dane telemetrii wyczyszczone"
+}

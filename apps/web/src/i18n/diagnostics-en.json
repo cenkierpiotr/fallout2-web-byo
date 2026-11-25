@@ -1,0 +1,15 @@
+{
+  "diagnostics.title": "Diagnostics",
+  "diagnostics.intro": "Telemetry is local: data stays in this browser and is never sent anywhere. You can export it and attach it to a bug report.",
+  "diagnostics.events": "Events: {count}",
+  "diagnostics.storage": "Storage used: {kb} KB",
+  "diagnostics.errors": "Errors: {count}",
+  "diagnostics.fps": "Average {avg} FPS, minimum {min} FPS ({samples} samples)",
+  "diagnostics.fpsNone": "No performance samples",
+  "diagnostics.export": "Export telemetry (JSONL)",
+  "diagnostics.clear": "Clear data",
+  "diagnostics.exported": "Exported {count} events",
+  "diagnostics.exportEmpty": "No events to export",
+  "diagnostics.exportFailed": "Export failed",
+  "diagnostics.cleared": "Telemetry data cleared"
+}
