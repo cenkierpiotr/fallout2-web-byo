@@ -10,17 +10,48 @@ Aplikacja **nie zawiera żadnych oryginalnych zasobów gier** (grafik, dźwięk�
 
 ## Spis treści
 
-1. [Kwestie prawne i licencje](#kwestie-prawne-i-licencje)
-2. [Wymagania](#wymagania)
-3. [Szybki start (uruchomienie aplikacji)](#szybki-start-uruchomienie-aplikacji)
-4. [Jak wczytać własną grę (Fallout 2 i Fallout 1)](#jak-wczytać-własną-grę-fallout-2-i-fallout-1)
-5. [Mody i tekstury HD](#mody-i-tekstury-hd)
-6. [Sterowanie (PC oraz telefon/tablet)](#sterowanie-pc-oraz-telefontablet)
-7. [Profile, zapisy gry i kopie zapasowe](#profile-zapisy-gry-i-kopie-zapasowe)
-8. [Samodzielny hosting statyczny](#samodzielny-hosting-statyczny)
-9. [Rozwiązywanie problemów i prywatność](#rozwiązywanie-problemów-i-prywatność)
+1. [Zrzuty ekranu (Screenshots)](#zrzuty-ekranu-screenshots)
+2. [Kwestie prawne i licencje](#kwestie-prawne-i-licencje)
+3. [Wymagania](#wymagania)
+4. [Szybki start (uruchomienie aplikacji)](#szybki-start-uruchomienie-aplikacji)
+5. [Jak wczytać własną grę (Fallout 2 i Fallout 1)](#jak-wczytać-własną-grę-fallout-2-i-fallout-1)
+6. [Mody i tekstury HD](#mody-i-tekstury-hd)
+7. [Sterowanie (PC oraz telefon/tablet)](#sterowanie-pc-oraz-telefontablet)
+8. [Profile, zapisy gry i kopie zapasowe](#profile-zapisy-gry-i-kopie-zapasowe)
+9. [Samodzielny hosting statyczny i bezpieczeństwo](#samodzielny-hosting-statyczny-i-bezpieczeństwo)
+10. [Rozwiązywanie problemów i prywatność](#rozwiązywanie-problemów-i-prywatność)
 
-Więcej szczegółów znajdziesz w pełnej instrukcji: [Instrukcja użytkownika (PL)](docs/user/README.pl.md) | [User Guide (EN)](docs/user/README.en.md).
+Więcej szczegółów znajdziesz w pełnej instrukcji:
+- [Szczegółowa instrukcja uruchomienia, hostingu, bezpieczeństwa i legalności (`docs/SETUP.md`)](docs/SETUP.md)
+- [Instrukcja użytkownika (PL)](docs/user/README.pl.md) | [User Guide (EN)](docs/user/README.en.md)
+
+---
+
+## Zrzuty ekranu (Screenshots)
+
+### Ekran główny — wybór gry (Fallout 2 / Fallout 1)
+![Ekran wyboru gry](docs/screenshots/01-home-game-select.jpg)
+
+### Fallout 2 — wczytanie własnej kopii gry (BYO)
+![Fallout 2 — wybór folderu gry](docs/screenshots/02-f2-byo-folder-picker.jpg)
+
+### Fallout 2 — menu główne i opcje grafiki HD / 2.5D
+| Menu główne | Opcje (HD, oświetlenie 2.5D, poprawki) |
+|---|---|
+| ![Fallout 2 — menu główne](docs/screenshots/03-f2-main-menu.jpg) | ![Fallout 2 — opcje HD](docs/screenshots/09-f2-options-hd-settings.jpg) |
+
+### Fallout 2 — kreator postaci i rozgrywka na mapie (HD + 2.5D)
+| Kreator postaci | Mapa gry (HD + oświetlenie 2.5D) |
+|---|---|
+| ![Fallout 2 — kreator postaci](docs/screenshots/04-f2-character-creator.jpg) | ![Fallout 2 — mapa HD 2.5D](docs/screenshots/05-f2-map-hd-25d.jpg) |
+
+### Fallout 2 — karta postaci, ekwipunek i Pip-Boy 2000
+| Karta postaci | Ekwipunek | Pip-Boy 2000 |
+|---|---|---|
+| ![Fallout 2 — karta postaci](docs/screenshots/06-f2-character-sheet.jpg) | ![Fallout 2 — ekwipunek](docs/screenshots/07-f2-inventory.jpg) | ![Fallout 2 — Pip-Boy](docs/screenshots/08-f2-pipboy.jpg) |
+
+### Fallout 1 — Community Edition (WebAssembly)
+![Fallout 1 CE WASM](docs/screenshots/10-fo1-wasm-running.jpg)
 
 ---
 
@@ -122,7 +153,7 @@ Silnik obsługuje warstwowe nadpisywanie zasobów (VFS) ponad `MASTER.DAT` / `CR
 
 ---
 
-## Samodzielny hosting statyczny
+## Samodzielny hosting statyczny i bezpieczeństwo
 
 Aplikacja jest w 100% statycznym SPA + PWA (brak backendu i bazy na serwerze):
 
@@ -132,6 +163,8 @@ node scripts/guard-no-game-files.mjs --dist apps/web/dist
 ```
 
 Zawartość katalogu `apps/web/dist/` możesz wystawić na dowolnym serwerze WWW (np. korzystając z przykładowej konfiguracji w [`deploy/nginx.conf`](deploy/nginx.conf)). **Wymagany jest HTTPS** (lub `http://localhost`), ponieważ przeglądarki blokują OPFS, File System Access API oraz Service Workery na zwykłym HTTP.
+
+Pełna konfiguracja **Nginx**, **Caddy**, nagłówków **COOP/COEP** (dla `SharedArrayBuffer` w Fallout 1 WASM), **CSP**, zasad bezpieczeństwa oraz wytycznych prawnych znajduje się w **[`docs/SETUP.md`](docs/SETUP.md)**.
 
 ---
 
